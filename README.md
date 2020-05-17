@@ -20,6 +20,8 @@ forget（忘れる）とengineer（エンジニア）を合わせたもの
 自分が書いたコードを他人が見て改善点などをコメント欄にて議論することができる。
 
 ## 設計書
+### Rails version: 5.2.4.2
+### Ruby version: 2.5.7 (x86_64-linux)
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1AvYxJjLFICDyMNLUxzRV6dCA5ZpvXgCJ5eN_LRBFdoM/edit?usp=sharing
