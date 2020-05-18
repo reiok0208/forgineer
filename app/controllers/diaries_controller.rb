@@ -1,4 +1,4 @@
-class DiarysController < ApplicationController
+class DiariesController < ApplicationController
 
   def new
   end
