@@ -14,6 +14,30 @@
  *= require_self
  */
 
+@import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+#body{
+  padding-top: 200px;
+  min-height: 1050px;
+}
+
+.logo-box{
+  display:inline-block;
+}
+
+.header-link{
+  padding:40px 20px;
+}
+
+.navbar{
+  margin: 20px 100px;
+}

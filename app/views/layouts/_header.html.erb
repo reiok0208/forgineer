@@ -1,0 +1,26 @@
+<header class="navbar navbar-fixed-top navbar-light">
+      <% if user_signed_in? %>
+        <div class="logo-box navber-brand">
+          <%=link_to image_tag("logo1.png", alt:"Forgineer", width:"400px", height:"120px"), root_path %>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="header-name"><%= display_header_name(current_user) %></li>
+          <li class="header-link"><%= link_to "新規投稿", new_diary_path, class: "btn btn-default" %></li>
+          <li class="header-link"><%= link_to "マイページ", user_path(current_user), class: "btn btn-default" %></li>
+          <li class="header-link"><%= link_to "日記一覧", diaries_path, class: "btn btn-default" %></li>
+          <li class="header-link"><%= link_to "フォロー&フォロワー", follows_user_path(current_user), class: "btn btn-default" %></li>
+          <li class="header-link"><%= link_to "お気に入り&コメント履歴", user_favorites_path(current_user), class: "btn btn-default" %></li>
+          <li class="header-link"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-default" %></li>
+        </ul>
+      <% else %>
+        <div class="logo-box navber-brand">
+          <%=link_to image_tag("logo1.png", alt:"Forgineer", width:"400px", height:"120px"), root_path %>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="header-link"><%= link_to "日記一覧", diaries_path, class: "btn btn-default" %></li>
+          <li class="header-link"><%= link_to "Forgineerとは？", home_about_path, class: "btn btn-default" %></li>
+          <li class="header-link"><%= link_to "新規登録", new_user_registration_path, class: "btn btn-default" %></li>
+          <li class="header-link"><%= link_to "ログイン", new_user_session_path, class: "btn btn-default" %></li>
+        </ul>
+      <% end %>
+</header>
