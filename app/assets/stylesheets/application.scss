@@ -27,17 +27,23 @@
 
 #body{
   padding-top: 200px;
-  min-height: 1050px;
+  width: 100%;
 }
 
+//ナビバー関連
 .logo-box{
   display:inline-block;
 }
 
 .header-link{
-  padding:40px 20px;
+  padding: 0 20px;
 }
 
-.navbar{
-  margin: 20px 100px;
+.navbar-nav{
+  margin: 0 auto;
+  display: table;
+  table-layout: fixed;
+  float:none;
 }
+
+//

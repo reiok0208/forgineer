@@ -14,7 +14,6 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :nickname, presence: true
-  validates :introduction, presence: true
 
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?

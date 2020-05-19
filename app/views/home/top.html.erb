@@ -1,2 +1,47 @@
-<h1>Home#top</h1>
-<p>Find me in app/views/home/top.html.erb</p>
+<!--トップ画面ではヘッダーを表示させない-->
+<style>
+  header {
+    display: none;
+  }
+
+  #body {
+    padding-top: 50px;
+  }
+</style>
+<!--トップ画面ではヘッダーを表示させない-->
+
+<div class="row">
+  <div class="col-xs-offset-4" style="margin-bottom:50px;">
+    <%= image_tag("logo2.png", alt:"Forgineer", width:"50%", height:"40%") %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-3">
+    <ul class="nav navbar-nav" style="margin-bottom:30px;">
+      <li class="header-link"><%= link_to "日記一覧", diaries_path, class: "btn btn-default" %></li>
+      <li class="header-link"><%= link_to "Forgineerとは？", home_about_path, class: "btn btn-default" %></li>
+      <li class="header-link"><%= link_to "新規登録", new_user_registration_path, class: "btn btn-default" %></li>
+      <li class="header-link"><%= link_to "ログイン", new_user_session_path, class: "btn btn-default" %></li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-offset-1">
+    <div class="diary-box-main">
+      <% @diaries.first(20).shuffle.each do |diary| %>
+      <div class="diary-box-sub">
+        <div class="diary-box-text">
+          <p><%= diary.title %></p>
+          <p><%= diary.body%></p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <div class="see-more">
+      <%= link_to "See more...>", diaries_path, class: "btn btn-default"%>
+    </div>
+  </div>
+</div>
