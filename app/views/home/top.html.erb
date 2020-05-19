@@ -12,32 +12,38 @@
 
 <div class="row">
   <div class="col-xs-offset-4" style="margin-bottom:50px;">
-    <%= image_tag("logo2.png", alt:"Forgineer", width:"50%", height:"40%") %>
+    <%= image_tag("logo2.png", alt:"Forgineer", width:"50%", height:"30%") %>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-xs-6 col-xs-offset-3">
-    <ul class="nav navbar-nav" style="margin-bottom:30px;">
-      <li class="header-link"><%= link_to "日記一覧", diaries_path, class: "btn btn-default" %></li>
-      <li class="header-link"><%= link_to "Forgineerとは？", home_about_path, class: "btn btn-default" %></li>
-      <li class="header-link"><%= link_to "新規登録", new_user_registration_path, class: "btn btn-default" %></li>
-      <li class="header-link"><%= link_to "ログイン", new_user_session_path, class: "btn btn-default" %></li>
-    </ul>
-  </div>
+  <% if user_signed_in? %>
+  <ul class="nav navbar-nav" style="margin-bottom:100px;">
+    <li class="header-link"><%= link_to "新規投稿", new_diary_path, class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "マイページ", user_path(current_user), class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "日記一覧", diaries_path, class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "フォロー&フォロワー", follows_user_path(current_user), class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "お気に入り&コメント履歴", user_favorites_path(current_user), class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-default" %></li>
+  </ul>
+  <% else %>
+  <ul class="nav navbar-nav" style="margin-bottom:100px;">
+    <li class="header-link"><%= link_to "日記一覧", diaries_path, class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "Forgineerとは？", home_about_path, class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "新規登録", new_user_registration_path, class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "ログイン", new_user_session_path, class: "btn btn-default" %></li>
+  </ul>
+  <% end %>
 </div>
-
 
 <div class="row">
   <div class="col-xs-offset-1">
     <div class="diary-box-main">
       <% @diaries.first(20).shuffle.each do |diary| %>
-      <div class="diary-box-sub">
-        <div class="diary-box-text">
-          <p><%= diary.title %></p>
-          <p><%= diary.body%></p>
+        <div class="diary-box-sub">
+          <div class="diary-box-text">
+            <p><%= diary.title %></p>
+            <p><%= diary.body%></p>
+          </div>
         </div>
-      </div>
       <% end %>
     </div>
     <div class="see-more">

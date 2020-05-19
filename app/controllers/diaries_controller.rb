@@ -4,6 +4,8 @@ class DiariesController < ApplicationController
   end
 
   def index
+    @diaries = Diary.all.order(id: "DESC")
+    @tags = Tag.all
   end
 
   def show
