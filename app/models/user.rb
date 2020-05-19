@@ -20,5 +20,5 @@ class User < ApplicationRecord
   end
 
 
-  attachment :profile_image_id
+  attachment :profile_image
 end

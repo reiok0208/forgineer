@@ -26,8 +26,11 @@
 }
 
 #body{
-  padding-top: 200px;
   width: 100%;
+}
+
+ul {
+  list-style: none;
 }
 
 //ナビバー関連
@@ -37,6 +40,10 @@
 
 .header-link{
   padding: 0 20px;
+}
+
+.navbar{
+  margin: 0 100px 0 30px;
 }
 
 .navbar-nav{

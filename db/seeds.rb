@@ -22,3 +22,10 @@ User.create!(
     body: "内容です"
   )
 end
+
+10.times do
+  Tag.create!(
+    name: "Ruby on Rails",
+    description: "タイトル"
+  )
+end

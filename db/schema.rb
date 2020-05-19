@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_071832) do
     t.integer "user_id", null: false
     t.string "title", null: false
     t.string "body", null: false
-    t.string "diary_image_id"
+    t.text "diary_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_071832) do
     t.string "name", null: false
     t.string "nickname", null: false
     t.string "introduction"
-    t.string "profile_imege_id", null: false
+    t.text "profile_imege_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
