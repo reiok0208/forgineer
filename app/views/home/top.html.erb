@@ -17,7 +17,7 @@
 
   <% if user_signed_in? %>
   <ul class="nav navbar-nav" style="margin-bottom:100px;">
-    <li class="header-link"><%= link_to "新規投稿", new_diary_path, class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "新規投稿", new_user_diary_path(current_user), class: "btn btn-default" %></li>
     <li class="header-link"><%= link_to "マイページ", user_path(current_user), class: "btn btn-default" %></li>
     <li class="header-link"><%= link_to "日記一覧", diaries_path, class: "btn btn-default" %></li>
     <li class="header-link"><%= link_to "フォロー&フォロワー", follows_user_path(current_user), class: "btn btn-default" %></li>

@@ -4,7 +4,7 @@ class Diary < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  attachment :diary_image_id
+  attachment :diary_image
 
   validates :title, presence: true
   validates :body, presence: true

@@ -29,6 +29,10 @@
       // bodyのpaddingにnavbarの高さを設定する
       $('body').css('padding-top',height);
     });
+    $(function() {
+      var height=$(".navbar").height();
+      $("body").css("margin-top", height);
+    });
   </script>
   <!--ナビバーとbodyの内容が画面変化時に被らないようにする-->
 </html>

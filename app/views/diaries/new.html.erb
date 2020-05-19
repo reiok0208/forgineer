@@ -1,2 +1,35 @@
-<h1>Diarys#new</h1>
-<p>Find me in app/views/diarys/new.html.erb</p>
+<%= form_for @diary, url: user_diaries_path do |f| %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <h1>新規投稿</h1>
+    <div class="new-diary-main">
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="field form-group">
+            <%= f.text_field :title, class: "form-control",placeholder: "タイトルを記入してください" %>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="new-diary-contributor">
+            <%= "投稿者名：#{current_user.nickname}" %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="field form-group">
+            <%= f.text_area :body, class: "form-control",placeholder: "内容を記入してください", style: "resize: none; width:100%; min-height:600px;" %>
+          </div>
+        </div>
+      </div>
+      <div class="new-diary-image" style="float:left;">
+        <%= f.attachment_field :diary_image %>
+      </div>
+      <div class="new-diary-post" style="float:right;">
+        <%= f.submit "新規投稿", class: "btn btn-default btn-lg" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
