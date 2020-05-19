@@ -14,3 +14,11 @@ User.create!(
   password_confirmation: "test1111",
   profile_imege_id: "1"
 )
+
+20.times do
+  Diary.create!(
+    user_id: 1,
+    title: "タイトル",
+    body: "内容です"
+  )
+end

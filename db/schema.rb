@@ -13,46 +13,46 @@
 ActiveRecord::Schema.define(version: 2020_05_18_071832) do
 
   create_table "comments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "diary_id"
-    t.string "title"
-    t.string "body"
+    t.integer "user_id", null: false
+    t.integer "diary_id", null: false
+    t.string "title", null: false
+    t.string "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "diaries", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "title"
-    t.string "body"
+    t.integer "user_id", null: false
+    t.string "title", null: false
+    t.string "body", null: false
     t.string "diary_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "diary_tags", force: :cascade do |t|
-    t.integer "diary_id"
-    t.integer "tag_id"
+    t.integer "diary_id", null: false
+    t.integer "tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "diary_id"
+    t.integer "user_id", null: false
+    t.integer "diary_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "following_id"
-    t.integer "follower_id"
+    t.integer "following_id", null: false
+    t.integer "follower_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_071832) do
     t.datetime "remember_created_at"
     t.string "name", null: false
     t.string "nickname", null: false
-    t.string "introduction", default: "よろしくお願いします。", null: false
+    t.string "introduction"
     t.string "profile_imege_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
