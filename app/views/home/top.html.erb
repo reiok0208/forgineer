@@ -34,20 +34,7 @@
   <% end %>
 </div>
 
-<div class="row">
-  <div class="col-xs-offset-1">
-    <div class="diary-box-main">
-      <% @diaries.first(20).shuffle.each do |diary| %>
-        <div class="diary-box-sub">
-          <div class="diary-box-text">
-            <p><%= diary.title %></p>
-            <p><%= diary.body%></p>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <div class="see-more">
-      <%= link_to "See more...>", diaries_path, class: "btn btn-default"%>
-    </div>
-  </div>
+
+<div class="see-more">
+  <%= link_to "See more...>", diaries_path, class: "btn btn-default"%>
 </div>

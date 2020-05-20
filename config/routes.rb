@@ -8,13 +8,13 @@ Rails.application.routes.draw do
     get "comments"
     get :follows, on: :member
     get :followers, on: :member
-    resources :diaries, only:[:new, :create, :destroy, :show, :edit, :update] do
+    resources :diaries, only:[:new, :create, :destroy, :edit, :update] do
       resource :favorites, only: [:create, :destroy]
       resource :comments, only: [:create, :destroy, :edit, :update]
     end
   end
 
-  resources :diaries, only:[:index]
+  resources :diaries, only:[:index, :show]
 
   resources :tags, only:[:index, :edit, :update, :create, :destroy]
 

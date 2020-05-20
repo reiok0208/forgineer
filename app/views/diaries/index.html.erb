@@ -1,34 +1,43 @@
-
 <div class="row">
   <div class="col-xs-9 col-xs-offset-1">
     <h1>新着日記</h1>
     <div class="diary-box-main">
       <% @diaries.each do |diary| %>
       <div class="diary-box-sub">
-        <div class="diary-box-text">
-          <p><%= diary.title %></p>
-          <p><%= diary.body%></p>
+        <div class="row">
+          <div class="col-xs-3">
+            <div class="diary-box-image">
+              <%= link_to (attachment_image_tag diary, :diary_image, :fill, 300, 180, format: 'png', fallback: "no-image.png", size:'300x180'),diary_path(diary)  %>
+            </div>
+          </div>
+          <div class="col-xs-9">
+            <div class="diary-box-text">
+              <h3><%= link_to diary.title, diary_path(diary) %></h3>
+              <p><%= diary.body%></p>
+            </div>
+          </div>
         </div>
+
       </div>
       <% end %>
     </div>
   </div>
   <div class="col-xs-2">
-  <!--サーチ機能が入る場所-->
+    <!--サーチ機能が入る場所-->
     <div class="diary-tag-main">
       <h3 class="diary-tag-h3">タグ一覧</h3>
       <ul>
-      <% @tags.each do |tag| %>
-      <li class="tag-link"><%= link_to tag.name, "#" %></li>
-      <% end %>
+        <% @tags.each do |tag| %>
+        <li class="tag-link"><%= link_to tag.name, "#" %></li>
+        <% end %>
       </ul>
     </div>
     <div class="diary-rank-main">
       <h3 class="diary-tag-h3">日記ランキング</h3>
       <ul>
-      <% @tags.each do |tag| %>
-      <li class="tag-link"><%= link_to tag.name, "#" %></li>
-      <% end %>
+        <% @tags.each do |tag| %>
+        <li class="tag-link"><%= link_to tag.name, "#" %></li>
+        <% end %>
       </ul>
     </div>
   </div>

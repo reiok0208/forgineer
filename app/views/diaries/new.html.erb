@@ -1,7 +1,7 @@
-<%= form_for @diary, url: user_diaries_path do |f| %>
-<%= f.hidden_field :user_id, :value => current_user.id %>
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2">
+    <%= form_for @diary, url: user_diaries_path, data: { persist: 'garlic' } do |f| %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
     <h1>新規投稿</h1>
     <div class="new-diary-main">
       <div class="row">
@@ -16,6 +16,7 @@
           </div>
         </div>
       </div>
+
       <div class="row">
         <div class="col-xs-12">
           <div class="field form-group">
@@ -23,13 +24,25 @@
           </div>
         </div>
       </div>
-      <div class="new-diary-image" style="float:left;">
-        <%= f.attachment_field :diary_image %>
-      </div>
-      <div class="new-diary-post" style="float:right;">
-        <%= f.submit "新規投稿", class: "btn btn-default btn-lg" %>
+
+      <div class="row">
+        <div class="col-xs-2">
+          <div class="new-diary-image" style="float:left;">
+            <strong style="font-size:20px;">サムネイル画像</strong>
+            <%= f.attachment_field :diary_image %>
+          </div>
+        </div>
+        <div class="col-xs-9 col-xs-offset-1">
+          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
+            <%= b.label { b.check_box + b.text } %>
+          <% end %>
+        </div>
+        <div class="new-diary-post" style="float:right;">
+          <%= f.submit "新規投稿", class: "btn btn-default btn-lg" %>
+        </div>
       </div>
     </div>
+    <% end %>
+
   </div>
 </div>
-<% end %>
