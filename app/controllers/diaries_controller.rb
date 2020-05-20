@@ -11,12 +11,14 @@ class DiariesController < ApplicationController
   end
 
   def show
+    @diary = Diary.find(params[:id])
+    @diary_tags = DiaryTag.where(diary_id: params[:id])
   end
 
   def create
     @diary = Diary.new(diary_params)
     if @diary.save
-      redirect_to user_diary_path(@diary)
+      redirect_to @diary
     else
       render :new
     end
@@ -26,6 +28,12 @@ class DiariesController < ApplicationController
   end
 
   def destroy
+    diary = Diary.find(params[:id])
+    if diary.destroy
+      redirect_to diaries_path
+    else
+      render :show
+    end
   end
 
   def update

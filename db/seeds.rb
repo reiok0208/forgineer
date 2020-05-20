@@ -29,3 +29,10 @@ end
     description: "タイトル"
   )
 end
+
+10.times do
+  DiaryTag.create!(
+    diary_id: 20,
+    tag_id: 1
+  )
+end
