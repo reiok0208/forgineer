@@ -13,42 +13,51 @@
 ActiveRecord::Schema.define(version: 2020_05_18_071832) do
 
   create_table "comments", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "diary_id", null: false
+    t.integer "user_id"
+    t.integer "diary_id"
     t.string "title", null: false
     t.string "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["diary_id"], name: "index_comments_on_diary_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "diaries", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.string "title", null: false
     t.string "body", null: false
     t.text "diary_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_diaries_on_user_id"
   end
 
   create_table "diary_tags", force: :cascade do |t|
-    t.integer "diary_id", null: false
-    t.integer "tag_id", null: false
+    t.integer "diary_id"
+    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["diary_id"], name: "index_diary_tags_on_diary_id"
+    t.index ["tag_id"], name: "index_diary_tags_on_tag_id"
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "diary_id", null: false
+    t.integer "user_id"
+    t.integer "diary_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["diary_id"], name: "index_favorites_on_diary_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "following_id", null: false
-    t.integer "follower_id", null: false
+    t.integer "following_id"
+    t.integer "follower_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+    t.index ["following_id"], name: "index_relationships_on_following_id"
   end
 
   create_table "tags", force: :cascade do |t|

@@ -42,11 +42,7 @@ class DiariesController < ApplicationController
   private
 
   def diary_params
-    params.require(:diary).permit(
-      :user_id,
-      :title,
-      :body,
-      :diary_image
-    )
+    params.require(:diary).permit(:user_id, :title, :body, :diary_image, tag_ids: [])
   end
+
 end
