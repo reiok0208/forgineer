@@ -1,26 +1,44 @@
-<h2>Log in</h2>
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-4">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="sign_in">
+      <mark>会員の方はこちらからログイン</mark>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <table border="0">
+      <tr style="height:50px">
+        <th style="width:200px;">メールアドレス</th>
+        <td style="width:500px;">
+          <% f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </td>
+      </tr>
+      <tr style="height:50px">
+        <th>パスワード</th>
+        <td style="width:500px;">
+          <% f.label :password %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+        </td>
+      </tr>
+    </table>
+    <div style="float:right; margin-right:20%;">
+      <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+      <%= link_to "=>パスワードを忘れた方はこちら", new_user_password_path %><br />
+      <% end %>
+    </div>
+    <div class="actions">
+      <%= f.submit "ログイン", class:"btn btn-primary", style:"width:150px" %>
+    </div>
+    <% end %>
+
+    <div style="margin-top:50px;">
+      <mark>登録がお済みでない方</mark>
+      <%- if devise_mapping.registerable? && controller_name != 'registrations' %><br>
+      <%= link_to "=>こちらから新規登録を行ってください", new_registration_path(resource_name) %><br />
+      <% end %>
+    </div>
+
+
   </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>
