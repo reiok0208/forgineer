@@ -1,8 +1,14 @@
 class DiariesController < ApplicationController
+  include DiariesHelper
   before_action :authenticate_user!
 
   def new
     @diary = Diary.new
+    @tag = Tag.new
+    if params[:name].present?
+      tagcreate(params[:name])
+      render :new
+    end
   end
 
   def index
@@ -12,7 +18,6 @@ class DiariesController < ApplicationController
 
   def show
     @diary = Diary.find(params[:id])
-    @diary_tags = DiaryTag.where(diary_id: params[:id])
   end
 
   def create

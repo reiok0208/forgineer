@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     get :follows, on: :member
     get :followers, on: :member
     resources :diaries, only:[:new, :create, :destroy, :edit, :update] do
+      collection do
+        post "new" => 'diaries#new',as: 'diaries_new'
+      end
       resource :favorites, only: [:create, :destroy]
       resource :comments, only: [:create, :destroy, :edit, :update]
     end
