@@ -47,8 +47,8 @@
         </div>
         <div class="col-xs-9">
           <div class="show-diary-date">
-            <% @diary_tags.each do |diary_tag| %>
-              <p class="btn"><%= diary_tag.tag.name %></p>
+            <% @diary.diary_tags.each do |tag| %>
+              <p class="btn"><%= tag.tag.name %></p>
             <% end %>
           </div>
         </div>

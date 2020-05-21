@@ -1,8 +1,19 @@
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2">
+
+    <h1>New Diary</h1>
+    <div class="new-diary-main" style="min-height: 100px;">
+      <strong style="font-size:20px;">関連タグ</strong>
+        <p style="font-size:15px;">⚠新規追加したいタグがある場合は下記フォームに記入して追加ボタンを押してください</p>
+        <p style="font-size:15px;">一括で追加したい場合は<strong>,（カンマ）</strong>で区切って追加ボタンを押してください</p>
+        <%= form_tag(diaries_new_user_diaries_path, method: :post) do %>
+          <%= text_field_tag :name,"",class: "form-control",placeholder: "タグを入力",style: "width:1000px; margin:5px; float:left;" %>
+          <%= submit_tag "タグを追加", class: "btn btn-default",style: "margin:5px;" %>
+        <% end %>
+    </div>
+
     <%= form_for @diary, url: user_diaries_path, data: { persist: 'garlic' } do |f| %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
-    <h1>新規投稿</h1>
     <div class="new-diary-main">
       <div class="row">
         <div class="col-xs-6">
