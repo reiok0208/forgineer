@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   def show
   end
 
@@ -12,5 +13,11 @@ class UsersController < ApplicationController
   end
 
   def update
+  end
+
+  def follows
+  end
+
+  def favorites
   end
 end

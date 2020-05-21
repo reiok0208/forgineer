@@ -1,2 +1,56 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="row">
+  <div class="col-xs-2 col-xs-offset-1">
+    <div class="mypage-box-image">
+      <mark style="font-size: 20px; margin-left: 25px;">マイページ</mark><br>
+      <%= attachment_image_tag current_user, :profile_image, :fill, 150, 150, format: 'png', fallback: "no-image.png", size:'150x150' %>
+    </div>
+  </div>
+  <div class="col-xs-7">
+    <table class="table table-bordered" style="margin-top: 30px;">
+      <tr>
+        <th style="width: 120px;">お名前</th>
+        <td style="width: 1000px;"><%= current_user.name %></td>
+      </tr>
+
+      <tr>
+        <th>ニックネーム</th>
+        <td><%= current_user.nickname %></td>
+      </tr>
+
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= current_user.email %></td>
+      </tr>
+
+      <tr>
+        <th>自己紹介</th>
+        <td><%= current_user.introduction %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <div class="mypage-box-main" style="text-align: center;">
+      <strong style="font-size:20px;">登録情報編集</strong>
+      <%= link_to "", edit_user_registration_path %>
+    </div>
+    <div class="mypage-box-main" style="text-align: center;">
+      <strong style="font-size:20px;">退会</strong>
+      <%= link_to "", user_delete_path(current_user) %>
+    </div>
+    <div class="mypage-box-main" style="text-align: center;">
+      <strong style="font-size:20px;">投稿内容一覧</strong>
+      <%= link_to "", "#" %><!--一覧を一部テンプレートにて実装-->
+    </div>
+    <div class="mypage-box-main" style="text-align: center;">
+      <strong style="font-size:20px;">フォロー&フォロワー</strong>
+      <%= link_to "", "#" %>
+    </div>
+    <div class="mypage-box-main" style="text-align: center;">
+      <strong style="font-size:20px;">お気に入り&コメント一覧</strong>
+      <%= link_to "", "#" %>
+    </div>
+  </div>
+</div>
