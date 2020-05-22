@@ -12,7 +12,8 @@ class DiariesController < ApplicationController
   end
 
   def index
-    @diaries = Diary.all.order(id: "DESC")
+    #indexアクションにtag_idがパラメーターで送られたときに存在していればそのtag_idに紐付いた日記を@diariesに渡す。
+    @diaries = params[:tag_id].present? ? Tag.find(params[:tag_id]).diaries : Diary.all.order(id: "DESC")
     @tags = Tag.all
   end
 
