@@ -41,12 +41,18 @@ input[type=checkbox] {
   vertical-align: middle;
 }
 
+
 #body{
   width: 100%;
 }
 
 ul {
   list-style: none;
+}
+
+.notice{
+  font-size: 30px;
+  color: green;
 }
 
 //ナビバー関連
@@ -59,7 +65,7 @@ ul {
 }
 
 .navbar{
-  margin: 0 100px 0 30px;
+  margin: 0 200px 0 50px;
 }
 
 .navbar-nav{
@@ -69,4 +75,8 @@ ul {
   float:none;
 }
 
-//
+//サイドバー
+.sidebar-link{
+  padding: 0 10px;
+  border-bottom: 1px solid black;
+}

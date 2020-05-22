@@ -13,9 +13,9 @@
     <div>
       <%= render "layouts/header" %>
     </div>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <div id="body" class="container">
+    <div id="body">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
       <%= yield %>
     </div>
     <div style="margin-top:600px;">
@@ -23,18 +23,5 @@
     </div>
   </body>
 
-  <!--ナビバーとbodyの内容が画面変化時に被らないようにする-->
-  <script>
-    $(window).on('load resize', function(){
-      // navbarの高さを取得する
-      var height = $('.navbar').height();
-      // bodyのpaddingにnavbarの高さを設定する
-      $('body').css('padding-top',height);
-    });
-    $(function() {
-      var height=$(".navbar").height();
-      $("body").css("margin-top", height);
-    });
-  </script>
-  <!--ナビバーとbodyの内容が画面変化時に被らないようにする-->
+
 </html>

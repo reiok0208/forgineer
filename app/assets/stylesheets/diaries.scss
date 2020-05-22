@@ -19,7 +19,7 @@
 }}
 .diary-box-text{ p{
   font-size: 15px;
-  height: 150px;
+  height: 100%;
   overflow: hidden;
 }}
 
@@ -36,11 +36,16 @@
 
 .diary-box-sub{
   width: 100%;
-  min-height: 200px;
+  height: 100%;
   display: inline-block;
   border-bottom: 1px solid #000000;
   margin: 10px 20px 0 0;
   padding: 10px;
+}
+
+.index-diary-image{
+  width:100%;
+  height:100%;
 }
 
 //new

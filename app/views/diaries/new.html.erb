@@ -8,7 +8,7 @@
           <p style="font-size:15px;">⚠新規追加したいタグがある場合は下記フォームに記入して追加ボタンを押してください</p>
           <p style="font-size:15px;">一括で追加したい場合は<strong>,（カンマ）</strong>で区切って追加ボタンを押してください</p>
           <%= form_tag(diaries_new_user_diaries_path, method: :post) do %>
-          <%= text_field_tag :name,"",class: "form-control",placeholder: "タグは全てスペースなし、小文字で保存されます",style: "width:400px; margin:5px; float:left;" %>
+          <%= text_field_tag :name,"",class: "form-control",placeholder: "タグは全てスペースなし、小文字で保存されます",style: "width:50%px; margin:5px; float:left;" %>
           <%= submit_tag "タグを追加", class: "btn btn-default",style: "margin:5px;" %>
           <% end %>
         </div>
@@ -24,7 +24,7 @@
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <div class="new-diary-main">
       <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-10">
           <div class="field form-group">
             <%= f.text_field :title, class: "form-control",placeholder: "タイトルを記入してください" %>
           </div>
@@ -40,7 +40,7 @@
       </div>
 
       <div class="row">
-        <div class="col-xs-2">
+        <div class="col-xs-2" style="width:100%;">
           <div class="new-diary-image" style="float:left;">
             <strong style="font-size:20px;">サムネイル画像</strong>
             <%= f.attachment_field :diary_image %>

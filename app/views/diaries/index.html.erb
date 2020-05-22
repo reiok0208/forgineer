@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-xs-9 col-xs-offset-1">
+  <div class="col-xs-8 col-xs-offset-1">
     <h1>新着日記</h1>
     <div class="diary-box-main">
       <% @diaries.each do |diary| %>
@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-xs-3">
             <div class="diary-box-image">
-              <%= link_to (attachment_image_tag diary, :diary_image, :fill, 300, 180, format: 'png', fallback: "no-image.png", size:'300x180'),diary_path(diary)  %>
+              <%= link_to (attachment_image_tag diary, :diary_image, :fill, 300, 180, format: 'png', fallback: "no-image.png", size:'300x180', class:"index-diary-image"),diary_path(diary)  %>
             </div>
           </div>
           <div class="col-xs-9">
@@ -17,7 +17,6 @@
             </div>
           </div>
         </div>
-
       </div>
       <% end %>
     </div>
@@ -41,4 +40,5 @@
       </ul>
     </div>
   </div>
+  <div class="col-xs-1"></div>
 </div>
