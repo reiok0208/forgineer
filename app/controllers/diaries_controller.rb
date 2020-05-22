@@ -30,6 +30,12 @@ class DiariesController < ApplicationController
   end
 
   def edit
+    @diary = Diary.find(params[:id])
+    @tag = Tag.new
+    if params[:name].present?
+      tagcreate(params[:name])
+      render :edit
+    end
   end
 
   def destroy
@@ -42,6 +48,12 @@ class DiariesController < ApplicationController
   end
 
   def update
+    @diary = Diary.find(params[:id])
+    if @diary.update(diary_params)
+      redirect_to @diary
+    else
+      render :edit
+    end
   end
 
   private
