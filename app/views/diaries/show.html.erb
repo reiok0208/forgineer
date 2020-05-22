@@ -9,9 +9,10 @@
         </div>
         <div class="col-xs-3">
           <div class="show-diary-contributor">
-            <h3>投稿者名<br><%= @diary.user.nickname %></h3>
+            <h3>投稿者名<br><%= link_to @diary.user.nickname, user_path(@diary.user)%></h3>
           </div>
         </div>
+        <% if user_signed_in? %>
         <% if @diary.user_id == current_user.id %>
         <div class="col-xs-2">
           <div class="show-diary-edit">
@@ -21,6 +22,7 @@
             <%= link_to "削除", user_diary_path(current_user), class: "btn btn-danger", :method => :delete, data: { confirm: '日記を削除しますか？' } %>
           </div>
         </div>
+        <% end %>
         <% end %>
       </div>
 

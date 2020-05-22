@@ -1,6 +1,6 @@
 class DiariesController < ApplicationController
   include DiariesHelper
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
 
   def new
     @diary = Diary.new
