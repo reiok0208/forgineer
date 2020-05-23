@@ -26,8 +26,9 @@
     <div class="diary-tag-main">
       <h3 class="diary-tag-h3">タグ一覧</h3>
       <ul>
+        <li class="tag-link"><%= link_to "全てのタグ", diaries_path %></li>
         <% @tags.each do |tag| %>
-        <li class="tag-link"><%= link_to tag.name, "#" %></li>
+        <li class="tag-link"><%= link_to "#{tag.name}（#{tag.diaries.count}）", diaries_path(tag_id: tag.id) %></li>
         <% end %>
       </ul>
     </div>

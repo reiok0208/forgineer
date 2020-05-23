@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_071832) do
     t.text "diary_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["id", "title", "body"], name: "index_diaries_on_id_and_title_and_body"
     t.index ["user_id"], name: "index_diaries_on_user_id"
   end
 
@@ -65,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_071832) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_tags_on_id"
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 

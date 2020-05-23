@@ -1,57 +1,22 @@
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2">
     <h1>New Diary</h1>
-    <div class="row" style="border: 1px solid rgb(209, 209, 209);">
-      <div class="col-xs-6">
-        <div class="new-diary-main" style="min-height: 100px;">
-          <strong style="font-size:20px;">関連タグ</strong>
-          <p style="font-size:15px;">⚠新規追加したいタグがある場合は下記フォームに記入して追加ボタンを押してください</p>
-          <p style="font-size:15px;">一括で追加したい場合は<strong>,（カンマ）</strong>で区切って追加ボタンを押してください</p>
-          <%= form_tag(diaries_new_user_diaries_path, method: :post) do %>
-          <%= text_field_tag :name,"",class: "form-control",placeholder: "タグは全てスペースなし、小文字で保存されます",style: "width:50%px; margin:5px; float:left;" %>
-          <%= submit_tag "タグを追加", class: "btn btn-default",style: "margin:5px;" %>
-          <% end %>
-        </div>
-      </div>
-      <div class="col-xs-6" style="margin-top:20px;">
+    <div style="padding-left:30px;">
+      <strong style="font-size:20px;">関連タグ</strong>
+      <p style="font-size:15px;">⚠新規追加したいタグがある場合は下記フォームに記入して追加ボタンを押してください</p>
+      <p style="font-size:15px;">一括で追加したい場合は<strong>,（カンマ）</strong>で区切って追加ボタンを押してください</p>
+      <%= form_tag(diaries_new_user_diaries_path, method: :post) do %>
+        <%= text_field_tag :name,"",class: "form-control",placeholder: "タグは全てスペースなし、小文字で保存されます",style: "width:50%; margin:5px; float:left;" %>
+        <%= submit_tag "タグを追加", class: "btn btn-default",style: "margin:5px;" %>
+      <% end %>
       <strong style="font-size:20px;">関連タグ選択</strong>
-        <%= form_for @diary, url: user_diaries_path, data: { persist: 'garlic' } do |f| %>
-        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
-        <p style="float:left; margin:5px; font-size:20px;"><%= b.check_box + b.label { b.text } %></p>
-        <% end %>
-      </div>
     </div>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <div class="new-diary-main">
-      <div class="row">
-        <div class="col-xs-10">
-          <div class="field form-group">
-            <%= f.text_field :title, class: "form-control",placeholder: "タイトルを記入してください" %>
-          </div>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="field form-group">
-            <%= f.text_area :body, class: "form-control",placeholder: "内容を記入してください", style: "resize: none; width:100%; min-height:600px;" %>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-2" style="width:100%;">
-          <div class="new-diary-image" style="float:left;">
-            <strong style="font-size:20px;">サムネイル画像</strong>
-            <%= f.attachment_field :diary_image %>
-          </div>
-        </div>
-        <div class="new-diary-post" style="float:right;">
-          <%= f.submit "新規投稿", class: "btn btn-default btn-lg" %>
-        </div>
-      </div>
+    <div style="padding-left:20px;">
+      <%= form_for @diary, url: user_diaries_path, data: { persist: 'garlic' } do |f| %>
+        <%= render "layouts/post", f: f %>
+        <%= f.submit "新規投稿", class: "btn btn-default btn-lg", style: "float:right;" %>
+      <% end %>
     </div>
-    <% end %>
-
   </div>
 </div>
