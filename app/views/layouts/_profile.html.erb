@@ -14,16 +14,16 @@
         <li class="sidebar-link"><i class="far fa-copy fa-lg"></i><%= link_to "新規投稿", new_user_diary_path(current_user), class: "btn", style:"font-size:20px;" %></li>
         <li class="sidebar-link"><i class="fas fa-user-circle fa-lg"></i><%= link_to "マイページ", user_path(current_user), class: "btn", style:"font-size:20px;" %></li>
         <li class="sidebar-link"><i class="fas fa-book fa-lg"></i><%= link_to "日記一覧", diaries_path, class: "btn", style:"font-size:20px;" %></li>
-        <li class="sidebar-link"><i class="far fa-handshake fa-lg"></i><%= link_to "フォロー&フォロワー", follows_user_path(current_user), class: "btn", style:"font-size:20px;" %></li>
+        <li class="sidebar-link"><i class="far fa-handshake fa-lg"></i><%= link_to "フォロー&フォロワー", user_follows_path(current_user), class: "btn", style:"font-size:20px;" %></li>
         <li class="sidebar-link"><i class="fas fa-star fa-lg"></i><%= link_to "お気に入り&コメント履歴", user_favorites_path(current_user), class: "btn", style:"font-size:20px;" %></li>
         <li class="sidebar-link"><i class="fas fa-sign-out-alt fa-lg"></i><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn", style:"font-size:20px;" %></li>
       </ul>
 
       <table class="table">
         <h1 style="text-align: center; margin-top:30px;">Profile</h1>
-        <tr><%= attachment_image_tag(user, :profile_image, :fill, 200, 200, fallback: "no-image.png", style:"display: block; margin:10px auto;") %></tr>
+        <tr><%= attachment_image_tag(user, :profile_image, :fill, 200, 200, format: 'png', fallback: "no-image.png", size:'200x200', class: "circle", style:"display: block; margin:10px auto;") %></tr>
         <tr>
-          <th>名前</th>
+          <th style="width:120px;">名前</th>
           <td><%= user.name %></td>
         </tr>
 
@@ -44,26 +44,16 @@
 
         <tr>
           <th>フォロー</th>
-          <th><%=link_to "#{user.following_user.count}","#" %></th>
+          <th><%=link_to "#{user.following_user.count}",user_follows_path(current_user) %></th>
         </tr>
         <tr>
           <th>フォロワー</th>
-          <th><%=link_to "#{user.follower_user.count}","#" %></th>
+          <th><%=link_to "#{user.follower_user.count}",user_followers_path(current_user) %></th>
         </tr>
       </table>
 
-      <% if current_user != user %>
-      <% if user.following?(current_user) %>
-      <p><%=link_to "フォローを外す", user_unfollow_path(user.id), method: :post, class: "btn btn-success col-xs-6" %></p>
-      <% else %>
-      <p><%=link_to "フォローする", user_follow_path(user.id), method: :post, class: "btn btn-primary col-xs-6" %></p>
-      <% end %>
-      <% end %>
-
       <div class="row">
-        <% if user == current_user %>
         <%= link_to "",edit_user_registration_path, class: "col-xs-8 col-xs-offset-2 btn btn-default glyphicon glyphicon-wrench" %>
-        <% end %>
       </div>
   </nav>
 </body>

@@ -6,13 +6,13 @@ Rails.application.routes.draw do
   }
 
   resources :users, only:[:show, :edit, :update] do
-    post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
-    post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
+    post 'follow/:id' => 'relationships#follow', as: 'follow'
+    post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
     get 'delete'
     get 'favorites'
     get 'comments'
-    get :follows, on: :member
-    get :followers, on: :member
+    get 'follows'
+    get 'followers'
     resources :diaries, only:[:new, :create, :destroy, :edit, :update] do
       collection do
         post 'new' => 'diaries#new',as: 'diaries_new'
