@@ -53,12 +53,10 @@ ActiveRecord::Schema.define(version: 2020_05_18_071832) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "following_id"
     t.integer "follower_id"
+    t.integer "followed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["follower_id"], name: "index_relationships_on_follower_id"
-    t.index ["following_id"], name: "index_relationships_on_following_id"
   end
 
   create_table "tags", force: :cascade do |t|

@@ -7,16 +7,17 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def destroy
-  end
-
   def delete
   end
 
-  def update
+  def follows
+    @user = User.find(params[:user_id])
+    @follows = @user.following_user
   end
 
-  def follows
+  def followers
+    @user = User.find(params[:user_id])
+    @followers = @user.follower_user
   end
 
   def favorites
