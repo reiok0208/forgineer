@@ -20,4 +20,8 @@ class Diary < ApplicationRecord
       all.order(id: "DESC")
     end
   end
+
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
 end
