@@ -7,9 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create!([
-  {name: "岡田黎",nickname: "おかぴー",email: "test1@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "山田太郎",nickname: "たろう",email: "test2@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "山田花子",nickname: "はな",email: "test3@mail.com",password: "test1111",password_confirmation: "test1111"},
+  #user_id1は非ログインのユーザーのコメントに使用
+  {name: "匿名さん",nickname: "とくめい",email: "test1@mail.com",password: "test1111",password_confirmation: "test1111"},
+  {name: "無名",nickname: "むめい",email: "test2@mail.com",password: "test1111",password_confirmation: "test1111"},
+  {name: "無名",nickname: "むめい",email: "test3@mail.com",password: "test1111",password_confirmation: "test1111"},
   {name: "無名",nickname: "むめい",email: "test4@mail.com",password: "test1111",password_confirmation: "test1111"},
   {name: "無名",nickname: "むめい",email: "test5@mail.com",password: "test1111",password_confirmation: "test1111"},
   {name: "無名",nickname: "むめい",email: "test6@mail.com",password: "test1111",password_confirmation: "test1111"},

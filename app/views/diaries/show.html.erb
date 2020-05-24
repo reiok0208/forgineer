@@ -4,24 +4,22 @@
     <div class="show-diary-main">
 
       <div class="row">
-        <div class="col-xs-7">
+        <div class="col-xs-7 col-md-6">
           <h3><%= @diary.title %></h3>
         </div>
-        <div class="col-xs-3">
+        <div class="col-xs-3 col-md-3 col-md-offset-1">
           <div class="show-diary-contributor">
-            <h3>投稿者名<br><%= link_to @diary.user.nickname, user_path(@diary.user)%></h3>
+            <h3>投稿者名：<%= link_to @diary.user.nickname, user_path(@diary.user)%></h3>
           </div>
         </div>
         <% if user_signed_in? %>
         <% if @diary.user_id == current_user.id %>
-        <div class="col-xs-2">
           <div class="show-diary-edit">
             <%= link_to "編集", edit_user_diary_path(current_user), class: "btn btn-default" %>
-          </div><br>
+          </div>
           <div class="show-diary-delete">
             <%= link_to "削除", user_diary_path(current_user), class: "btn btn-danger", :method => :delete, data: { confirm: '日記を削除しますか？' } %>
           </div>
-        </div>
         <% end %>
         <% end %>
       </div>
@@ -41,21 +39,68 @@
       </div>
 
       <div class="row">
-        <div class="col-xs-3">
+        <div class="col-md-3 col-sm-5">
           <div class="show-diary-date">
             <p style="font-size:15px;">投稿日：<%= @diary.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
             <p style="font-size:15px;">更新日：<%= @diary.updated_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
           </div>
         </div>
-        <div class="col-xs-9">
+        <div class="col-md-9 col-sm-7">
           <div class="show-diary-date">
             <% @diary.diary_tags.each do |tag| %>
-              <p class="btn"><%= link_to tag.tag.name, diaries_path(tag_id: tag.tag.id) %></p><!--要解決策-->
+              <%= link_to tag.tag.name, diaries_path(tag_id: tag.tag.id), class: "btn btn-default fas fa-tag" %><!--要解決策-->
             <% end %>
           </div>
         </div>
       </div>
 
     </div>
+
+    <div class="row">
+      <div class="col-xs-12" style="margin:30px 0;">
+        <h2>コメント</h2>
+        <%= form_for @comment, url: comments_path, method: :post do |f| %>
+          <% if user_signed_in? %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+          <% else %>
+            <!--user_id1はseedにて非ログインのユーザーのコメントに使用-->
+            <%= f.hidden_field :user_id, :value => 1 %>
+          <% end %>
+          <%= f.hidden_field :diary_id, :value => @diary.id %>
+          <div class="field form-group">
+            <%= f.text_field :title, class: "form-control",placeholder: "タイトルを記入してください", style: "width:50%;" %>
+          </div>
+          <div class="field form-group">
+            <%= f.text_area :body, class: "form-control",placeholder: "内容を記入してください", style: "resize: none; width:100%; min-height:200px;" %>
+          </div>
+          <%= f.submit "コメント投稿", class: "btn btn-default btn-lg", style: "float:right;" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <% @comments.each do |comment| %>
+          <div class="post-comment-main">
+            <p style="font-weight: bold; font-size:20px;">
+              <% if comment.user.id != 1 %>
+                名前：<span><%=link_to comment.user.name, user_path(comment.user) %></span>
+              <% else %>
+                名前：<span><%= comment.user.name %></span>
+              <% end %>
+                投稿日：<%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+              <% if user_signed_in? %>
+                <% if comment.user.id == current_user.id %>
+                  <%= link_to "削除", comment_path(comment), class: "btn btn-danger", :method => :delete, data: { confirm: 'コメントを削除しますか？' } %>
+                <% end %>
+              <% end %><br>
+              <%= comment.title %>
+            </p>
+            <p style="font-size:18px;"><%= comment.body %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
   </div>
 </div>

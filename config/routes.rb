@@ -17,13 +17,13 @@ Rails.application.routes.draw do
       collection do
         post 'new' => 'diaries#new',as: 'diaries_new'
       end
-      resource :favorites, only: [:create, :destroy]
-      resource :comments, only: [:create, :destroy, :edit, :update]
     end
   end
 
-  resources :diaries, only:[:index, :show]
-
+  resources :diaries, only:[:index, :show] do
+    resource :favorites, only: [:create, :destroy]
+  end
+  resources :comments, only: [:create, :destroy]
   resources :tags, only:[:index, :edit, :update, :create, :destroy]
 
   root 'home#top'
