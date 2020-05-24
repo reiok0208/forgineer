@@ -10,12 +10,9 @@
   </head>
 
   <body>
-    <div>
       <%= render "layouts/header" %>
-    </div>
-    <div id="body">
+    <div id="body" class="container-fluid" >
       <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
       <%= yield %>
     </div>
     <div style="margin-top:600px;">

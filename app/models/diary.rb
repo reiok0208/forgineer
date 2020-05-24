@@ -10,4 +10,14 @@ class Diary < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 30 }
   validates :body, presence: true
+
+  is_impressionable counter_cache: true
+
+  def self.search(search)
+    if search
+      where(['title LIKE ?', "%#{search}%"])
+    else
+      all.order(id: "DESC")
+    end
+  end
 end
