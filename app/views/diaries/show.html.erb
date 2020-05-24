@@ -57,5 +57,52 @@
       </div>
 
     </div>
+
+    <div class="row">
+      <div class="col-xs-12" style="margin:30px 0;">
+        <h2>コメント</h2>
+        <%= form_for @comment, url: comments_path, method: :post do |f| %>
+          <% if user_signed_in? %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+          <% else %>
+            <!--user_id1はseedにて非ログインのユーザーのコメントに使用-->
+            <%= f.hidden_field :user_id, :value => 1 %>
+          <% end %>
+          <%= f.hidden_field :diary_id, :value => @diary.id %>
+          <div class="field form-group">
+            <%= f.text_field :title, class: "form-control",placeholder: "タイトルを記入してください", style: "width:50%;" %>
+          </div>
+          <div class="field form-group">
+            <%= f.text_area :body, class: "form-control",placeholder: "内容を記入してください", style: "resize: none; width:100%; min-height:200px;" %>
+          </div>
+          <%= f.submit "新規投稿", class: "btn btn-default btn-lg", style: "float:right;" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <% @comments.each do |comment| %>
+          <div class="post-comment-main">
+            <p style="font-weight: bold; font-size:20px;">
+              <% if comment.user.id != 1 %>
+                名前：<span><%=link_to comment.user.name, user_path(comment.user) %></span>
+              <% else %>
+                名前：<span><%= comment.user.name %></span>
+              <% end %>
+                投稿日：<%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+              <% if user_signed_in? %>
+                <% if comment.user.id == current_user.id %>
+                  <%= link_to "削除", comment_path(comment), class: "btn btn-danger", :method => :delete, data: { confirm: 'コメントを削除しますか？' } %>
+                <% end %>
+              <% end %><br>
+              <%= comment.title %>
+            </p>
+            <p style="font-size:18px;"><%= comment.body %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
   </div>
 </div>

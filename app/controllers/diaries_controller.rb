@@ -21,7 +21,9 @@ class DiariesController < ApplicationController
 
   def show
     @diary = Diary.find(params[:id])
+    @comments = Comment.where(diary_id: params[:id])
     impressionist(@diary)
+    @comment = Comment.new
   end
 
   def create
