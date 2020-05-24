@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-xs-8 col-xs-offset-4">
+    <%= devise_error_messages %>
     <div class="sign_up">
       <mark>登録情報編集</mark>
     </div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
     <table border="0">
       <tr style="height:50px">
         <th style="width:200px;">名前</th>

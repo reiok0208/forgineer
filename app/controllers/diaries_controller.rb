@@ -1,6 +1,7 @@
 class DiariesController < ApplicationController
   include DiariesHelper
   before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
+  impressionist :actions=>[:show]
 
   def new
     @diary = Diary.new
@@ -13,12 +14,14 @@ class DiariesController < ApplicationController
 
   def index
     #indexアクションにtag_idがパラメーターで送られたときに存在していればそのtag_idに紐付いた日記を@diariesに渡す。
-    @diaries = params[:tag_id].present? ? Tag.find(params[:tag_id]).diaries : Diary.all.order(id: "DESC")
+    @diaries = params[:tag_id].present? ? Tag.find(params[:tag_id]).diaries : Diary.search(params[:search]).page(params[:page]).per(PER)
     @tags = Tag.all
+    @most_viewed = Diary.order('impressions_count DESC').take(10)
   end
 
   def show
     @diary = Diary.find(params[:id])
+    impressionist(@diary)
   end
 
   def create

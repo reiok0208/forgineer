@@ -50,7 +50,7 @@
         <div class="col-xs-9">
           <div class="show-diary-date">
             <% @diary.diary_tags.each do |tag| %>
-              <p class="btn"><%= tag.tag.name %></p>
+              <p class="btn"><%= link_to tag.tag.name, diaries_path(tag_id: tag.tag.id) %></p><!--要解決策-->
             <% end %>
           </div>
         </div>

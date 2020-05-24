@@ -19,10 +19,17 @@
         </div>
       </div>
       <% end %>
+      <div style="text-align: center;">
+        <%= paginate @diaries %>
+      </div>
     </div>
   </div>
   <div class="col-xs-2">
-    <!--サーチ機能が入る場所-->
+    <h3>日記検索</h3>
+      <%= form_tag(diaries_path, method: :get) do %>
+        <%= text_field_tag :search,"", class: "form-control", style: "width:250px; margin:10px 0;" %>
+        <%= submit_tag '検索', :title => nil, class: "form-control", style: "margin-left:150px; width:100px;" %>
+      <% end %>
     <div class="diary-tag-main">
       <h3 class="diary-tag-h3">タグ一覧</h3>
       <ul>
@@ -35,8 +42,14 @@
     <div class="diary-rank-main">
       <h3 class="diary-tag-h3">日記ランキング</h3>
       <ul>
-        <% @tags.each do |tag| %>
-        <li class="tag-link"><%= link_to tag.name, "#" %></li>
+        <% i = 1 %>
+        <% @most_viewed.each do |pv| %>
+        <% if i == 10 %>
+        <li class="tag-link" style="margin:10px 0 10px 2px;"><%= "#{i}. " %><%= link_to pv.title, diary_path(pv) %></li>
+        <% else %>
+        <li class="tag-link" style="margin:10px 0 10px 13px;"><%= "#{i}. " %><%= link_to pv.title, diary_path(pv) %></li>
+        <% i += 1 %>
+        <% end %>
         <% end %>
       </ul>
     </div>
