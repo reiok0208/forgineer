@@ -23,6 +23,7 @@
   margin:0;
   padding:0;
   box-sizing: border-box;
+  font-family:"ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -41,9 +42,21 @@ input[type=checkbox] {
   vertical-align: middle;
 }
 
+.fa-crown{
+  text-shadow: 0 0 3px #000;
+}
 
 #body{
   width: 100%;
+}
+
+body{
+  background-color: whitesmoke;
+}
+
+.container-fluid{
+  margin: 0;
+  padding: 0;
 }
 
 ul {
