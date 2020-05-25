@@ -6,7 +6,9 @@ class User < ApplicationRecord
 
   has_many :diaries, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :comment_diaries, through: :comments, source: :diary
   has_many :favorites, dependent: :destroy
+  has_many :favorite_diaries, through: :favorites, source: :diary
 
 
   #1つのモデル（Relationship）に2つのアソシエーション（follower,followed）を組むためclass_nameを指定する。

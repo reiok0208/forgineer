@@ -1,0 +1,6 @@
+<h1 style="margin-left:100px;">コメント日記</h1>
+
+<%= link_to "お気に入り日記",user_favorites_path(@user), class: "btn btn-default", style: "margin-left:100px;" %>
+<%= link_to "コメント日記",user_comments_path(@user), class: "btn btn-default" %>
+
+<%= render "layouts/diary_index", diaries: @diaries %>
