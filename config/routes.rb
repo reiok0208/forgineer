@@ -24,9 +24,10 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
   end
   resources :comments, only: [:create, :destroy]
-  resources :tags, only:[:index, :edit, :update, :create, :destroy]
 
   root 'home#top'
   get 'home/about'
+  get 'home/info'
+  post 'home/info' => 'home#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

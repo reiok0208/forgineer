@@ -7,28 +7,28 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create!([
-  #user_id1は非ログインのユーザーのコメントに使用
-  {name: "非会員",nickname: "ひかいいん",email: "test1@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "無名",nickname: "むめい",email: "test2@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "無名",nickname: "むめい",email: "test3@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "無名",nickname: "むめい",email: "test4@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "無名",nickname: "むめい",email: "test5@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "無名",nickname: "むめい",email: "test6@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "無名",nickname: "むめい",email: "test7@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "無名",nickname: "むめい",email: "test8@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "無名",nickname: "むめい",email: "test9@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "無名",nickname: "むめい",email: "test10@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "無名",nickname: "むめい",email: "test11@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "無名",nickname: "むめい",email: "test12@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "無名",nickname: "むめい",email: "test13@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "無名",nickname: "むめい",email: "test14@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "無名",nickname: "むめい",email: "test15@mail.com",password: "test1111",password_confirmation: "test1111"},
-  {name: "無名",nickname: "むめい",email: "test16@mail.com",password: "test1111",password_confirmation: "test1111"}
+  #user_id1は管理者、user_id2は非ログインのユーザーのコメントに使用
+  {name: "管理者",nickname: "かんりしゃ",email: "test1@mail.com",password: "test1111",password_confirmation: "test1111",admin: true},
+  {name: "非会員",nickname: "ひかいいん",email: "test2@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "無名",nickname: "むめい",email: "test3@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "無名",nickname: "むめい",email: "test4@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "無名",nickname: "むめい",email: "test5@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "無名",nickname: "むめい",email: "test6@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "無名",nickname: "むめい",email: "test7@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "無名",nickname: "むめい",email: "test8@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "無名",nickname: "むめい",email: "test9@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "無名",nickname: "むめい",email: "test10@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "無名",nickname: "むめい",email: "test11@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "無名",nickname: "むめい",email: "test12@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "無名",nickname: "むめい",email: "test13@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "無名",nickname: "むめい",email: "test14@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "無名",nickname: "むめい",email: "test15@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "無名",nickname: "むめい",email: "test16@mail.com",password: "test1111",password_confirmation: "test1111",admin: false}
 ])
 
 20.times do
   Diary.create!(
-    user_id: 1,
+    user_id: 3,
     title: "タイトル",
     body: "内容です"
   )
@@ -47,34 +47,30 @@ Tag.create!([
 ])
 
 Relationship.create!([
-  {follower_id: 2,followed_id: 1},
-  {follower_id: 2,followed_id: 16},
-  {follower_id: 2,followed_id: 3},
-  {follower_id: 2,followed_id: 4},
-  {follower_id: 2,followed_id: 5},
-  {follower_id: 2,followed_id: 6},
-  {follower_id: 2,followed_id: 7},
-  {follower_id: 2,followed_id: 8},
-  {follower_id: 2,followed_id: 9},
-  {follower_id: 2,followed_id: 10},
-  {follower_id: 2,followed_id: 11},
-  {follower_id: 2,followed_id: 12},
-  {follower_id: 2,followed_id: 13},
-  {follower_id: 2,followed_id: 14},
-  {follower_id: 2,followed_id: 15},
-  {follower_id: 1,followed_id: 2},
-  {follower_id: 3,followed_id: 2},
-  {follower_id: 4,followed_id: 2},
-  {follower_id: 5,followed_id: 2},
-  {follower_id: 6,followed_id: 2},
-  {follower_id: 7,followed_id: 2},
-  {follower_id: 8,followed_id: 2},
-  {follower_id: 9,followed_id: 2},
-  {follower_id: 10,followed_id: 2},
-  {follower_id: 11,followed_id: 2},
-  {follower_id: 12,followed_id: 2},
-  {follower_id: 13,followed_id: 2},
-  {follower_id: 14,followed_id: 2},
-  {follower_id: 15,followed_id: 2},
-  {follower_id: 16,followed_id: 2}
+  {follower_id: 3,followed_id: 16},
+  {follower_id: 3,followed_id: 4},
+  {follower_id: 3,followed_id: 5},
+  {follower_id: 3,followed_id: 6},
+  {follower_id: 3,followed_id: 7},
+  {follower_id: 3,followed_id: 8},
+  {follower_id: 3,followed_id: 9},
+  {follower_id: 3,followed_id: 10},
+  {follower_id: 3,followed_id: 11},
+  {follower_id: 3,followed_id: 12},
+  {follower_id: 3,followed_id: 13},
+  {follower_id: 3,followed_id: 14},
+  {follower_id: 3,followed_id: 15},
+  {follower_id: 4,followed_id: 3},
+  {follower_id: 5,followed_id: 3},
+  {follower_id: 6,followed_id: 3},
+  {follower_id: 7,followed_id: 3},
+  {follower_id: 8,followed_id: 3},
+  {follower_id: 9,followed_id: 3},
+  {follower_id: 10,followed_id: 3},
+  {follower_id: 11,followed_id: 3},
+  {follower_id: 12,followed_id: 3},
+  {follower_id: 13,followed_id: 3},
+  {follower_id: 14,followed_id: 3},
+  {follower_id: 15,followed_id: 3},
+  {follower_id: 16,followed_id: 3}
 ])

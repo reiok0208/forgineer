@@ -42,8 +42,6 @@ group :development, :test do
   gem 'pry-rails'
 end
   gem 'listen', '~> 3.1.5'
-  gem 'better_errors'
-  gem 'binding_of_caller'
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
@@ -81,6 +79,5 @@ gem 'rails-i18n'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'font-awesome-sass'
-gem 'faker'
 gem 'dotenv-rails'
 gem 'impressionist', '~>1.6.1'

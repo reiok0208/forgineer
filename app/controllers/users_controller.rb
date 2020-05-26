@@ -4,10 +4,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def edit
-  end
-
   def delete
+    if current_user.id != params[:user_id].to_i || current_user.admin?
+      redirect_to root_path
+    end
   end
 
   def follows

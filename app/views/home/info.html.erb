@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+    <div style="margin:50px 0;">
+      <h2>お問い合わせフォーム</h2>
+      <%= form_for @inquiry, url: home_info_path do |f| %>
+      <div class="form-group">
+        <%= f.label :name, "お名前" %>
+        <%= f.text_field :name, class: "form-control", style:"width:500px;" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :message, "お問い合わせ内容" %>
+        <%= f.text_area :message, size: "10x10", class: "form-control", style:"resize: none;" %>
+      </div>
+      <%= f.submit "送信", class: "form-control", style:"width:300px; float:right;" %>
+      <% end %>
+    </div>
+
+    <h2>アプリ製作者</h2>
+    <div class="github-widget col-xs-6" data-username="reiok0208"></div>
+    <div class="col-xs-6" style="margin-top:40px;"><a href="https://github.com/reiok0208/forgineer"><img
+          src="https://gh-card.dev/repos/reiok0208/forgineer.svg?fullname="></a></div>
+    <div class="col-xs-6" style="margin-top:80px;"><img src="https://grass-graph.moshimo.works/images/reiok0208.png">
+    </div>
+  </div>
+</div>
