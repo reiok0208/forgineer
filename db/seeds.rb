@@ -8,7 +8,7 @@
 
 User.create!([
   #user_id1は非ログインのユーザーのコメントに使用
-  {name: "匿名さん",nickname: "とくめい",email: "test1@mail.com",password: "test1111",password_confirmation: "test1111"},
+  {name: "非会員",nickname: "ひかいいん",email: "test1@mail.com",password: "test1111",password_confirmation: "test1111"},
   {name: "無名",nickname: "むめい",email: "test2@mail.com",password: "test1111",password_confirmation: "test1111"},
   {name: "無名",nickname: "むめい",email: "test3@mail.com",password: "test1111",password_confirmation: "test1111"},
   {name: "無名",nickname: "むめい",email: "test4@mail.com",password: "test1111",password_confirmation: "test1111"},

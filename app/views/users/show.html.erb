@@ -40,28 +40,29 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-8 col-xs-offset-2">
+  <div class="col-xs-6 col-xs-offset-3">
     <% if @user == current_user %>
     <div class="mypage-box-main" style="text-align: center;">
-      <strong style="font-size:20px;">登録情報編集</strong>
+      <i class="fas fa-user-edit fa-3x"></i><strong style="font-size:20px;">　登録情報編集</strong>
       <%= link_to "", edit_user_registration_path %>
     </div>
     <div class="mypage-box-main" style="text-align: center;">
-      <strong style="font-size:20px;">退会</strong>
+      <i class="fas fa-external-link-alt fa-3x"></i><strong style="font-size:20px;">　退会</strong>
       <%= link_to "", user_delete_path(@user) %>
     </div>
     <% end %>
     <div class="mypage-box-main" style="text-align: center;">
-      <strong style="font-size:20px;">投稿内容一覧</strong>
-      <%= link_to "", "#" %>
+      <i class="fas fa-book-open fa-3x"></i><strong style="font-size:20px;">　投稿内容一覧</strong>
+      <%= link_to "", diaries_path(user_id: @user.id) %>
     </div>
     <div class="mypage-box-main" style="text-align: center;">
-      <strong style="font-size:20px;">フォロー&フォロワー</strong>
+      <i class="fas fa-user-friends fa-3x"></i><strong style="font-size:20px;">　フォロー&フォロワー</strong>
       <%= link_to "", user_follows_path(@user) %>
     </div>
     <div class="mypage-box-main" style="text-align: center;">
-      <strong style="font-size:20px;">お気に入り&コメント一覧</strong>
-      <%= link_to "", "#" %>
+      <i class="far fa-heart fa-3x"></i><strong style="font-size:20px;">お気に入り&コメント一覧</strong>
+      <%= link_to "", user_favorites_path(@user) %>
     </div>
   </div>
+  <div class="col-xs-3"></div>
 </div>
