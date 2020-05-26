@@ -1,0 +1,36 @@
+<!--トップ画面ではヘッダーを表示させない-->
+<style>
+  header {
+    display: none;
+  }
+</style>
+<!--トップ画面ではヘッダーを表示させない-->
+
+<div class="row">
+  <div class="col-xs-offset-4" style="margin-bottom:50px;">
+    <%= image_tag("logo2.png", alt:"Forgineer", width:"50%", height:"30%") %>
+  </div>
+
+  <% if user_signed_in? %>
+  <ul class="nav navbar-nav" style="margin-bottom:100px;">
+    <li class="header-link"><%= link_to "新規投稿", new_user_diary_path(current_user), class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "マイページ", user_path(current_user), class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "日記一覧", diaries_path, class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "フォロー&フォロワー", user_follows_path(current_user), class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "お気に入り&コメント履歴", user_favorites_path(current_user), class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-default" %></li>
+  </ul>
+  <% else %>
+  <ul class="nav navbar-nav" style="margin-bottom:100px;">
+    <li class="header-link"><%= link_to "日記一覧", diaries_path, class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "Forgineerとは？", home_about_path, class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "新規登録", new_user_registration_path, class: "btn btn-default" %></li>
+    <li class="header-link"><%= link_to "ログイン", new_user_session_path, class: "btn btn-default" %></li>
+  </ul>
+  <% end %>
+</div>
+
+
+<div class="see-more">
+  <%= link_to "See more...>", diaries_path, class: "btn btn-default"%>
+</div>

@@ -1,0 +1,106 @@
+// Place all the styles related to the diarys controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//index
+.diary-tag-main,
+.diary-rank-main{
+  width: 250px;
+  height: auto;
+  display: inline-block;
+  margin: 20px 100px 20px 0;
+}
+
+.diary-box-main,
+.diary-side-box-main{
+  background-color: white;
+  padding: 20px;
+  border-radius: 1%;
+}
+
+.diary-side-box-main{
+  margin-top: 35px;
+  max-width: 300px;
+  min-width: 300px;
+}
+
+.diary-box-text{ h3{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}}
+.diary-box-text{ p{
+  font-size: 15px;
+  height: 100%;
+}}
+
+.diary-tag-h3{
+  text-align: center;
+  border-bottom: 2px solid #000000;
+  margin:10px;
+}
+
+.tag-link{
+  margin-left: 10%;
+  font-size: 20px;
+  text-indent: -15px;
+  padding-left: 15px;
+  margin:10px 0 0 10%;
+}
+
+.diary-box-sub{
+  width: 100%;
+  max-height: 100%;
+  display: inline-block;
+  border-bottom: 1px solid #bebebe;
+  margin: 10px 20px 0 0;
+  padding: 10px;
+}
+
+.diary-box-status{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+  height: 60px;
+}
+
+//new
+.new-diary-main{
+  width: 100%;
+  min-height: 800px;
+  padding: 20px;
+}
+
+//show
+.show-diary-main{
+  width: 100%;
+  min-height: 400px;
+  padding: 20px;
+}
+
+.show-diary-body{
+  width: 100%;
+  min-height: 250px;
+  margin-top: 10px;
+}
+
+.show-diary-date{
+  width: 100%;
+  margin-top: 10px;
+}
+
+.show-diary-image{
+  width:95%;
+  height:55%;
+  margin:20px;
+  padding: 20px;
+  border-bottom: 1px solid #000000;
+  border-top: 1px solid #000000;
+}
+
+.show-diary-edit{
+  float: left;
+}

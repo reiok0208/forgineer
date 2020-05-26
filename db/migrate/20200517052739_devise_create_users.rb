@@ -34,8 +34,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
       t.string :name, null: false
       t.string :nickname, null: false
-      t.string :introduction, null: false, default: "よろしくお願いします。"
-      t.string :profile_imege_id, null: false
+      t.string :introduction
+      t.text :profile_image_id
+      t.boolean :admin, default: false
+
       t.timestamps null: false
     end
 

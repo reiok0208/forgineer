@@ -18,3 +18,78 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  font-family:"ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+}
+
+h1,h2,h3,h4,h5,h6{
+  padding:0;
+  margin:0;
+}
+
+label{
+  font-weight: normal !important;
+}
+
+input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  vertical-align: middle;
+}
+
+.fa-crown{
+  text-shadow: 0 0 3px #000;
+}
+
+#body{
+  width: 100%;
+}
+
+body{
+  background-color: whitesmoke;
+}
+
+.container-fluid{
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+.notice{
+  font-size: 30px;
+  color: green;
+}
+
+//ナビバー関連
+.logo-box{
+  display:inline-block;
+}
+
+.header-link{
+  padding: 0 10px;
+}
+
+.navbar{
+  margin: 0 auto;
+}
+
+.navbar-nav{
+  margin: 0 auto;
+  display: table;
+  table-layout: fixed;
+  float:none;
+}
+
+//サイドバー
+.sidebar-link{
+  padding: 0 10px;
+  border-bottom: 1px solid black;
+}

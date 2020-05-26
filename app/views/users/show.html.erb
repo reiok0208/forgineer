@@ -1,2 +1,68 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="row">
+  <div class="col-xs-2 col-xs-offset-2">
+    <div class="mypage-box-image">
+      <h2 style="margin-left: 10px;">ユーザー詳細</h2><br>
+      <%= attachment_image_tag @user, :profile_image, :fill, 150, 150, format: 'png', fallback: "no-image.png", size:'150x150', class: "circle" %><br>
+      <% if @user.id != current_user.id %>
+        <% if current_user.following?(@user) %>
+          <%= link_to 'フォロー外す', user_unfollow_path(@user), method: :POST, class: "btn btn-success col-xs-12" %>
+        <% else %>
+          <%= link_to 'フォローする', user_follow_path(@user), method: :POST, class: "btn btn-success col-xs-12" %>
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
+  <div class="col-xs-5">
+    <table class="table table-bordered" style="margin-top: 80px;">
+      <% if @user == current_user %>
+      <tr>
+        <th style="width: 400px;">お名前</th>
+        <td style="width: 800px;"><%= @user.name %></td>
+      </tr>
+      <% end %>
+      <tr>
+        <th style="width: 400px;">ニックネーム</th>
+        <td style="width: 800px;"><%= @user.nickname %></td>
+      </tr>
+      <% if @user == current_user %>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= @user.email %></td>
+      </tr>
+      <% end %>
+      <tr>
+        <th>自己紹介</th>
+        <td><%= @user.introduction %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-3">
+    <% if @user == current_user %>
+    <div class="mypage-box-main" style="text-align: center;">
+      <i class="fas fa-user-edit fa-3x"></i><strong style="font-size:20px;">　登録情報編集</strong>
+      <%= link_to "", edit_user_registration_path %>
+    </div>
+    <div class="mypage-box-main" style="text-align: center;">
+      <i class="fas fa-external-link-alt fa-3x"></i><strong style="font-size:20px;">　退会</strong>
+      <%= link_to "", user_delete_path(@user) %>
+    </div>
+    <% end %>
+    <div class="mypage-box-main" style="text-align: center;">
+      <i class="fas fa-book-open fa-3x"></i><strong style="font-size:20px;">　投稿内容一覧</strong>
+      <%= link_to "", diaries_path(user_id: @user.id) %>
+    </div>
+    <div class="mypage-box-main" style="text-align: center;">
+      <i class="fas fa-user-friends fa-3x"></i><strong style="font-size:20px;">　フォロー&フォロワー</strong>
+      <%= link_to "", user_follows_path(@user) %>
+    </div>
+    <div class="mypage-box-main" style="text-align: center;">
+      <i class="far fa-heart fa-3x"></i><strong style="font-size:20px;">お気に入り&コメント一覧</strong>
+      <%= link_to "", user_favorites_path(@user) %>
+    </div>
+  </div>
+  <div class="col-xs-3"></div>
+</div>

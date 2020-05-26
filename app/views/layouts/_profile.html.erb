@@ -1,0 +1,59 @@
+<script>
+  $(function () {
+    $('.drawer').drawer();
+  });
+</script>
+<button type="button" class="drawer-toggle drawer-hamburger">
+  <span class="sr-only">toggle navigation</span>
+  <span class="drawer-hamburger-icon"></span>
+</button>
+
+<body class="drawer drawer--left">
+  <nav class="drawer-nav">
+      <ul>
+        <li class="sidebar-link"><i class="far fa-copy fa-lg"></i><%= link_to "新規投稿", new_user_diary_path(current_user), class: "btn", style:"font-size:20px;" %></li>
+        <li class="sidebar-link"><i class="fas fa-user-circle fa-lg"></i><%= link_to "マイページ", user_path(current_user), class: "btn", style:"font-size:20px;" %></li>
+        <li class="sidebar-link"><i class="fas fa-book fa-lg"></i><%= link_to "日記一覧", diaries_path, class: "btn", style:"font-size:20px;" %></li>
+        <li class="sidebar-link"><i class="far fa-handshake fa-lg"></i><%= link_to "フォロー&フォロワー", user_follows_path(current_user), class: "btn", style:"font-size:20px;" %></li>
+        <li class="sidebar-link"><i class="fas fa-star fa-lg"></i><%= link_to "お気に入り&コメント履歴", user_favorites_path(current_user), class: "btn", style:"font-size:20px;" %></li>
+        <li class="sidebar-link"><i class="fas fa-sign-out-alt fa-lg"></i><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn", style:"font-size:20px;" %></li>
+      </ul>
+
+      <table class="table">
+        <h1 style="text-align: center; margin-top:30px;">Profile</h1>
+        <tr><%= attachment_image_tag(user, :profile_image, :fill, 200, 200, format: 'png', fallback: "no-image.png", size:'200x200', class: "circle", style:"display: block; margin:10px auto;") %></tr>
+        <tr>
+          <th style="width:120px;">名前</th>
+          <td><%= user.name %></td>
+        </tr>
+
+        <tr>
+          <th>ニックネーム</th>
+          <td><%= user.nickname %></td>
+        </tr>
+
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= user.email %></td>
+        </tr>
+
+        <tr>
+          <th>自己紹介</th>
+          <td><%= user.introduction %></td>
+        </tr>
+
+        <tr>
+          <th>フォロー</th>
+          <th><%=link_to "#{user.following_user.count}",user_follows_path(current_user) %></th>
+        </tr>
+        <tr>
+          <th>フォロワー</th>
+          <th><%=link_to "#{user.follower_user.count}",user_followers_path(current_user) %></th>
+        </tr>
+      </table>
+
+      <div class="row">
+        <%= link_to "",edit_user_registration_path, class: "col-xs-8 col-xs-offset-2 btn btn-default glyphicon glyphicon-wrench" %>
+      </div>
+  </nav>
+</body>

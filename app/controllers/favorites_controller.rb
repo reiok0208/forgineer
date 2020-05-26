@@ -1,11 +1,13 @@
 class FavoritesController < ApplicationController
-
-  def index
-  end
+  before_action :authenticate_user!
 
   def create
+    @favorite = Favorite.create(user_id: current_user.id, diary_id: params[:diary_id])
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
+    current_user.favorites.find_by(diary_id: params[:diary_id]).destroy!
+    redirect_back(fallback_location: root_path)
   end
 end
