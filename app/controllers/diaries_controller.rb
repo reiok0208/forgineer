@@ -13,10 +13,14 @@ class DiariesController < ApplicationController
   end
 
   def index
-    #indexアクションにtag_idがパラメーターで送られたときに存在していればそのtag_idに紐付いた日記を@diariesに渡す。
-    @diaries = params[:tag_id].present? ? Tag.find(params[:tag_id]).diaries : Diary.search(params[:search]).page(params[:page]).per(PER)
     @tags = Tag.all
     @most_viewed = Diary.order('impressions_count DESC').take(10)
+    #indexアクションにtag_idがパラメーターで送られたときに存在していればそのtag_idに紐付いた日記を@diariesに渡す。
+    if params["user_id"].nil?
+      @diaries = params[:tag_id].present? ? Tag.find(params[:tag_id]).diaries : Diary.search(params[:search]).page(params[:page]).per(PER)
+    else
+      @diaries = Diary.where(user_id: params["user_id"]).page(params[:page]).per(PER)
+    end
   end
 
   def show
