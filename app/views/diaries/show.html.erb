@@ -62,11 +62,19 @@
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
-          <div class="show-diary-date">
-            <% @diary.diary_tags.each do |tag| %>
-              <%= link_to tag.tag.name, diaries_path(tag_id: tag.tag.id), class: "btn btn-default fas fa-tag" %>
-            <% end %><br>
-          </div>
+          <% if user_signed_in? %>
+            <div class="show-diary-date">
+              <% @diary.diary_tags.each do |tag| %>
+                <%= link_to tag.tag.name, diaries_path(tag_id: tag.tag.id), class: "btn btn-default fas fa-tag" %>
+              <% end %><br>
+            </div>
+          <% else %>
+            <div class="show-diary-date">
+              <% @diary.diary_tags.each do |tag| %>
+                <i class="fas fa-tag"><%= tag.tag.name %></i>
+              <% end %><br>
+            </div>
+          <% end %>
         </div>
       </div>
 
