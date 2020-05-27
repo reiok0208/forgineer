@@ -95,7 +95,6 @@ ActiveRecord::Schema.define(version: 2020_05_26_064614) do
 
   create_table "tags", force: :cascade do |t|
     t.string "name", null: false
-    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["id"], name: "index_tags_on_id"
