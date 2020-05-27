@@ -8,8 +8,9 @@
 
 User.create!([
   #user_id1は管理者、user_id2は非ログインのユーザーのコメントに使用
-  {name: "管理者",nickname: "かんりしゃ",email: "test1@mail.com",password: "test1111",password_confirmation: "test1111",admin: true},
-  {name: "非会員",nickname: "ひかいいん",email: "test2@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "管理者",nickname: "かんりしゃ",email: "admin@mail.com",password: "admin1111",password_confirmation: "admin1111",admin: true},
+  {name: "非会員",nickname: "ひかいいん",email: "test1@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "無名",nickname: "むめい",email: "test2@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
   {name: "無名",nickname: "むめい",email: "test3@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
   {name: "無名",nickname: "むめい",email: "test4@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
   {name: "無名",nickname: "むめい",email: "test5@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
@@ -22,8 +23,7 @@ User.create!([
   {name: "無名",nickname: "むめい",email: "test12@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
   {name: "無名",nickname: "むめい",email: "test13@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
   {name: "無名",nickname: "むめい",email: "test14@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
-  {name: "無名",nickname: "むめい",email: "test15@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
-  {name: "無名",nickname: "むめい",email: "test16@mail.com",password: "test1111",password_confirmation: "test1111",admin: false}
+  {name: "無名",nickname: "むめい",email: "test15@mail.com",password: "test1111",password_confirmation: "test1111",admin: false}
 ])
 
 20.times do
@@ -35,15 +35,15 @@ User.create!([
 end
 
 Tag.create!([
-  {name: "rubyonrails",description: "タイトル"},
-  {name: "ruby",description: "タイトル"},
-  {name: "html",description: "タイトル"},
-  {name: "css",description: "タイトル"},
-  {name: "java",description: "タイトル"},
-  {name: "javascript",description: "タイトル"},
-  {name: "swift",description: "タイトル"},
-  {name: "php",description: "タイトル"},
-  {name: "aql",description: "タイトル"}
+  {name: "rubyonrails"},
+  {name: "ruby"},
+  {name: "html"},
+  {name: "css"},
+  {name: "java"},
+  {name: "javascript"},
+  {name: "swift"},
+  {name: "php"},
+  {name: "sql"}
 ])
 
 Relationship.create!([

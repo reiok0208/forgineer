@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-3">
+    <table class="table table-striped">
+      <tbody>
+        <% @tags.each do |tag| %>
+        <tr>
+          <th style="width:1000px;">
+            <i class="fas fa-tags fa-3x" style="float:left;"></i>
+            <%= form_for tag, url: tag_path(tag.id), method: :patch do |f| %>
+              <%= f.text_field :name, class: "form-control", style: "width:310px; float:left;" %>
+              <%= f.submit "更新", class: "btn btn-primary btn-md", style: "margin:0 10px;" %>
+            <% end %>
+          </th>
+          <td>
+            <%= link_to "", tag_path(tag.id), method: :delete, data: { confirm: 'タグを削除しますか？' }, class: "fas fa-trash-alt fa-3x", style: "color:#b22222;" %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
