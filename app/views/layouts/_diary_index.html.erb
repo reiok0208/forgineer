@@ -1,39 +1,30 @@
-<div class="diary-box-main">
-  <% diaries.each do |diary| %>
-
-  <div class="row diary-box-sub">
-    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-3">
-      <div class="diary-box-image">
-        <%= link_to (attachment_image_tag diary, :diary_image, :fill, 200, 120, format: 'png', fallback: "no-image.png", size:'200x120', class:"index-diary-image"),diary_path(diary)  %>
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-9">
-      <div class="diary-box-text">
-        <h3><%= link_to diary.title, diary_path(diary) %></h3>
-        <p><%= diary.body.truncate(100) %></p>
-      </div>
-      <div class="diary-box-status">
-        <span>投稿者：<%= link_to diary.user.name, user_path(diary.user) %>　</span>
-        <% if user_signed_in? %>
-          <% if diary.favorited_by?(current_user) %>
-            <%= link_to diary_favorites_path(diary), method: :delete, remote: true do %>
-              <i class="fa fa-heart" aria-hidden="true" style="color: red;">解除</i>
-              <%= diary.favorites.count %>
-            <% end %>
-          <% else %>
-            <%= link_to diary_favorites_path(diary), method: :post, remote: true do %>
-              <i class="far fa-heart" aria-hidden="true"></i>追加
-              <%= diary.favorites.count %>
-            <% end %>
-          <% end %>
-        <% end %>
-        <i class="far fa-eye" style="margin: 0 0 2px 20px; color:#CCC;"><%= diary.impressions.size %></i>
-      </div>
+<div class="row diary-box-sub">
+  <div class="col-xs-12 col-sm-5 col-md-5 col-lg-3">
+    <div class="diary-box-image">
+      <%= link_to (attachment_image_tag diary, :diary_image, :fill, 200, 120, format: 'png', fallback: "no-image.png", size:'200x120', class:"index-diary-image"),diary_path(diary)  %>
     </div>
   </div>
-
-  <% end %>
-  <div style="text-align: center;">
-    <%= paginate diaries %>
+  <div class="col-xs-12 col-sm-7 col-md-7 col-lg-9">
+    <div class="diary-box-text">
+      <h4><%= link_to diary.title, diary_path(diary) %></h4>
+      <p><%= diary.body.truncate(100) %></p>
+    </div>
+    <div class="diary-box-status">
+      <span>投稿者：<%= link_to diary.user.name, user_path(diary.user) %>　</span>
+      <% if user_signed_in? %>
+        <% if diary.favorited_by?(current_user) %>
+          <%= link_to diary_favorites_path(diary), method: :delete, remote: true do %>
+          <i class="fa fa-heart" aria-hidden="true" style="color: red;">解除</i>
+          <%= diary.favorites.count %>
+          <% end %>
+        <% else %>
+          <%= link_to diary_favorites_path(diary), method: :post, remote: true do %>
+            <i class="far fa-heart" aria-hidden="true"></i>追加
+            <%= diary.favorites.count %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <i class="far fa-eye" style="margin: 0 0 2px 20px; color:#CCC;"><%= diary.impressions.size %></i>
+    </div>
   </div>
 </div>

@@ -5,7 +5,16 @@
     <% else %>
       <h2>新着日記</h2>
     <% end %>
-    <%= render "layouts/diary_index", diaries: @diaries %>
+    <div class="diary-box-main">
+      <% @diaries.each do |diary| %>
+        <div class="diary_<%= diary.id %>">
+          <%= render "layouts/diary_index", diary: diary %>
+        </div>
+      <% end %>
+      <div style="text-align: center;">
+        <%= paginate @diaries %>
+      </div>
+    </div>
   </div>
 
   <% if user_signed_in? %>

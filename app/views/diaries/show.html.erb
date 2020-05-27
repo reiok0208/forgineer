@@ -34,8 +34,8 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <div class="show-diary-body">
-            <p style="font-size:20px;"><%= @diary.body %></p>
+          <div class="show-diary-body" style="font-size:20px;">
+            <%= simple_format(h(@diary.body)) %>
           </div>
         </div>
       </div>
@@ -64,7 +64,7 @@
         <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
           <div class="show-diary-date">
             <% @diary.diary_tags.each do |tag| %>
-              <%= link_to tag.tag.name, diaries_path(tag_id: tag.tag.id), class: "btn btn-default fas fa-tag" %><!--要解決策-->
+              <%= link_to tag.tag.name, diaries_path(tag_id: tag.tag.id), class: "btn btn-default fas fa-tag" %>
             <% end %><br>
           </div>
         </div>
@@ -75,7 +75,7 @@
     <div class="row">
       <div class="col-xs-12" style="margin:30px 0;">
         <h2>コメント</h2>
-        <%= form_for @comment, url: comments_path, method: :post do |f| %>
+        <%= form_with(model: @comment, url: comments_path, method: :post, remote: true) do |f| %>
           <% if user_signed_in? %>
             <%= f.hidden_field :user_id, :value => current_user.id %>
           <% else %>
@@ -96,25 +96,9 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <% @comments.each do |comment| %>
-          <div class="post-comment-main">
-            <p style="font-weight: bold; font-size:20px;">
-              <% if comment.user.id != 2 %>
-                名前：<span class="comment-name"><%= link_to comment.user.name, user_path(comment.user) %></span>
-              <% else %>
-                名前：<span class="comment-name"><%= comment.user.name %></span>
-              <% end %>
-                投稿日：<%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-              <% if user_signed_in? %>
-                <% if comment.user.id == current_user.id  || current_user.admin? %>
-                  <%= link_to "削除", comment_path(comment), class: "btn btn-danger", :method => :delete, data: { confirm: 'コメントを削除しますか？' } %>
-                <% end %>
-              <% end %><br>
-              <%= comment.title %>
-            </p>
-            <p style="font-size:18px;"><%= comment.body %></p>
+          <div class="diary_comment">
+            <%= render "layouts/comment", comments: @comments %>
           </div>
-        <% end %>
       </div>
     </div>
 
