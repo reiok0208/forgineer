@@ -5,7 +5,11 @@
   <%= submit_tag '検索', :title => nil, class: "form-control", style: "margin-left:150px; width:100px;" %>
   <% end %>
   <div class="diary-tag-main">
-    <h3 class="diary-tag-h3">タグ一覧</h3>
+    <% if current_user.admin? %>
+      <h3 class="diary-tag-h3">タグ一覧<%= link_to "", tags_path, class: "fas fa-tags" %></h3>
+    <% else %>
+      <h3 class="diary-tag-h3">タグ一覧</h3>
+    <% end %>
     <ul>
       <li class="tag-link"><%= link_to "全てのタグ", diaries_path, class: "fas fa-tags" %></li>
       <% tags.each do |tag| %>

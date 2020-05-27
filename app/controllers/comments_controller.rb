@@ -2,20 +2,15 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    if @comment.save!
-      redirect_to diary_path(@comment.diary_id)
-    else
-      redirect_to diary_path(@comment.diary_id)
-    end
+    @comment.save!
+    @comments = Comment.where(diary_id: @comment.diary_id)
   end
 
   def destroy
-    comment = Comment.find(params[:id])
-    if comment.destroy
-      redirect_to diary_path(comment.diary_id)
-    else
-      redirect_to diary_path(comment.diary_id)
-    end
+    @comment = Comment.find(params[:id])
+    diary = @comment.diary_id
+    @comment.destroy
+    @comments = Comment.where(diary_id: diary)
   end
 
   private

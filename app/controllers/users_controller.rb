@@ -22,11 +22,11 @@ class UsersController < ApplicationController
 
   def favorites
     @user = User.find(params[:user_id])
-    @diaries = @user.favorite_diaries.page(params[:page]).per(PER)
+    @diaries = @user.favorite_diaries.page(params[:page]).per(30)
   end
 
   def comments
     @user = User.find(params[:user_id])
-    @diaries = @user.comment_diaries.page(params[:page]).per(PER)
+    @diaries = @user.comment_diaries.page(params[:page]).per(30)
   end
 end
