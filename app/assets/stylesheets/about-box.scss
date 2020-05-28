@@ -1,0 +1,38 @@
+//home#about
+
+@import "global";
+
+.about-box{
+  &__mv{
+    @extend %about;
+    background-image: image-url("about/mv.jpg");
+    background-color:rgba(229, 240, 255, 0.5);
+    background-blend-mode:lighten;
+    text-align: center;
+    font-size:40px;
+  }
+
+  &__can{
+    @extend %about;
+    background-image: image-url("about/can.jpg");
+    padding-left:20px;
+    font-size:40px;
+    text-shadow: 0 0 30px #000; color:#FFF;
+  }
+
+  &__can-text{
+    font-size:20px;
+    margin:20px;
+  }
+
+  &__let{
+    @extend %about;
+    background-image: image-url("about/lets.jpg");
+    background-color:rgba(229, 240, 255, 0.5);
+    background-blend-mode:lighten;
+    text-shadow: 0 0 30px #000; color:#FFF;
+    text-align: center;
+    padding-top: 300px;
+    font-size:120px;
+  }
+}

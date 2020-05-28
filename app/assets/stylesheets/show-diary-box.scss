@@ -1,0 +1,29 @@
+//diary#show
+
+.show-diary-box{
+  width: 100%;
+  min-height: 400px;
+  padding: 20px;
+
+  &__body{
+    width: 100%;
+    min-height: 250px;
+    margin-top: 10px;
+    font-size:20px;
+  }
+
+  &__date{
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  &__image{
+    width:95%;
+    height:55%;
+    margin:20px;
+    padding: 20px;
+    border-bottom: 1px solid #000000;
+    border-top: 1px solid #000000;
+  }
+
+}

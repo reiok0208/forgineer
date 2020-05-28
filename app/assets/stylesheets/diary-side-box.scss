@@ -1,0 +1,49 @@
+//diary#index
+
+@import "global";
+
+.diary-side-box{
+  background-color: white;
+  padding: 20px;
+  border-radius: 1%;
+  margin-top: 35px;
+  max-width: 300px;
+  min-width: 300px;
+
+  &__tag-box,
+  &__rank-box{
+  width: 250px;
+  height: auto;
+  display: inline-block;
+  margin: 20px 100px 20px 0;
+  }
+
+  &__tag-box-h3{
+    text-align: center;
+    border-bottom: 2px solid #000000;
+    margin:10px;
+  }
+
+  &__tag-box-li{
+    @extend %tag-link;
+  }
+
+  &__rank-box-h3{
+    text-align: center;
+    border-bottom: 2px solid #000000;
+    margin:10px;
+  }
+
+  &__rank-box-li{
+    @extend %tag-link;
+    margin:10px 0 10px 20px;
+  }
+  &__rank-box-li--true{
+    @extend %tag-link;
+    margin:10px 0 10px 2px;
+  }
+  &__rank-box-li--false{
+    @extend %tag-link;
+    margin:10px 0 10px 13px;
+  }
+}

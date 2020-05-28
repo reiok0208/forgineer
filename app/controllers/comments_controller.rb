@@ -1,7 +1,15 @@
 class CommentsController < ApplicationController
 
   def create
-    @comment = Comment.new(comment_params)
+    @diary = Diary.find(params[:diary_id])
+    if user_signed_in?
+      @comment = current_user.comments.new(comment_params)
+    else
+      #非会員には非会員専用のuser_id2を付与
+      @comment = Comment.new(comment_params)
+      @comment.user_id = 2
+    end
+    @comment.diary_id = @diary.id
     @comment.save!
     @comments = Comment.where(diary_id: @comment.diary_id)
   end
@@ -16,7 +24,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:user_id, :diary_id, :title, :body)
+    params.require(:comment).permit(:title, :body)
   end
 
 end
