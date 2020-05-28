@@ -4,57 +4,59 @@
   }
 </style>
 
-<div class="about-mv">
-  <div style="padding: 10px 30px;">
-    <div class="logo-box navber-brand" style="float:left;">
-      <%=link_to image_tag("logo1.png", alt:"Forgineer", width:"200px", height:"70px"), root_path %>
+<div class="about-box">
+  <div class="about-box__mv">
+    <div style="padding: 10px 30px;">
+      <div class="logo-box navber-brand" style="float:left;">
+        <%=link_to image_tag("logo1.png", alt:"Forgineer", width:"200px", height:"70px"), root_path %>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="header-link"><%= link_to "日記一覧", diaries_path, class: "btn btn-default" %></li>
+        <li class="header-link"><%= link_to "Forgineerとは？", home_about_path, class: "btn btn-default" %></li>
+        <li class="header-link"><%= link_to "新規登録", new_user_registration_path, class: "btn btn-default" %></li>
+        <li class="header-link"><%= link_to "ログイン", new_user_session_path, class: "btn btn-default" %></li>
+      </ul>
     </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li class="header-link"><%= link_to "日記一覧", diaries_path, class: "btn btn-default" %></li>
-      <li class="header-link"><%= link_to "Forgineerとは？", home_about_path, class: "btn btn-default" %></li>
-      <li class="header-link"><%= link_to "新規登録", new_user_registration_path, class: "btn btn-default" %></li>
-      <li class="header-link"><%= link_to "ログイン", new_user_session_path, class: "btn btn-default" %></li>
-    </ul>
+    <h1 style="margin-top: 300px; padding:50px; text-shadow: 0 0 30px #000; color:#FFF;">あなたは自分の記憶力に満足していますか?</h1>
+    <p id="yes" style="text-shadow: 0 0 30px #000; color:#FFF;" onClick="Click(1)">はい</p>
+    <p id="no" style="text-shadow: 0 0 30px #000; color:#FFF;" onClick="Click(2)">いいえ</p>
   </div>
-  <h1 style="margin-top: 300px; padding:50px; text-shadow: 0 0 30px #000; color:#FFF;">あなたは自分の記憶力に満足していますか?</h1>
-  <p id="yes" style="text-shadow: 0 0 30px #000; color:#FFF;" onClick="Click(1)">はい</p>
-  <p id="no" style="text-shadow: 0 0 30px #000; color:#FFF;" onClick="Click(2)">いいえ</p>
-</div>
 
-<div class="about-can-box">
-  <h1 style="padding-top:200px;">Forgineerではこんな事が出来ます</h1>
-  <p class="about-text">$ あなたが投稿した記憶を他のユーザーに共有</p>
-  <p class="about-text">__ 使ったコードを忘却しないように日記感覚で気軽に残すことができます。</p>
-  <p class="about-text">__ 忘れた技術を調べ直すのではなく自分の言葉で残しておくと理解がしやすく、記憶に残りやすいので生産性の向上が期待できます。</p>
-  <p class="about-text">$ 他のユーザーが投稿した記憶を参考に思い出す</p>
-  <p class="about-text">__ あなたが忘れてしまった記憶は他のユーザーも忘れないように日記に残しているかもしれません。この機会です。検索機能を使って探してみましょう。</p>
-  <p class="about-text">$ コメント機能を使う</p>
-  <p class="about-text">__ わからなければコメントで質問してみましょう。お互い復習、理解することで記憶力はより強固なものになるでしょう。</p>
-  <p class="about-text">__ コードの軽量化は大事です。修正できそうなコードがあったら提案してみましょう。</p>
-  <p class="about-text">$ お気に入り機能を使う</p>
-  <p class="about-text">__ 忘れたくない、参考にしたい日記をお気に入りに追加しよう。お気に入りに追加した日記は履歴からいつでも閲覧できます。</p>
-  <p class="about-text">$ フォロー&フォロワー機能を使う</p>
-  <p class="about-text">__ 気に入ったユーザーをフォローしていつでもそのユーザーの日記を見れるようにしよう。</p>
-  <p class="about-text">$ 人気な日記をチェック</p>
-  <p class="about-text">__ 日記ランキングからチェックして人気な日記の記憶をインプットしよう</p>
-</div>
+  <div class="about-box__can">
+    <h1 style="padding-top:200px;">Forgineerではこんな事が出来ます</h1>
+    <p class="about-box__can-text">$ あなたが投稿した記憶を他のユーザーに共有</p>
+    <p class="about-box__can-text">__ 使ったコードを忘却しないように日記感覚で気軽に残すことができます。</p>
+    <p class="about-box__can-text">__ 忘れた技術を調べ直すのではなく自分の言葉で残しておくと理解がしやすく、記憶に残りやすいので生産性の向上が期待できます。</p>
+    <p class="about-box__can-text">$ 他のユーザーが投稿した記憶を参考に思い出す</p>
+    <p class="about-box__can-text">__ あなたが忘れてしまった記憶は他のユーザーも忘れないように日記に残しているかもしれません。この機会です。検索機能を使って探してみましょう。</p>
+    <p class="about-box__can-text">$ コメント機能を使う</p>
+    <p class="about-box__can-text">__ わからなければコメントで質問してみましょう。お互い復習、理解することで記憶力はより強固なものになるでしょう。</p>
+    <p class="about-box__can-text">__ コードの軽量化は大事です。修正できそうなコードがあったら提案してみましょう。</p>
+    <p class="about-box__can-text">$ お気に入り機能を使う</p>
+    <p class="about-box__can-text">__ 忘れたくない、参考にしたい日記をお気に入りに追加しよう。お気に入りに追加した日記は履歴からいつでも閲覧できます。</p>
+    <p class="about-box__can-text">$ フォロー&フォロワー機能を使う</p>
+    <p class="about-box__can-text">__ 気に入ったユーザーをフォローしていつでもそのユーザーの日記を見れるようにしよう。</p>
+    <p class="about-box__can-text">$ 人気な日記をチェック</p>
+    <p class="about-box__can-text">__ 日記ランキングからチェックして人気な日記の記憶をインプットしよう</p>
+  </div>
 
-<div class="about-lets-box">
-  <%= link_to "Let's Enjoy Programming!", root_path , style: "color: white;"%>
+  <div class="about-box__let">
+    <%= link_to "Let's Enjoy Programming!", root_path , style: "color: white;"%>
+  </div>
 </div>
-
 
 <script>
   $('div').hide().fadeIn('slow');
-  function Click(btn){
-  if ( btn == 1 ){
-    $('p').hide().fadeIn('slow');
-    document.getElementById("yes").innerHTML = "素晴らしい記憶力をお持ちなんですね！<br>その記憶をForgineerに残してみませんか？";
-    document.getElementById("no").style.display ="none";
-  }else if ( btn == 2 ){
-    $('p').hide().fadeIn('slow');
-    document.getElementById("no").innerHTML = "記憶力に自身がなくても大丈夫です！<br>Forgineerに記憶を残して必要なときにアウトプットしてみましょう！";
-    document.getElementById("yes").style.display ="none";
+
+  function Click(btn) {
+    if (btn == 1) {
+      $('p').hide().fadeIn('slow');
+      document.getElementById("yes").innerHTML = "素晴らしい記憶力をお持ちなんですね！<br>その記憶をForgineerに残してみませんか？";
+      document.getElementById("no").style.display = "none";
+    } else if (btn == 2) {
+      $('p').hide().fadeIn('slow');
+      document.getElementById("no").innerHTML = "記憶力に自身がなくても大丈夫です！<br>Forgineerに記憶を残して必要なときにアウトプットしてみましょう！";
+      document.getElementById("yes").style.display = "none";
+    }
   }
-}
 </script>

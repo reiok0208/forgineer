@@ -1,5 +1,5 @@
 <% comments.each do |comment| %>
-<div class="post-comment-main">
+<div style="margin: 30px 0;">
   <p style="font-weight: bold; font-size:20px;">
     <% if comment.user.id != 2 %>
       名前：<span class="comment-name"><%= link_to comment.user.name, user_path(comment.user) %></span>
@@ -9,7 +9,7 @@
     投稿日：<%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
     <% if user_signed_in? %>
       <% if comment.user.id == current_user.id  || current_user.admin? %>
-        <%= link_to "削除", comment_path(comment), class: "btn btn-danger", :method => :delete, data: { confirm: 'コメントを削除しますか？' }, remote: true %>
+        <%= link_to "削除", diary_comment_path(diary_id: comment.diary_id, id: comment.id), class: "btn btn-danger", :method => :delete, data: { confirm: 'コメントを削除しますか？' }, remote: true %>
       <% end %>
     <% end %><br>
     <%= comment.title %>

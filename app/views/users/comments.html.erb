@@ -1,5 +1,5 @@
 <style>
-  .diary-box-sub {
+  .diary-box__sub {
     height: 70px;
     margin: 0;
     padding: 0;
@@ -9,12 +9,12 @@
     display: none;
   }
 
-  .diary-box-image img {
+  .diary-box__image img {
     width: 100px;
     height: 60px;
   }
 
-  .diary-box-status {
+  .diary-box__status {
     height: 45px;
   }
 </style>
@@ -25,7 +25,7 @@
     <h4><%= @user.name %>さんがコメントした日記一覧です</h4>
     <%= link_to "お気に入り日記",user_favorites_path(@user), class: "btn btn-default", style: "margin-bottom:30px;" %>
     <%= link_to "コメント日記",user_comments_path(@user), class: "btn btn-default", style: "margin-bottom:30px;" %>
-    <div class="diary-box-main">
+    <div class="diary-box">
       <% @diaries.each do |diary| %>
         <div class="diary_<%= diary.id %>">
           <%= render "layouts/diary_index", diary: diary %>

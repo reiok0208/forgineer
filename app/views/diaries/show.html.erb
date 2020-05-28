@@ -1,26 +1,20 @@
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2">
     <h1>日記詳細</h1>
-    <div class="show-diary-main">
+    <div class="show-diary-box">
 
       <div class="row">
         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6">
           <h3><%= @diary.title %></h3>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
-          <div class="show-diary-contributor">
-            <h3>投稿者名：<%= link_to @diary.user.nickname, user_path(@diary.user)%></h3>
-          </div>
+          <h3>投稿者名：<%= link_to @diary.user.nickname, user_path(@diary.user)%></h3>
         </div>
         <div class="col-xs-12 col-sm-1 col-md-2 col-lg-2">
           <% if user_signed_in? %>
           <% if @diary.user_id == current_user.id || current_user.admin? %>
-            <div class="show-diary-edit">
-              <%= link_to "編集", edit_user_diary_path(current_user), class: "btn btn-default" %>
-            </div>
-            <div class="show-diary-delete">
-              <%= link_to "削除", user_diary_path(current_user), class: "btn btn-danger", :method => :delete, data: { confirm: '日記を削除しますか？' } %>
-            </div>
+            <%= link_to "編集", edit_user_diary_path(current_user), class: "btn btn-default" %>
+            <%= link_to "削除", user_diary_path(current_user), class: "btn btn-danger", :method => :delete, data: { confirm: '日記を削除しますか？' } %>
           <% end %>
           <% end %>
         </div>
@@ -28,13 +22,13 @@
 
       <div class="row">
         <div class="col-xs-12">
-            <%= attachment_image_tag @diary, :diary_image, :fill, 1000, 400, format: 'png', fallback: "no-image.png", size:'1000x400', class:"show-diary-image"  %>
+            <%= attachment_image_tag @diary, :diary_image, :fill, 1000, 400, format: 'png', fallback: "no-image.png", size:'1000x400', class:"show-diary-box__image"  %>
         </div>
       </div>
 
       <div class="row">
         <div class="col-xs-12">
-          <div class="show-diary-body" style="font-size:20px;">
+          <div class="show-diary-box__body">
             <%= markdown(@diary.body).html_safe %>
           </div>
         </div>
@@ -42,34 +36,24 @@
 
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
-          <div class="show-diary-date" style="font-size:20px;">
+          <div class="show-diary-box__date" style="font-size:20px;">
             <p style="font-size:15px;">投稿日：<%= @diary.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
             <p style="font-size:15px;">更新日：<%= @diary.updated_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
-            <% if user_signed_in? %>
-              <% if @diary.favorited_by?(current_user) %>
-                <%= link_to diary_favorites_path(@diary), method: :delete, remote: true do %>
-                  <i class="fa fa-heart" aria-hidden="true" style="color: red;">解除</i>
-                  <%= @diary.favorites.count %>
-                <% end %>
-              <% else %>
-                <%= link_to diary_favorites_path(@diary), method: :post, remote: true do %>
-                  <i class="far fa-heart" aria-hidden="true"></i>追加
-                  <%= @diary.favorites.count %>
-                <% end %>
-              <% end %>
-            <% end %>
+            <div class="favorite_<%= @diary.id %>">
+              <%= render "layouts/favorite", diary: @diary %>
+            </div>
             <i class="far fa-eye" style="margin: 0 0 2px 20px; color:#CCC;"><%= @diary.impressions.size %></i>
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
           <% if user_signed_in? %>
-            <div class="show-diary-date">
+            <div class="show-diary-box__date">
               <% @diary.diary_tags.each do |tag| %>
                 <%= link_to tag.tag.name, diaries_path(tag_id: tag.tag.id), class: "btn btn-default fas fa-tag" %>
               <% end %><br>
             </div>
           <% else %>
-            <div class="show-diary-date">
+            <div class="show-diary-box__date">
               <% @diary.diary_tags.each do |tag| %>
                 <i class="fas fa-tag"><%= tag.tag.name %></i>
               <% end %><br>
@@ -83,14 +67,7 @@
     <div class="row">
       <div class="col-xs-12" style="margin:30px 0;">
         <h2>コメント</h2>
-        <%= form_with(model: @comment, url: comments_path, method: :post, remote: true) do |f| %>
-          <% if user_signed_in? %>
-            <%= f.hidden_field :user_id, :value => current_user.id %>
-          <% else %>
-            <!--user_id2はseedにて非ログインのユーザーのコメントに使用-->
-            <%= f.hidden_field :user_id, :value => 2 %>
-          <% end %>
-          <%= f.hidden_field :diary_id, :value => @diary.id %>
+        <%= form_with(model:[@diary,@comment], url: diary_comments_path(@diary), method: :post, remote: true) do |f| %>
           <div class="field form-group">
             <%= f.text_field :title, class: "form-control",placeholder: "タイトルを記入してください", style: "width:50%;" %>
           </div>

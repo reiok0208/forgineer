@@ -5,7 +5,7 @@
     <% else %>
       <h2>新着日記</h2>
     <% end %>
-    <div class="diary-box-main">
+    <div class="diary-box">
       <% @diaries.each do |diary| %>
         <div class="diary_<%= diary.id %>">
           <%= render "layouts/diary_index", diary: diary %>
@@ -20,6 +20,6 @@
   <% if user_signed_in? %>
     <%= render "layouts/diary_index_side", tags: @tags, most_viewed: @most_viewed %>
   <% else %>
-    <div class="col-xs-2 diary-side-box-main" style="height:1000px;">検索機能や日記ランキングは会員限定機能です</div>
+    <div class="col-xs-2 diary-side-box" style="height:1000px;">検索機能や日記ランキングは会員限定機能です</div>
   <% end %>
 </div>

@@ -22,10 +22,10 @@ Rails.application.routes.draw do
 
   resources :diaries, only:[:index, :show] do
     resource :favorites, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
   end
 
   resources :tags, only: [:index, :destroy, :update]
-  resources :comments, only: [:create, :destroy]
 
   root 'home#top'
   get 'home/about'

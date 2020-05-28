@@ -1,0 +1,27 @@
+//user#show
+
+.mypage-box{
+  &__image{
+    float: right;
+  }
+
+  &__sub{
+    position: relative;
+    width: 310px;
+    height: 60px;
+    border: 1px solid #dadada;
+    float: left;
+    margin: 50px;
+    padding-top: 8px;
+    border-radius: 20%;
+    text-align: center;
+  }
+
+  &__sub a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:100%;
+    width: 100%;
+  }
+}

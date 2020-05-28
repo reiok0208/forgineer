@@ -19,6 +19,8 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+
+//初期固定設定
 *{
   margin:0;
   padding:0;
@@ -40,10 +42,6 @@ input[type=checkbox] {
   height: 20px;
   margin: 5px;
   vertical-align: middle;
-}
-
-.fa-crown{
-  text-shadow: 0 0 3px #000;
 }
 
 #body{
@@ -68,6 +66,29 @@ ul {
   color: green;
 }
 
+//マイページ、フォロー&フォロワー
+.circle{
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 50%;
+  margin: 50px;
+}
+
+//コメント色
+.comment-name,.comment-name a{
+  color: #147C0E
+}
+
+//日記一覧ランキング
+.fa-crown{
+  text-shadow: 0 0 3px #000;
+}
+
+//トップ
+.see-more{
+  float:right;
+  margin: 30px;
+}
+
 //ナビバー関連
 .logo-box{
   display:inline-block;
@@ -88,7 +109,7 @@ ul {
   float:none;
 }
 
-//サイドバー
+//ドロワーメニュー
 .sidebar-link{
   padding: 0 10px;
   border-bottom: 1px solid black;

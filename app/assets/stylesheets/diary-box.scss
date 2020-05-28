@@ -1,0 +1,38 @@
+//diary#index
+
+.diary-box{
+  background-color: white;
+  padding: 20px;
+  border-radius: 1%;
+
+  &__sub{
+    width: 100%;
+    max-height: 100%;
+    display: inline-block;
+    border-bottom: 1px solid #bebebe;
+    margin: 10px 20px 0 0;
+    padding: 10px;
+  }
+
+  &__text{ h4{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }}
+
+  &__text{ p{
+    font-size: 15px;
+    height: 100%;
+  }}
+
+  &__status{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    -webkit-align-items: flex-end;
+    align-items: flex-end;
+    height: 60px;
+  }
+
+}
