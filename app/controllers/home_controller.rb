@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def top
+    @diaries = Diary.all.order(id: 'DESC')
   end
 
   def info
