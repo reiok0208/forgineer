@@ -35,7 +35,7 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="show-diary-body" style="font-size:20px;">
-            <%= simple_format(h(@diary.body)) %>
+            <%= markdown(@diary.body).html_safe %>
           </div>
         </div>
       </div>
