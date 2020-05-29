@@ -5,11 +5,11 @@
       <%= form_for @inquiry, url: home_info_path do |f| %>
       <div class="form-group">
         <%= f.label :name, "お名前" %>
-        <%= f.text_field :name, class: "form-control", style:"width:300px;" %>
+        <%= f.text_field :name, class: "form-control", style:"width:300px;",placeholder: "入力必須、10文字以内" %>
       </div>
       <div class="form-group">
         <%= f.label :message, "お問い合わせ内容" %>
-        <%= f.text_area :message, size: "10x10", class: "form-control", style:"resize: none;" %>
+        <%= f.text_area :message, size: "10x10", class: "form-control", style:"resize: none;",placeholder: "入力必須" %>
       </div>
       <%= f.submit "送信", class: "form-control", style:"width:300px; float:right;" %>
       <% end %>

@@ -13,11 +13,7 @@ Rails.application.routes.draw do
     get 'comments'
     get 'follows'
     get 'followers'
-    resources :diaries, only:[:new, :create, :destroy, :edit, :update] do
-      collection do
-        post 'new' => 'diaries#new',as: 'diaries_new'
-      end
-    end
+    resources :diaries, only:[:new, :create, :destroy, :edit, :update]
   end
 
   resources :diaries, only:[:index, :show] do
@@ -25,7 +21,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
-  resources :tags, only: [:index, :destroy, :update]
+  resources :tags, only: [:create, :index, :destroy, :update]
 
   root 'home#top'
   get 'home/about'

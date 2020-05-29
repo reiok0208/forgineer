@@ -11,7 +11,7 @@
         <th style="width:200px;">名前</th>
         <td>
           <% f.label :name %>
-          <%= f.text_field :name, autocomplete: "name", class: "form-control", style: "width:310px;" %>
+          <%= f.text_field :name, autocomplete: "name", class: "form-control", style: "width:310px;",placeholder: "10文字以内" %>
         </td>
       </tr>
 
@@ -19,7 +19,7 @@
         <th>ニックネーム</th>
         <td>
           <% f.label :nickname %>
-          <%= f.text_field :nickname, autocomplete: "nickname", class: "form-control" %>
+          <%= f.text_field :nickname, autocomplete: "nickname", class: "form-control",placeholder: "10文字以内" %>
         </td>
       </tr>
 
@@ -27,7 +27,7 @@
         <th>自己紹介</th>
         <td>
           <% f.label :introduction %>
-          <%= f.text_field :introduction, autocomplete: "introduction", class: "form-control" %>
+          <%= f.text_field :introduction, autocomplete: "introduction", class: "form-control",placeholder: "160文字以内" %>
         </td>
       </tr>
 
@@ -43,7 +43,7 @@
         <th>現在のパスワード</th>
         <td>
           <% f.label :current_password %>
-          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control",placeholder: "入力必須" %>
         </td>
       </tr>
 
