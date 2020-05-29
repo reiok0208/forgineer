@@ -1,10 +1,17 @@
-<h1 style="margin-left:100px;">フォロー</h1>
-
-<%= link_to "フォロー",user_follows_path(@user), class: "btn btn-default", style: "margin-left:100px;" %>
-<%= link_to "フォロワー",user_followers_path(@user), class: "btn btn-default" %>
-
-<div>
-  <% @follows.each do |follow| %>
-    <%= link_to attachment_image_tag(follow, :profile_image, :fill, 200, 200, format: 'png', fallback: "no-image.png", size:'200x200', class: "circle"), user_path(follow) %>
-  <% end %>
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <div>
+      <h1>フォロー<%= "(#{@follows.count})" %></h1>
+      <h4><%= @user.nickname %>さんのフォロー一覧です</h4>
+      <%= link_to "フォロー",user_follows_path(@user), class: "btn btn-default", style: "margin-bottom:30px;" %>
+      <%= link_to "フォロワー",user_followers_path(@user), class: "btn btn-default", style: "margin-bottom:30px;" %>
+    </div>
+      <% if @follows.present? %>
+        <% @follows.each do |follow| %>
+          <%= link_to attachment_image_tag(follow, :profile_image, :fill, 200, 200, format: 'png', fallback: "no-image.png", size:'200x200', class: "circle"), user_path(follow) %>
+        <% end %>
+      <% else %>
+        <h4><%= @user.nickname %>さんがフォローしたユーザーはいません</h4>
+      <% end %>
+  </div>
 </div>

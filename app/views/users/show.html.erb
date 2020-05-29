@@ -1,29 +1,28 @@
 <div class="row mypage-box">
-  <div class="col-xs-2 col-xs-offset-2">
+  <div class="col-xs-11 col-xs-offset-1 col-lg-9 col-lg-offset-2">
     <div class="mypage-box__image">
       <h2 style="margin-left: 10px;">ユーザー詳細</h2><br>
-      <%= attachment_image_tag @user, :profile_image, :fill, 150, 150, format: 'png', fallback: "no-image.png", size:'150x150', class: "circle" %><br>
+      <%= attachment_image_tag @user, :profile_image, :fill, 150, 150, format: 'png', fallback: "no-image.png", size:'150x150', class: "circle", style: "margin:0;" %><br>
       <% if @user.id != current_user.id %>
-        <% if current_user.following?(@user) %>
-          <%= link_to 'フォロー外す', user_unfollow_path(@user), method: :POST, class: "btn btn-success col-xs-12" %>
-        <% else %>
-          <%= link_to 'フォローする', user_follow_path(@user), method: :POST, class: "btn btn-success col-xs-12" %>
-        <% end %>
+      <% if current_user.following?(@user) %>
+      <%= link_to 'フォロー外す', user_unfollow_path(@user), method: :POST, class: "btn btn-success col-xs-12" %>
+      <% else %>
+      <%= link_to 'フォローする', user_follow_path(@user), method: :POST, class: "btn btn-success col-xs-12" %>
+      <% end %>
       <% end %>
 
     </div>
-  </div>
-  <div class="col-xs-5">
-    <table class="table table-bordered" style="margin-top: 80px;">
+
+    <table class="table table-bordered" style="width:70%; margin-top: 60px; background-color:white; float: left;">
       <% if @user == current_user %>
       <tr>
-        <th style="width: 400px;">お名前</th>
-        <td style="width: 800px;"><%= @user.name %></td>
+        <th style="min-width: 150px;">お名前</th>
+        <td style="width: 100%;"><%= @user.name %></td>
       </tr>
       <% end %>
       <tr>
-        <th style="width: 400px;">ニックネーム</th>
-        <td style="width: 800px;"><%= @user.nickname %></td>
+        <th>ニックネーム</th>
+        <td><%= @user.nickname %></td>
       </tr>
       <% if @user == current_user %>
       <tr>
@@ -36,11 +35,10 @@
         <td><%= @user.introduction %></td>
       </tr>
     </table>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col-xs-6 col-xs-offset-3">
+
+
+
     <% if @user == current_user %>
     <div class="mypage-box__sub">
       <i class="fas fa-user-edit fa-3x"></i><strong style="font-size:20px;">　登録情報編集</strong>
@@ -53,7 +51,7 @@
     <% end %>
     <div class="mypage-box__sub">
       <i class="fas fa-book-open fa-3x"></i><strong style="font-size:20px;">　投稿内容一覧</strong>
-      <%= link_to "", diaries_path(user_id: @user.id) %>
+      <%= link_to "", diaries_path(user_id: @user.id, nickname: @user.nickname) %>
     </div>
     <div class="mypage-box__sub">
       <i class="fas fa-user-friends fa-3x"></i><strong style="font-size:20px;">　フォロー&フォロワー</strong>
@@ -63,6 +61,6 @@
       <i class="far fa-heart fa-3x"></i><strong style="font-size:20px;">お気に入り&コメント一覧</strong>
       <%= link_to "", user_favorites_path(@user) %>
     </div>
+
+
   </div>
-  <div class="col-xs-3"></div>
-</div>

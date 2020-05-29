@@ -19,10 +19,13 @@
   z-index: 101;
   top: 0;
   overflow: hidden;
-  width: 30.25rem;
+  width: 31.25rem;
   height: 100%;
-  color: #222;
-  background-color: #fff;
+  color: rgb(255, 255, 255);
+}
+
+.drawer-nav a{
+  color: rgb(255, 255, 255);
 }
 
 .drawer-brand {
@@ -101,7 +104,7 @@
 \*!------------------------------------*/
 
 .drawer--left .drawer-nav {
-  left: -30.25rem;
+  left: -31.25rem;
   -webkit-transition: left .6s cubic-bezier(0.190, 1.000, 0.220, 1.000);
   transition: left .6s cubic-bezier(0.190, 1.000, 0.220, 1.000);
 }
@@ -113,7 +116,7 @@
 }
 
 .drawer--left.drawer-open .drawer-hamburger {
-  left: 30.25rem;
+  left: 31.25rem;
 }
 
 /*!------------------------------------*\
@@ -121,7 +124,7 @@
 \*!------------------------------------*/
 
 .drawer--right .drawer-nav {
-  right: -30.25rem;
+  right: -31.25rem;
   -webkit-transition: right .6s cubic-bezier(0.190, 1.000, 0.220, 1.000);
   transition: right .6s cubic-bezier(0.190, 1.000, 0.220, 1.000);
 }
@@ -133,7 +136,7 @@
 }
 
 .drawer--right.drawer-open .drawer-hamburger {
-  right: 30.25rem;
+  right: 31.25rem;
 }
 
 /*!------------------------------------*\
@@ -304,15 +307,15 @@
 
 @media (min-width: 75em) {
   .drawer--sidebar .drawer-nav {
-    width: 30.25rem;
+    width: 31.25rem;
   }
 
   .drawer--sidebar.drawer--left .drawer-contents {
-    margin-left: 30.25rem;
+    margin-left: 31.25rem;
   }
 
   .drawer--sidebar.drawer--right .drawer-contents {
-    margin-right: 30.25rem;
+    margin-right: 31.25rem;
   }
 
   /*! container */
@@ -428,7 +431,7 @@
   /*! dropdown */
   .drawer-navbar .drawer-dropdown-menu {
     position: absolute;
-    width: 30.25rem;
+    width: 31.25rem;
     border: 1px solid #ddd;
   }
 

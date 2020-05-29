@@ -37,8 +37,9 @@ class User < ApplicationRecord
   end
 
 
-  validates :name, presence: true
-  validates :nickname, presence: true
+  validates :name, presence: true, length: { maximum: 10 }
+  validates :nickname, presence: true, length: { maximum: 10 }
+  validates :introduction, length: { maximum: 160 }
 
   attachment :profile_image
 end

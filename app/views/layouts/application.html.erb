@@ -7,10 +7,11 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
   </head>
 
   <body>
-      <%= link_to "", home_info_path, data: {"turbolinks" => false}, class:"fas fa-info-circle fa-4x", style:"float:right; padding:5px; color:#CCC;" %>
+      <%= link_to "", home_info_path, data: {"turbolinks" => false}, class:"fas fa-info-circle fa-4x", style:"float:right; padding:5px; color:#FFF;" %>
       <%= render "layouts/header" %>
     <div id="body" class="container-fluid" >
       <p class="notice"><%= notice %></p>

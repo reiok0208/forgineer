@@ -1,8 +1,8 @@
 <% comments.each do |comment| %>
-<div style="margin: 30px 0;">
-  <p style="font-weight: bold; font-size:20px;">
+<div class="comment-box">
+  <p style="font-weight:bold; font-size:20px;">
     <% if comment.user.id != 2 %>
-      名前：<span class="comment-name"><%= link_to comment.user.name, user_path(comment.user) %></span>
+      名前：<span class="comment-name"><%= link_to comment.user.nickname, user_path(comment.user) %></span>
     <% else %>
       名前：<span class="comment-name"><%= comment.user.name %></span>
     <% end %>

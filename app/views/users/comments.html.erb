@@ -1,38 +1,27 @@
-<style>
-  .diary-box__sub {
-    height: 70px;
-    margin: 0;
-    padding: 0;
-  }
-
-  p {
-    display: none;
-  }
-
-  .diary-box__image img {
-    width: 100px;
-    height: 60px;
-  }
-
-  .diary-box__status {
-    height: 45px;
-  }
-</style>
-
 <div class="row">
   <div class="col-xs-10 col-xs-offset-1">
-    <h1>コメント日記</h1>
-    <h4><%= @user.name %>さんがコメントした日記一覧です</h4>
-    <%= link_to "お気に入り日記",user_favorites_path(@user), class: "btn btn-default", style: "margin-bottom:30px;" %>
-    <%= link_to "コメント日記",user_comments_path(@user), class: "btn btn-default", style: "margin-bottom:30px;" %>
-    <div class="diary-box">
-      <% @diaries.each do |diary| %>
-        <div class="diary_<%= diary.id %>">
-          <%= render "layouts/diary_index", diary: diary %>
-        </div>
+    <h1>コメント履歴</h1>
+    <h4><%= @user.nickname %>さんのコメント履歴です</h4>
+    <%= link_to "お気に入り",user_favorites_path(@user), class: "btn btn-default", style: "margin-bottom:30px;" %>
+    <%= link_to "コメント履歴",user_comments_path(@user), class: "btn btn-default", style: "margin-bottom:30px;" %>
+    <div class="comment-box">
+      <% if @comments.present? %>
+        <% @comments.each do |comment| %>
+          <div class="row comment-box__sub">
+            <div class="col-xs-9 col-lg-9">
+              <div class="comment-box__text">
+                <h4><%= comment.title %></h4>
+                <p><%= markdown(comment.body).html_safe %></p>
+                <h4><%= link_to comment.diary.title, diary_path(comment.diary),style:"float:right;" %></h4>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <h4><%= @user.nickname %>さんがコメントした日記はありません</h4>
       <% end %>
       <div style="text-align: center;">
-        <%= paginate @diaries %>
+        <%= paginate @comments %>
       </div>
     </div>
   </div>
