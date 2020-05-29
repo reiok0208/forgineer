@@ -4,10 +4,10 @@
 <%= f.hidden_field :user_id, :value => current_user.id %>
 
 <div class="field form-group">
-  <%= f.text_field :title, class: "form-control",placeholder: "タイトルを記入してください" %>
+  <%= f.text_field :title, class: "form-control",placeholder: "タイトルを記入してください(入力必須、30文字以内)" %>
 </div>
 <div class="field form-group">
-  <%= f.text_area :body, class: "form-control",placeholder: "内容を記入してください", style: "resize: none; width:100%; min-height:600px;" %>
+  <%= f.text_area :body, class: "form-control",placeholder: "内容を記入してください(入力必須)", style: "resize: none; width:100%; min-height:600px;" %>
 </div>
 
 <strong style="font-size:20px;">サムネイル画像</strong>

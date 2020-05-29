@@ -9,6 +9,9 @@ ja:
         remember_me: "ログインを記憶"
         name: "名前"
         nickname: "ニックネーム"
+      diary:
+        title: "タイトル"
+        body: "内容"
     models:
       user: "ユーザー"
   devise:

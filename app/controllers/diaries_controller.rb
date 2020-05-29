@@ -1,14 +1,13 @@
 class DiariesController < ApplicationController
-  include DiariesHelper
   before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
   impressionist :actions=>[:show]
 
   def new
-    @diary = Diary.new
-    @tag = Tag.new
-    if params[:name].present?
-      tagcreate(params[:name])
-      render :new
+    if current_user.id == params[:user_id].to_i
+      @diary = Diary.new
+      @tag = Tag.new
+    else
+      redirect_to root_path
     end
   end
 
@@ -33,6 +32,7 @@ class DiariesController < ApplicationController
   def create
     @diary = Diary.new(diary_params)
     if @diary.save
+      flash[:notice] = '日記を投稿しました'
       redirect_to @diary
     else
       render :new
@@ -42,15 +42,12 @@ class DiariesController < ApplicationController
   def edit
     @diary = Diary.find(params[:id])
     @tag = Tag.new
-    if params[:name].present?
-      tagcreate(params[:name])
-      render :edit
-    end
   end
 
   def destroy
     diary = Diary.find(params[:id])
     if diary.destroy
+      flash[:notice] = '日記を削除しました'
       redirect_to diaries_path
     else
       render :show
@@ -60,6 +57,7 @@ class DiariesController < ApplicationController
   def update
     @diary = Diary.find(params[:id])
     if @diary.update(diary_params)
+      flash[:notice] = '日記を更新しました'
       redirect_to @diary
     else
       render :edit

@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
       @comment.user_id = 2
     end
     @comment.diary_id = @diary.id
-    @comment.save!
+    @comment.save
     @comments = Comment.where(diary_id: @comment.diary_id)
   end
 
