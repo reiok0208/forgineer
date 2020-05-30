@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :users, only:[:show, :edit, :update] do
+  resources :users, only:[:show, :update] do
     post 'follow/:id' => 'relationships#follow', as: 'follow'
     post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
     get 'delete'
