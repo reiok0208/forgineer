@@ -12,7 +12,7 @@
         <%= link_to "削除", diary_comment_path(diary_id: comment.diary_id, id: comment.id), class: "btn btn-danger", :method => :delete, data: { confirm: 'コメントを削除しますか？' }, remote: true %>
       <% end %>
     <% end %><br>
-    <%= comment.title %>
+    タイトル：<%= comment.title %>
   </p>
   <div style="font-size:18px;"><%= markdown(comment.body).html_safe %></div>
 </div>

@@ -16,6 +16,11 @@
     border-radius: 20%;
     text-align: center;
     background-color:white;
+    animation: fadeIn 1s ease 0s 1 normal; //名前、実行時間、イージング、開始時間、回数、往復処理、終了後スタイル
+  }
+
+  &__sub:hover{
+    background-color:whitesmoke;
   }
 
   &__sub a {

@@ -80,6 +80,15 @@ ul {
   color: #147C0E
 }
 
+//お気に入り
+.favorite{
+  color: red;
+}
+.favorite:hover{
+  animation: favorite 1s infinite;
+  transform-origin: center;
+}
+
 //日記一覧ランキング
 .fa-crown{
   text-shadow: 0 0 3px #000;
@@ -125,4 +134,16 @@ footer{
   width:100%;
   margin-top:50px;
   text-align: center;
+}
+
+//CSS-Animation
+@keyframes fadeIn { //animetion-nameで設定した値を書く
+  0% {opacity: 0; transform: translate3d(0, 20px, 0);} //アニメーション開始時は不透明度0%
+  100% {opacity: 1; transform: translate3d(0, 0, 0);} //アニメーション終了時は不透明度100%
+}
+
+@keyframes favorite {
+  0% { transform: none; }//アニメーション開始時は変更なし
+  50% { transform: scale(1.2); }//アニメーション中間で大きさを1.1倍に
+  100% { transform: none; }//アニメーション終了後は変更なし
 }
