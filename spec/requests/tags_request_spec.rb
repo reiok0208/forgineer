@@ -12,7 +12,7 @@ RSpec.describe "Tags", type: :request do
     sign_in user
   end
 
-  describe 'タグ一覧ページ' do
+  describe '画面遷移テスト' do
     context "（管理者のみ）タグ一覧ページが正しく表示される" do
       before do
         get tags_path

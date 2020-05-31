@@ -6,7 +6,7 @@ RSpec.describe "Users", type: :request do
     sign_in @user
   end
 
-  describe 'ユーザー詳細ページ' do
+  describe '画面遷移テスト' do
     context "ユーザー詳細ページが正しく表示される" do
       before do
         get user_path(@user)
@@ -21,9 +21,7 @@ RSpec.describe "Users", type: :request do
         expect(response.body).to include("ユーザー詳細")
       end
     end
-  end
 
-  describe 'ユーザー編集ページ' do
     context "ユーザー編集ページが正しく表示される" do
       before do
         get edit_user_registration_path(@user)
@@ -38,9 +36,7 @@ RSpec.describe "Users", type: :request do
         expect(response.body).to include("登録情報編集")
       end
     end
-  end
 
-  describe 'ユーザー退会ページ' do
     context "ユーザー退会ページが正しく表示される" do
       before do
         get user_delete_path(@user)
@@ -55,9 +51,7 @@ RSpec.describe "Users", type: :request do
         expect(response.body).to include("退会")
       end
     end
-  end
 
-  describe 'お気に入り履歴ページ' do
     context "お気に入り履歴ページが正しく表示される" do
       before do
         get user_favorites_path(@user)
@@ -72,9 +66,7 @@ RSpec.describe "Users", type: :request do
         expect(response.body).to include("お気に入り")
       end
     end
-  end
 
-  describe 'コメント履歴ページ' do
     context "コメント履歴ページが正しく表示される" do
       before do
         get user_comments_path(@user)
@@ -89,9 +81,7 @@ RSpec.describe "Users", type: :request do
         expect(response.body).to include("コメント履歴")
       end
     end
-  end
 
-  describe 'フォロー一覧ページ' do
     context "フォロー一覧ページが正しく表示される" do
       before do
         get user_follows_path(@user)
@@ -106,9 +96,7 @@ RSpec.describe "Users", type: :request do
         expect(response.body).to include("フォロー一覧")
       end
     end
-  end
 
-  describe 'フォロワー一覧ページ' do
     context "フォロワー一覧ページが正しく表示される" do
       before do
         get user_followers_path(@user)

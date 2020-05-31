@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Home", type: :request do
-  describe 'トップページ' do
+  describe '画面遷移テスト' do
     context "トップページが正しく表示される" do
       before do
         get root_path
@@ -16,9 +16,7 @@ RSpec.describe "Home", type: :request do
         expect(response.body).to include("See more")
       end
     end
-  end
 
-  describe 'Aboutページ' do
     context "Aboutページが正しく表示される" do
       before do
         get home_about_path
@@ -33,9 +31,7 @@ RSpec.describe "Home", type: :request do
         expect(response.body).to include("記憶力")
       end
     end
-  end
 
-  describe 'infoページ' do
     context "infoページが正しく表示される" do
       before do
         get home_info_path

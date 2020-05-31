@@ -7,7 +7,7 @@ RSpec.describe "Diaries", type: :request do
     sign_in @user
   end
 
-  describe '日記新規投稿ページ' do
+  describe '画面遷移テスト' do
     context "日記新規投稿ページが正しく表示される" do
       before do
         get new_user_diary_path(@user)
@@ -22,9 +22,7 @@ RSpec.describe "Diaries", type: :request do
         expect(response.body).to include("新規投稿")
       end
     end
-  end
 
-  describe '日記編集ページ' do
     context "日記編集ページが正しく表示される" do
       before do
         get edit_user_diary_path(@diary,@user)
@@ -39,9 +37,7 @@ RSpec.describe "Diaries", type: :request do
         expect(response.body).to include("日記編集")
       end
     end
-  end
 
-  describe '日記一覧ページ' do
     context "日記一覧ページが正しく表示される" do
       before do
         get diaries_path
@@ -56,9 +52,7 @@ RSpec.describe "Diaries", type: :request do
         expect(response.body).to include("新着日記")
       end
     end
-  end
 
-  describe '日記詳細ページ' do
     context "日記詳細ページが正しく表示される" do
       before do
         get diary_path(@diary)
