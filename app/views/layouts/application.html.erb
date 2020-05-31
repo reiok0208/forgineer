@@ -17,8 +17,11 @@
       <p class="notice"><%= flash[:notice] %></p>
       <%= yield %>
     </div>
+    <footer>
+      <p>©2020 ReiOkada Portfolio</p>
+    </footer>
     <div>
-      <%= debug(params) if Rails.env.development? %>
+      <!--%= debug(params) if Rails.env.development? %-->
     </div>
   </body>
 
