@@ -10,7 +10,7 @@
           <div class="row comment-box__sub">
             <div class="col-xs-9 col-lg-9">
               <div class="comment-box__text">
-                <h4><%= comment.title %></h4>
+                <mark style="font-size:25px; font-weight:bold; background-color:whitesmoke;"><%= comment.title %></mark>
                 <p><%= markdown(comment.body).html_safe %></p>
                 <h4><%= link_to comment.diary.title, diary_path(comment.diary),style:"float:right;" %></h4>
               </div>

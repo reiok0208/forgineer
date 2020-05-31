@@ -38,7 +38,7 @@
           <div class="show-diary-box__date" style="font-size:20px;">
             <p style="font-size:15px;">投稿日：<%= @diary.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
             <p style="font-size:15px;">更新日：<%= @diary.updated_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
-            <div class="favorite_<%= @diary.id %>">
+            <div class="favorite_<%= @diary.id %>" style="float:left;">
               <%= render "layouts/favorite", diary: @diary %>
             </div>
             <i class="far fa-eye" style="margin: 0 0 2px 20px; color:#CCC;"><%= @diary.impressions.size %></i>

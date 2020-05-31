@@ -1,23 +1,6 @@
-<style>
-  header {
-    display: none;
-  }
-</style>
-
 <div class="about-box">
   <div class="about-box__mv">
-    <div style="padding: 10px 30px;">
-      <div class="logo-box navber-brand" style="float:left;">
-        <%=link_to image_tag("logo1.png", alt:"Forgineer", width:"200px", height:"70px"), root_path %>
-      </div>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="header-link"><%= link_to "日記一覧", diaries_path, class: "btn btn-default" %></li>
-        <li class="header-link"><%= link_to "Forgineerとは？", home_about_path, class: "btn btn-default" %></li>
-        <li class="header-link"><%= link_to "新規登録", new_user_registration_path, class: "btn btn-default" %></li>
-        <li class="header-link"><%= link_to "ログイン", new_user_session_path, class: "btn btn-default" %></li>
-      </ul>
-    </div>
-    <h1 style="margin-top: 300px; padding:50px; text-shadow: 0 0 30px #000; color:#FFF;">あなたは自分の記憶力に満足していますか?</h1>
+    <h1 style="padding:400px 50px 50px 50px; text-shadow: 0 0 30px #000; color:#FFF;">あなたは自分の記憶力に満足していますか?</h1>
     <p id="yes" style="text-shadow: 0 0 30px #000; color:#FFF;" onClick="Click(1)">はい</p>
     <p id="no" style="text-shadow: 0 0 30px #000; color:#FFF;" onClick="Click(2)">いいえ</p>
   </div>
