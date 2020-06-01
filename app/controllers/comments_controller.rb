@@ -15,10 +15,14 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    diary = @comment.diary_id
-    @comment.destroy
-    @comments = Comment.where(diary_id: diary)
+    if user_signed_in?
+      @comment = Comment.find(params[:id])
+      diary = @comment.diary_id
+      @comment.destroy
+      @comments = Comment.where(diary_id: diary)
+    else
+      redirect_to root_path
+    end
   end
 
   private

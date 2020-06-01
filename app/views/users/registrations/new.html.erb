@@ -27,8 +27,13 @@
         <th>自己紹介</th>
         <td>
           <% f.label :introduction %>
-          <%= f.text_field :introduction, autofocus: true, autocomplete: "introduction", class: "form-control",placeholder: "160文字以内" %>
+          <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class: "form-control",placeholder: "160文字以内", onKeyUp: "countLength(value, 'length');", style: "resize: none; width:100%; min-height:150px;" %>
         </td>
+      </tr>
+
+      <tr>
+        <th></th>
+        <td id="length" style="float:right;">160文字</th>
       </tr>
 
       <tr style="height:50px">
@@ -80,3 +85,9 @@
   </div>
   <div class="col-xs-2 col-md-4"></div>
 </div>
+
+<script>
+function countLength( text, field ) {
+  document.getElementById(field).innerHTML = 160 - text.length + "文字";
+}
+</script>
