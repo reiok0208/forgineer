@@ -5,6 +5,7 @@ class HomeController < ApplicationController
 
   def info
     @inquiry = Inquiry.new
+    @admin = User.find(1)
   end
 
   def create

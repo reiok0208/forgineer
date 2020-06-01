@@ -10,7 +10,7 @@
       <p><%= diary.body.truncate(100) %></p>
     </div>
     <div class="diary-box__status">
-      <span>投稿者：<%= link_to diary.user.nickname, user_path(diary.user) %>　</span>
+      <span style="white-space: nowrap;">投稿者：<%= link_to diary.user.nickname, user_path(diary.user) %>　</span>
       <%= render "layouts/favorite", diary: diary %>
       <i class="far fa-eye" style="margin: 0 0 2px 20px; color:#CCC;"><%= diary.impressions.size %></i>
       <i class="far fa-comments" style="margin: 0 0 2px 20px; color:#CCC;"><%= diary.comments.count %></i>

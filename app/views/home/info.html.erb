@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+
 <div class="row">
   <div class="col-xs-10 col-xs-offset-1">
     <div style="margin:50px 0;">
@@ -15,11 +17,91 @@
       <% end %>
     </div>
 
-    <h2>アプリ製作者</h2>
-    <div class="github-widget col-xs-12 col-lg-6" data-username="reiok0208" style="background-color:white;"></div>
-    <div class="col-xs-12 col-lg-6" style="margin-top:40px;"><a href="https://github.com/reiok0208/forgineer"><img
-          src="https://gh-card.dev/repos/reiok0208/forgineer.svg?fullname="></a></div>
-    <div class="col-xs-12 col-lg-6" style="margin-top:80px;"><img src="https://grass-graph.moshimo.works/images/reiok0208.png">
+    <div class="Profile-box">
+      <div class="row" style="margin-top:200px;">
+        <div class="col-xs-3">
+          <%= attachment_image_tag(@admin, :profile_image, :fill, 300, 300, format: 'png', fallback: "no-image.png", size:'300x300', class: "circle", style:"") %>
+        </div>
+        <div class="col-xs-7 col-xs-offset-2">
+          <h1 style="font-weight:bold;">Profile</h1>
+          <p style="font-size:18px;">
+            初めまして、岡田と申します。<br>
+            24歳独身。埼玉県さいたま市在住。日本工業大学工学部建築学科卒業。<br>
+            パソコンやスマホなどの機械に関することは大好き。高校のときに当時の高スペックPCを自作しました。<br>
+            他にも趣味程度ですが動画編集や画像のコラージュなどしていました。<br>
+            制作物のロゴもいろいろなフリー素材を組み合わせたものです。<br>
+            趣味は上記以外にも筋トレやWebブラウジングなど（今は休止中）があります。<br>
+            アプリゲームもよくやるのですがユーザー視点で考えられていない設計は嫌いなので自分の制作物では常に意識を持っています。<br>
+            大学は建築学科でも設計のロジックはエンジニアの設計とほとんど相違ないと考えています。<br>
+            第一にお客様のニーズに応え、第二にお客様が使って頂きやすいようにプラスαを考案する。<br>
+            平凡ではありますがそんなエンジニアになりたいと思いながら日々精進しております。<br>
+          </p>
+
+          <h1 style="font-weight:bold;">Trigger</h1>
+          <p style="font-size:18px;">
+            エンジニアに興味を持ったきっかけは大学のプログラミングの講義で、ExcelのVBAに触れたときでした。<br>
+            その講義の課題でストップウォッチを作成し、エンジニアの楽しさの一欠片を知ることが出来ました。<br>
+            実はこの講義で一回課題が解けずに落単してしまっていて、落単したときは難しい！よりも期待した動作をしてくれないのが悔しい気持ちでいっぱいでした。<br>
+            自分がまた同じ講義を受けたのはその悔しさもありますが、自分にも問題があったのではないかと猛省し再度心を入れ替えて挑戦しました。<br>
+            この講義の単位を取れた時の達成感は自分のプログラミングに対する興味を何倍にも大きくするものでした。<br>
+            それから独学でJavaに触れたりProgateで学習していたのですが、やはり勉強方法や解決策をご教授頂ける方が居てほしいということで<br>
+            1年ほどお世話になっていたバイトを辞め、DMMWEBCAMPで真剣にプログラミングと向き合うことを決意しました。<br>
+          </p>
+        </div>
+      </div>
+
+      <div class="skill-box">
+        <h1 style="text-align:center; font-weight:bold;">Skill</h1>
+        <div class="skill-sub">
+          <i class="devicon-ruby-plain-wordmark colored"></i>
+            <h4 style="font-weight:bold;">Ruby</h4>
+            <p>★★★☆☆<br>
+              基本文法、オブジェクトとメソッド、変数と定数、データ型、条件分岐、繰り返し処理、FizzBuzzプログラムの作成しました。<br>
+              しかし、RubyよりRailsの扱い方を理解してると感じているので今後深く勉強したいと思っている言語です。
+            </p>
+        </div>
+        <div class="skill-sub">
+          <i class="devicon-rails-plain-wordmark colored"></i>
+          <h4 style="font-weight:bold;">Ruby on Rails</h4>
+          <p>★★★★☆<br>
+            投稿、閲覧、編集、削除、ログイン、フォロー&フォロワー、コメント、いいね、ダイレクトメッセージ、検索、タグ、バッチ処理、デバッグ、API、envを用いた環境変数化、メーラー、単体テスト(minitest,Rspec)、デプロイ(AWS,nginx,puma)などを実装しました。<br>
+            DMMWEBCAMPの教材以外にもRuby on Rails チュートリアルを勉強中！AWSCloud9でのプログラミングやHerokuへのデプロイなども経験しています。
+          </p>
+        </div>
+        <div class="skill-sub">
+          <i class="devicon-html5-plain-wordmark colored" style="font-size:70px; position:absolute; z-index: 1;"></i>
+          <i class="devicon-css3-plain-wordmark colored" style="font-size:50px; padding:40px 0 0 42px; position:absolute; z-index: 2;"></i>
+          <h4 style="font-weight:bold; margin-left:100px;">HTML/CSS</h4>
+          <p style="margin-left:100px;">★★★★☆<br>
+            基本的なコーディングやレスポンシブ対応などは問題なくできます。Bootstrapのグリッドシステムは適当に理解しています。<br>
+            BEM記法は深くは理解できてない（今回の制作物で実装してみたが扱いを間違っていると思っている）のでコードリーディングで参考にしていきたいです。<br>
+            当初JavaScript(JQuery)で実装しようと思っていた要素のフィードインがCSSの記述だけで出来てしまうことを知って、単純な動きであればCSSで実装したほうが動作も軽く済むのでCSSは今後もっと深ぼりしていきたいです。
+          </p>
+        </div>
+        <div class="skill-sub">
+          <i class="devicon-javascript-plain colored" style="font-size:60px; position:absolute; z-index: 1;"></i>
+          <i class="devicon-jquery-plain-wordmark colored" style="font-size:50px; padding:40px 0 0 45px; position:absolute; z-index: 2;"></i>
+          <h4 style="font-weight:bold; margin-left:100px;">JavaScript/JQuery</h4>
+          <p style="margin-left:100px;">★★☆☆☆<br>
+            DMMWEBCAMPの教材の中では薄い内容だったので理解度は低いです。基本的なことも今は理解してないかもしれません。<br>
+            ですが、Webサイトを動的にするためにとても学びたい言語ではあるので、就活中は多分JavaScriptとJQueryを中心に勉強して技術を深めていると思います。
+          </p>
+        </div>
+        <div class="skill-sub">
+          <i class="devicon-github-plain-wordmark colored"></i>
+          <h4 style="font-weight:bold;">GitHub(Git)</h4>
+          <p>★★★☆☆<br>
+            Gitの基本コマンド(pullやmerge)、単純明快なコミット名の記載、ブランチ管理、プルリクエスト、Issueの扱い、コンフリクトの解消など基本的なことは出来ます。<br>
+            余談ではありますが、GitHubの草を生やし続けていきたいです。
+          </p>
+        </div>
+      </div>
+
+      <div class="col-xs-12">
+        <div class="github-widget col-xs-12 col-lg-6" data-username="reiok0208" style="background-color:white;"></div>
+        <div class="col-xs-12 col-lg-6" style="margin-top:40px;"><a href="https://github.com/reiok0208/forgineer"><img src="https://gh-card.dev/repos/reiok0208/forgineer.svg?fullname="></a></div>
+        <div class="col-xs-12 col-lg-6" style="margin-top:80px;"><img src="https://grass-graph.moshimo.works/images/reiok0208.png"></div>
+      </div>
     </div>
   </div>
 </div>

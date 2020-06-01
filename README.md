@@ -23,7 +23,23 @@ forget（忘れる）とengineer（エンジニア）を合わせたもの
 ### Rails version: 5.2.4.2
 ### Ruby version: 2.5.7 (x86_64-linux)
 
+### サイト題材
+https://docs.google.com/spreadsheets/d/1jumknjxHn9VpWNjxECeJfoYib3rV6u6bdBJ74zWZWhM/edit?usp=sharing
+
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1AvYxJjLFICDyMNLUxzRV6dCA5ZpvXgCJ5eN_LRBFdoM/edit?usp=sharing
 
+### ER図
+https://drive.google.com/file/d/1I0EKjzbiMHClyk4RzaRQFqo1yysnKc9y/view?usp=sharing
 
+### 画面遷移図
+https://drive.google.com/file/d/1I26ih7zqJQAZZK8K5UF9wj_eQkKH3AOU/view?usp=sharing
+
+### ワイヤーフレーム
+https://drive.google.com/file/d/1T81MkDW41raCvB3z7dyK5EH-alcWZ2I7/view?usp=sharing
+
+### DB設計
+https://docs.google.com/spreadsheets/d/1Zma4-zevmC18q2eoeZP02ITVyhsrB4bLGCS5HODeQSQ/edit?usp=sharing
+
+### WBS
+https://docs.google.com/spreadsheets/d/17Vjhz4VxaQHqbj3kJpmN5jypeAQrVCJQhDrstnspT3g/edit?usp=sharing
