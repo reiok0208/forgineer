@@ -12,7 +12,7 @@
     </div>
 
     <div style="padding-left:20px;">
-      <%= form_for @diary, url: user_diary_path, data: { persist: 'garlic' } do |f| %>
+      <%= form_for @diary, url: user_diary_path do |f| %>
         <%= render "layouts/post", f: f %>
         <%= f.submit "更新", class: "btn btn-default btn-lg", style: "float:right;" %>
       <% end %>

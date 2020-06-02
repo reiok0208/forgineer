@@ -40,8 +40,12 @@ class DiariesController < ApplicationController
   end
 
   def edit
-    @diary = Diary.find(params[:id])
-    @tag = Tag.new
+    if current_user.id == params[:user_id].to_i
+      @diary = Diary.find(params[:id])
+      @tag = Tag.new
+    else
+      redirect_to root_path
+    end
   end
 
   def destroy
