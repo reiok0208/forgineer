@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_05_26_064614) do
     t.integer "user_id"
     t.integer "diary_id"
     t.string "title", null: false
-    t.string "body", null: false
+    t.text "body", limit: 65535, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["diary_id"], name: "index_comments_on_diary_id"
@@ -26,12 +26,12 @@ ActiveRecord::Schema.define(version: 2020_05_26_064614) do
   create_table "diaries", force: :cascade do |t|
     t.integer "user_id"
     t.string "title", null: false
-    t.string "body", null: false
+    t.text "body", limit: 4294967295, null: false
     t.text "diary_image_id"
     t.integer "impressions_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["id", "title", "body"], name: "index_diaries_on_id_and_title_and_body"
+    t.index ["title"], name: "index_diaries_on_title"
     t.index ["user_id"], name: "index_diaries_on_user_id"
   end
 
@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 2020_05_26_064614) do
   end
 
   create_table "inquiries", force: :cascade do |t|
-    t.string "name"
-    t.string "message"
+    t.string "name", null: false
+    t.text "message", limit: 65535, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
