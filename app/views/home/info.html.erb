@@ -19,10 +19,12 @@
 
     <div class="Profile-box">
       <div class="row" style="margin-top:200px;">
-        <div class="col-xs-3">
+        <div class="col-xs-5">
           <%= attachment_image_tag(@admin, :profile_image, :fill, 300, 300, format: 'png', fallback: "no-image.png", size:'300x300', class: "circle", style:"") %>
+          <h1 style="font-weight:bold;">GitHubアカウント</h1>
+          <div class="github-widget" data-username="reiok0208" style="background-color:white; width:400px; margin:20px;"></div>
         </div>
-        <div class="col-xs-7 col-xs-offset-2">
+        <div class="col-xs-6 col-xs-offset-1">
           <h1 style="font-weight:bold;">Profile</h1>
           <p style="font-size:18px;">
             初めまして、岡田と申します。<br>
@@ -50,9 +52,22 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-xs-12 col-lg-5">
+          <h1 style="font-weight:bold; margin-bottom:20px;">Forgineerリポジトリ</h1>
+          <a href="https://github.com/reiok0208/forgineer">
+          <img src="https://gh-card.dev/repos/reiok0208/forgineer.svg?fullname="></a>
+        </div>
+        <div class="col-xs-12 col-lg-7">
+          <h1 style="font-weight:bold; margin-bottom:20px;">Contribution Graph</h1>
+          <img src="https://grass-graph.moshimo.works/images/reiok0208.png">
+        </div>
+      </div>
+
       <div class="skill-box">
         <h1 style="text-align:center; font-weight:bold;">Skill</h1>
-        <div class="skill-sub">
+
+        <div class="skill-box_sub">
           <i class="devicon-ruby-plain-wordmark colored"></i>
             <h4 style="font-weight:bold;">Ruby</h4>
             <p>★★★☆☆<br>
@@ -60,7 +75,8 @@
               しかし、RubyよりRailsの扱い方を理解してると感じているので今後深く勉強したいと思っている言語です。
             </p>
         </div>
-        <div class="skill-sub">
+
+        <div class="skill-box_sub">
           <i class="devicon-rails-plain-wordmark colored"></i>
           <h4 style="font-weight:bold;">Ruby on Rails</h4>
           <p>★★★★☆<br>
@@ -68,7 +84,8 @@
             DMMWEBCAMPの教材以外にもRuby on Rails チュートリアルを勉強中！AWSCloud9でのプログラミングやHerokuへのデプロイなども経験しています。
           </p>
         </div>
-        <div class="skill-sub">
+
+        <div class="skill-box_sub">
           <i class="devicon-html5-plain-wordmark colored" style="font-size:70px; position:absolute; z-index: 1;"></i>
           <i class="devicon-css3-plain-wordmark colored" style="font-size:50px; padding:40px 0 0 42px; position:absolute; z-index: 2;"></i>
           <h4 style="font-weight:bold; margin-left:100px;">HTML/CSS</h4>
@@ -78,7 +95,8 @@
             当初JavaScript(JQuery)で実装しようと思っていた要素のフィードインがCSSの記述だけで出来てしまうことを知って、単純な動きであればCSSで実装したほうが動作も軽く済むのでCSSは今後もっと深ぼりしていきたいです。
           </p>
         </div>
-        <div class="skill-sub">
+
+        <div class="skill-box_sub">
           <i class="devicon-javascript-plain colored" style="font-size:60px; position:absolute; z-index: 1;"></i>
           <i class="devicon-jquery-plain-wordmark colored" style="font-size:50px; padding:40px 0 0 45px; position:absolute; z-index: 2;"></i>
           <h4 style="font-weight:bold; margin-left:100px;">JavaScript/JQuery</h4>
@@ -87,20 +105,32 @@
             ですが、Webサイトを動的にするためにとても学びたい言語ではあるので、就活中は多分JavaScriptとJQueryを中心に勉強して技術を深めていると思います。
           </p>
         </div>
-        <div class="skill-sub">
-          <i class="devicon-github-plain-wordmark colored"></i>
-          <h4 style="font-weight:bold;">GitHub(Git)</h4>
-          <p>★★★☆☆<br>
+
+        <div class="skill-box_sub">
+          <i class="devicon-git-plain" style="font-size:60px; position:absolute; z-index: 1;"></i>
+          <i class="devicon-github-plain-wordmark colored" style="font-size:50px; padding:40px 0 0 45px; position:absolute; z-index: 2;"></i>
+          <h4 style="font-weight:bold; margin-left:100px;">Git(GitHub)</h4>
+          <p style="margin-left:100px;">★★★☆☆<br>
             Gitの基本コマンド(pullやmerge)、単純明快なコミット名の記載、ブランチ管理、プルリクエスト、Issueの扱い、コンフリクトの解消など基本的なことは出来ます。<br>
             余談ではありますが、GitHubの草を生やし続けていきたいです。
           </p>
         </div>
-      </div>
 
-      <div class="col-xs-12">
-        <div class="github-widget col-xs-12 col-lg-6" data-username="reiok0208" style="background-color:white;"></div>
-        <div class="col-xs-12 col-lg-6" style="margin-top:40px;"><a href="https://github.com/reiok0208/forgineer"><img src="https://gh-card.dev/repos/reiok0208/forgineer.svg?fullname="></a></div>
-        <div class="col-xs-12 col-lg-6" style="margin-top:80px;"><img src="https://grass-graph.moshimo.works/images/reiok0208.png"></div>
+        <div class="skill-box_sub">
+          <i class="devicon-java-plain colored" style="font-size:30px; padding:30px 0 0 30px; position:absolute; z-index: 1;"></i>
+          <i class="devicon-swift-plain colored" style="font-size:30px; position:absolute;"></i>
+          <i class="devicon-mysql-plain colored" style="font-size:30px; padding:60px 0 0 60px; position:absolute;"></i>
+          <i class="devicon-nginx-original colored" style="font-size:30px; padding:60px 0 0 0; position:absolute;"></i>
+          <i class="devicon-heroku-original colored" style="font-size:30px; padding:0 0 0 60px; position:absolute;"></i>
+          <i class="devicon-amazonwebservices-plain-wordmark" style="font-size:90px; padding:60px 0 0 0; position:absolute;"></i>
+          <h4 style="font-weight:bold; margin-left:100px;">Ather</h4>
+          <p style="margin-left:100px;">★☆☆☆☆<br>
+            SwiftはAppleアプリを作成する意欲があるため学習予定。<br>
+            JavaとMySQLは独学で触りました。独学でプログラミング学習していたこともあってDMMWEBCAMPではほとんど躓くことなく課題をクリアできました。<br>
+            AWS(EC2、EIP、AMI、RDS、Cloud9)、Linux、Nginx、Puma、HerokuをDMMWEBCAMPと独学にて学習しています。
+          </p>
+        </div>
+
       </div>
     </div>
   </div>

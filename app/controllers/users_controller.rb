@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def delete
-    if current_user.id != params[:user_id].to_i || current_user.admin?
+    if current_user.id != params[:user_id].to_i || current_user.admin?  #管理者は削除画面へ行けないようにし、誤操作を潰す
       redirect_to root_path
     end
   end

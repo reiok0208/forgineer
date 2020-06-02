@@ -12,8 +12,8 @@
         <div class="col-xs-12 col-sm-1 col-md-2 col-lg-2">
           <% if user_signed_in? %>
           <% if @diary.user_id == current_user.id || current_user.admin? %>
-            <%= link_to "編集", edit_user_diary_path(current_user), class: "btn btn-default" %>
-            <%= link_to "削除", user_diary_path(current_user), class: "btn btn-danger", :method => :delete, data: { confirm: '日記を削除しますか？' } %>
+            <%= link_to "編集", edit_user_diary_path(@diary.user_id), class: "btn btn-default" %>
+            <%= link_to "削除", user_diary_path(@diary.user_id), class: "btn btn-danger", :method => :delete, data: { confirm: '日記を削除しますか？' } %>
           <% end %>
           <% end %>
         </div>
