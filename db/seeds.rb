@@ -9,7 +9,7 @@
 User.create!([
   #user_id1は管理者、user_id2は非ログインのユーザーのコメントに使用
   {name: "管理者",nickname: "管理者",email: "admin@mail.com",password: "admin1111",password_confirmation: "admin1111",admin: true},
-  {name: "非会員",nickname: "非会員",email: "test1@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
+  {name: "非会員",nickname: "非会員",email: "test0@mail.com",password: "test0000",password_confirmation: "test0000",admin: false},
   {name: "テスト会員",nickname: "テスト",email: "test1@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
   {name: "町田悠里",nickname: "まっちー",email: "test2@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
   {name: "西川真人",nickname: "にっしー",email: "test3@mail.com",password: "test1111",password_confirmation: "test1111",admin: false},
