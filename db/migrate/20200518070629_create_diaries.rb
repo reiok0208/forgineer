@@ -3,7 +3,7 @@ class CreateDiaries < ActiveRecord::Migration[5.2]
     create_table :diaries do |t|
       t.references :user, foreign_key: true
       t.string :title, null: false
-      t.string :body, null: false
+      t.text :body, null: false
       t.text :diary_image_id
       t.integer :impressions_count, default: 0
 
