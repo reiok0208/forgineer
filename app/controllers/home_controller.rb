@@ -13,10 +13,10 @@ class HomeController < ApplicationController
     if @inquiry.save
       InquiryMailer.inquiry_mail(@inquiry).deliver
       flash[:notice] = 'お問い合わせを受け付けました'
-      redirect_to home_info_path
+      render :info
     else
       flash[:notice] = 'お問い合わせの送信に失敗しました'
-      redirect_to home_info_path
+      render :info
     end
   end
 
