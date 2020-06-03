@@ -5,16 +5,14 @@
   <%= submit_tag '検索', :title => nil, class: "form-control", style: "margin-left:150px; width:100px;" %>
   <% end %>
   <div class="diary-side-box__tag-box">
-    <% if current_user.admin? %>
-      <h3 class="diary-side-box__tag-box-h3">タグ一覧<%= link_to "", tags_path, class: "fas fa-tags" %></h3>
-    <% else %>
-      <h3 class="diary-side-box__tag-box-h3">タグ一覧</h3>
-    <% end %>
+    <h3 class="diary-side-box__tag-box-h3">人気タグ</h3>
     <ul>
-      <li class="diary-side-box__tag-box-li"><%= link_to "全てのタグ", diaries_path, class: "fas fa-tags" %></li>
+      <% if user_signed_in? %>
+        <li class="diary-side-box__tag-box-li"><%= link_to "全てのタグ", tags_path, class: "fas fa-tags" %></li>
+      <% end %>
       <% tags.each do |tag| %>
       <li class="diary-side-box__tag-box-li">
-        <%= link_to "#{tag.name}（#{tag.diaries.count}）", diaries_path(tag_id: tag.id), class: "fas fa-tags" %></li>
+        <%= link_to "#{tag.name}（#{tag.diaries.count}）", diaries_path(tag_id: tag.id, name: tag.name), class: "fas fa-tags" %></li>
       <% end %>
     </ul>
   </div>

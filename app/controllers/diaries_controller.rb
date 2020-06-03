@@ -3,7 +3,7 @@ class DiariesController < ApplicationController
   impressionist :actions=>[:show]
 
   def new
-    if current_user.id == params[:user_id].to_i
+    if current_user.id == params[:user_id].to_i #カレント以外は遷移できない
       @diary = Diary.new
       @tag = Tag.new
     else
@@ -12,12 +12,14 @@ class DiariesController < ApplicationController
   end
 
   def index
-    @tags = Tag.all
+    #Tagとdiary_tagsをテーブル結合し、diary_tagsのtag_idを基準とし、diary_id数をカウント、数がが大きい順に変数に渡す。
+    @tags = Tag.joins(:diary_tags).group(:tag_id).limit(10).order('count(diary_id) desc')
     @most_viewed = Diary.order('impressions_count DESC').take(10)
-    #indexアクションにtag_idがパラメーターで送られたときに存在していればそのtag_idに紐付いた日記を@diariesに渡す。
     if params["user_id"].nil?
-      @diaries = params[:tag_id].present? ? Tag.find(params[:tag_id]).diaries.page(params[:page]).per(PER) : Diary.search(params[:search]).page(params[:page]).per(PER)
+      #indexアクションにtag_idがパラメーターで送られたときにそのtag_idに紐付いた日記を@diariesに渡す。
+      @diaries = params[:tag_id].present? ? Tag.search(params[:tag_id]).page(params[:page]).per(PER) : Diary.search(params[:search]).page(params[:page]).per(PER)
     else
+      #indexアクションにuser_idがパラメーターで送られたときにそのuser_idに紐付いた日記を@diariesに渡す。
       @diaries = Diary.where(user_id: params["user_id"]).page(params[:page]).per(PER)
     end
   end
@@ -25,22 +27,26 @@ class DiariesController < ApplicationController
   def show
     @diary = Diary.find(params[:id])
     @comments = Comment.where(diary_id: params[:id])
-    impressionist(@diary)
+    impressionist(@diary) #日記の閲覧数を加算（日記ランキングに使用）
     @comment = Comment.new
   end
 
   def create
-    @diary = Diary.new(diary_params)
-    if @diary.save
-      flash[:notice] = '日記を投稿しました'
-      redirect_to @diary
+    if current_user.id == params[:user_id].to_i
+      @diary = Diary.new(diary_params)
+      if @diary.save
+        flash[:notice] = '日記を投稿しました'
+        redirect_to @diary
+      else
+        render :new
+      end
     else
-      render :new
+      redirect_to root_path
     end
   end
 
   def edit
-    if current_user.id == params[:user_id].to_i
+    if current_user.id == params[:user_id].to_i #管理者であっても日記の編集は出来ない
       @diary = Diary.find(params[:id])
       @tag = Tag.new
     else
@@ -49,22 +55,30 @@ class DiariesController < ApplicationController
   end
 
   def destroy
-    diary = Diary.find(params[:id])
-    if diary.destroy
-      flash[:notice] = '日記を削除しました'
-      redirect_to diaries_path
+    if current_user.id == params[:user_id].to_i || current_user.admin? #管理者であれば全日記の削除権限がある
+      diary = Diary.find(params[:id])
+      if diary.destroy
+        flash[:notice] = '日記を削除しました'
+        redirect_to diaries_path
+      else
+        render :show
+      end
     else
-      render :show
+      redirect_to root_path
     end
   end
 
   def update
-    @diary = Diary.find(params[:id])
-    if @diary.update(diary_params)
-      flash[:notice] = '日記を更新しました'
-      redirect_to @diary
+    if current_user.id == params[:user_id].to_i
+      @diary = Diary.find(params[:id])
+      if @diary.update(diary_params)
+        flash[:notice] = '日記を更新しました'
+        redirect_to @diary
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to root_path
     end
   end
 
