@@ -48,7 +48,7 @@
           <% if user_signed_in? %>
             <div class="show-diary-box__date">
               <% @diary.diary_tags.each do |tag| %>
-                <%= link_to tag.tag.name, diaries_path(tag_id: tag.tag.id), class: "btn btn-default fas fa-tag" %>
+                <%= link_to tag.tag.name, diaries_path(tag_id: tag.tag.id, name: tag.tag.name), class: "btn btn-default fas fa-tag" %>
               <% end %><br>
             </div>
           <% else %>
