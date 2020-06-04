@@ -4,7 +4,7 @@
     <div class="logo-box navber-brand" style="margin-bottom:20px;">
       <%=link_to image_tag("logo1.png", alt:"Forgineer", width:"430px", height:"150px"), root_path %>
     </div>
-      <ul class="nav navbar-nav" style="margin-bottom:10px;">
+    <ul class="nav navbar-nav" style="margin-bottom:10px;">
       <li class="header-link"><%= link_to "新規投稿", new_user_diary_path(current_user), class: "btn btn-default" %></li>
       <li class="header-link"><%= link_to "マイページ", user_path(current_user), class: "btn btn-default" %></li>
       <li class="header-link"><%= link_to "日記一覧", diaries_path, class: "btn btn-default" %></li>

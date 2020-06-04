@@ -1,5 +1,5 @@
 <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
-<p style="float:left; margin:5px; font-size:20px;"><%= b.check_box + b.label { b.text } %></p>
+  <p style="float:left; margin:5px; font-size:20px;"><%= b.check_box + b.label { b.text } %></p>
 <% end %>
 <%= f.hidden_field :user_id, :value => current_user.id %>
 

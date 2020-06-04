@@ -29,14 +29,17 @@
 </div>
 
 <script>
+  //div要素をゆっくり表示
   $('div').hide().fadeIn('slow');
 
   function Click(btn) {
     if (btn == 1) {
+      //onClick="Click1"が押された時
       $('p').hide().fadeIn('slow');
       document.getElementById("yes").innerHTML = "素晴らしい記憶力をお持ちなんですね！<br>その記憶をForgineerに残してみませんか？";
       document.getElementById("no").style.display = "none";
     } else if (btn == 2) {
+      //onClick="Click2"が押された時
       $('p').hide().fadeIn('slow');
       document.getElementById("no").innerHTML = "記憶力に自身がなくても大丈夫です！<br>Forgineerに記憶を残して必要なときにアウトプットしてみましょう！";
       document.getElementById("yes").style.display = "none";
