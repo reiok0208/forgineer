@@ -15,7 +15,7 @@ class Diary < ApplicationRecord
 
   def self.search(search)
     if search
-      where(['title LIKE ?', "%#{search}%"]).order(id: "DESC")
+      where(['title LIKE ? OR body LIKE ?', "%#{search}%", "%#{search}%"]).order(id: "DESC")
     else
       all.order(id: "DESC")
     end

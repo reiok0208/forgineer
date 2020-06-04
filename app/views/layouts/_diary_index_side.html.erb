@@ -1,45 +1,57 @@
 <div class="col-xs-2 diary-side-box">
   <h3>日記検索</h3>
   <%= form_tag(diaries_path, method: :get) do %>
-  <%= text_field_tag :search,"", class: "form-control", style: "width:250px; margin:10px 0;" %>
-  <%= submit_tag '検索', :title => nil, class: "form-control", style: "margin-left:150px; width:100px;" %>
+    <%= text_field_tag :search,"", class: "form-control", style: "width:250px; margin:10px 0;" %>
+    <%= submit_tag '検索', class: "form-control", style: "margin-left:150px; width:100px;" %>
   <% end %>
+
   <div class="diary-side-box__tag-box">
     <h3 class="diary-side-box__tag-box-h3">人気タグ</h3>
     <ul>
-      <% if user_signed_in? %>
-        <li class="diary-side-box__tag-box-li"><%= link_to "全てのタグ", tags_path, class: "fas fa-tags" %></li>
-      <% end %>
-      <% tags.each do |tag| %>
       <li class="diary-side-box__tag-box-li">
-        <%= link_to "#{tag.name}（#{tag.diaries.count}）", diaries_path(tag_id: tag.id, name: tag.name), class: "fas fa-tags" %></li>
+        <%= link_to "全てのタグ", tags_path, class: "fas fa-tags" %>
+      </li>
+      <% tags.each do |tag| %>
+        <li class="diary-side-box__tag-box-li">
+          <%= link_to "#{tag.name}（#{tag.diaries.count}）", diaries_path(tag_id: tag.id, name: tag.name), class: "fas fa-tags" %>
+        </li>
       <% end %>
     </ul>
   </div>
+
   <div class="diary-side-box__rank-box">
     <h3 class="diary-side-box__rank-box-h3">日記ランキング</h3>
     <ul>
       <% i = 1 %>
       <% most_viewed.each do |pv| %>
-      <% if i == 1 %>
-      <li class="diary-side-box__rank-box-li"><i class="fas fa-crown" style="color:#DBB400;"></i>
-        <%= link_to pv.title, diary_path(pv) %></li>
-      <% i += 1 %>
-      <% elsif i == 2 %>
-      <li class="diary-side-box__rank-box-li"><i class="fas fa-crown" style="color:#C9CACA;"></i>
-        <%= link_to pv.title, diary_path(pv) %></li>
-      <% i += 1 %>
-      <% elsif i == 3 %>
-      <li class="diary-side-box__rank-box-li"><i class="fas fa-crown" style="color:#BA6E40;"></i>
-        <%= link_to pv.title, diary_path(pv) %></li>
-      <% i += 1 %>
-      <% elsif i == 10 %>
-      <li class="diary-side-box__rank-box-li--true"><%= "#{i}. " %><%= link_to pv.title, diary_path(pv) %></li>
-      <% else %>
-      <li class="diary-side-box__rank-box-li--false"><%= "#{i}. " %><%= link_to pv.title, diary_path(pv) %>
-      </li>
-      <% i += 1 %>
-      <% end %>
+        <% if i == 1 %><!--iが１であればclass="fas fa-crown"（王冠）をstyle="color:#DBB400;"(金色)で適応-->
+          <li class="diary-side-box__rank-box-li">
+            <i class="fas fa-crown" style="color:#DBB400;"></i>
+            <%= link_to pv.title, diary_path(pv) %>
+          </li>
+          <% i += 1 %><!--iに１を足して繰り返す-->
+        <% elsif i == 2 %><!--iが２であればclass="fas fa-crown"（王冠）をstyle="color:#C9CACA;"(銀色)で適応-->
+          <li class="diary-side-box__rank-box-li">
+            <i class="fas fa-crown" style="color:#C9CACA;"></i>
+            <%= link_to pv.title, diary_path(pv) %>
+          </li>
+          <% i += 1 %><!--iに１を足して繰り返す-->
+        <% elsif i == 3 %><!--iが３であればclass="fas fa-crown"（王冠）をstyle="color:#BA6E40;"(銅色)で適応-->
+          <li class="diary-side-box__rank-box-li">
+            <i class="fas fa-crown" style="color:#BA6E40;"></i>
+            <%= link_to pv.title, diary_path(pv) %>
+          </li>
+          <% i += 1 %><!--iに１を足して繰り返す-->
+        <% elsif i == 10 %><!--１０だけ２ケタのためCSSのmarginズレをclass変更で対応-->
+          <li class="diary-side-box__rank-box-li--true">
+            <%= "#{i}. " %><%= link_to pv.title, diary_path(pv) %>
+          </li>
+        <% else %><!--王冠のない数字は横ズレが起こるためCSSのmarginズレをclass変更で対応-->
+          <li class="diary-side-box__rank-box-li--false">
+            <%= "#{i}. " %><%= link_to pv.title, diary_path(pv) %>
+          </li>
+          <% i += 1 %><!--iに１を足して繰り返す-->
+        <% end %>
       <% end %>
     </ul>
   </div>

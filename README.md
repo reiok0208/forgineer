@@ -1,6 +1,8 @@
 # forgineer（フォーギニア）
 forget（忘れる）とengineer（エンジニア）を合わせたもの
 
+![533459aafc4417fe68e03b2ca8125c82](https://user-images.githubusercontent.com/62207092/83717166-f4164380-a66c-11ea-88ca-574710477a66.png)
+
 ## サイト概要
 プログラムコードを投稿できる記憶忘却阻止サイト
 
