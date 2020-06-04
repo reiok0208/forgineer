@@ -2,14 +2,12 @@
   <h3>日記検索</h3>
   <%= form_tag(diaries_path, method: :get) do %>
   <%= text_field_tag :search,"", class: "form-control", style: "width:250px; margin:10px 0;" %>
-  <%= submit_tag '検索', :title => nil, class: "form-control", style: "margin-left:150px; width:100px;" %>
+  <%= submit_tag '検索', class: "form-control", style: "margin-left:150px; width:100px;" %>
   <% end %>
   <div class="diary-side-box__tag-box">
     <h3 class="diary-side-box__tag-box-h3">人気タグ</h3>
     <ul>
-      <% if user_signed_in? %>
-        <li class="diary-side-box__tag-box-li"><%= link_to "全てのタグ", tags_path, class: "fas fa-tags" %></li>
-      <% end %>
+      <li class="diary-side-box__tag-box-li"><%= link_to "全てのタグ", tags_path, class: "fas fa-tags" %></li>
       <% tags.each do |tag| %>
       <li class="diary-side-box__tag-box-li">
         <%= link_to "#{tag.name}（#{tag.diaries.count}）", diaries_path(tag_id: tag.id, name: tag.name), class: "fas fa-tags" %></li>
