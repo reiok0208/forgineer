@@ -42,14 +42,14 @@
 
 
     <% if @user == current_user %>
-    <div class="mypage-box__sub">
-      <i class="fas fa-user-edit fa-3x"></i><strong style="font-size:20px;">　登録情報編集</strong>
-      <%= link_to "", edit_user_registration_path %>
-    </div>
-    <div class="mypage-box__sub">
-      <i class="fas fa-external-link-alt fa-3x"></i><strong style="font-size:20px;">　退会</strong>
-      <%= link_to "", user_delete_path(@user) %>
-    </div>
+      <div class="mypage-box__sub">
+        <i class="fas fa-user-edit fa-3x"></i><strong style="font-size:20px;">　登録情報編集</strong>
+        <%= link_to "", edit_user_registration_path %>
+      </div>
+      <div class="mypage-box__sub">
+        <i class="fas fa-external-link-alt fa-3x"></i><strong style="font-size:20px;">　退会</strong>
+        <%= link_to "", user_delete_path(@user) %>
+      </div>
     <% end %>
     <div class="mypage-box__sub">
       <i class="fas fa-book-open fa-3x"></i><strong style="font-size:20px;">　投稿内容一覧</strong>

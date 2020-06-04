@@ -16,6 +16,6 @@
       <% end %><br>
       タイトル：<%= comment.title %>
     </p>
-    <div style="font-size:18px;"><%= markdown(comment.body).html_safe %></div>
+    <div style="font-size:18px;"><%= markdown(comment.body) %></div>
   </div>
 <% end %>

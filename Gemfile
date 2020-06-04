@@ -82,6 +82,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'font-awesome-sass'
 gem 'dotenv-rails'
-gem 'impressionist', '~>1.6.1'
-gem 'redcarpet'
-gem 'coderay'
+gem 'impressionist', '~>1.6.1' #日記詳細閲覧数監視
+gem 'redcarpet' #マークダウン
+gem 'coderay' #シンタックスハイライト
+gem 'sanitize' #コントローラー内でサニタイズしたいため実装
