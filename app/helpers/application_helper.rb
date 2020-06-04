@@ -44,7 +44,7 @@ module ApplicationHelper
 
   #マークダウンのgem「redcarpet」
   def markdown(text)
-    html_render = HTMLwithCoderay.new(filter_html: true, hard_wrap: true)
+    html_render = HTMLwithCoderay.new(hard_wrap: true)
     options = {
       autolink: true,
       no_intra_emphasis: true,
@@ -56,6 +56,6 @@ module ApplicationHelper
       strikethrough: true
     }
     markdown = Redcarpet::Markdown.new(html_render, options)
-    markdown.render(text)
+    markdown.render(text).html_safe
   end
 end
