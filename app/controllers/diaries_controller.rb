@@ -13,7 +13,7 @@ class DiariesController < ApplicationController
 
   def index
     #Tagとdiary_tagsをテーブル結合し、diary_tagsのtag_idを基準とし、diary_id数をカウント、数がが大きい順に変数に渡す。
-    @tags = Tag.joins(:diary_tags).group(:tag_id).limit(10).order('count(diary_id) desc')
+    @tags = Tag.joins(:diary_tags).group(:tag_id).order(Arel.sql('count(diary_id) desc')).limit(10)
     @most_viewed = Diary.order('impressions_count DESC').take(10)
     if params["user_id"].nil?
       #indexアクションにtag_idがパラメーターで送られたときにそのtag_idに紐付いた日記を@diariesに渡す。

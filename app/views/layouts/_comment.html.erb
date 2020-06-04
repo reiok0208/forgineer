@@ -1,19 +1,21 @@
 <% comments.each do |comment| %>
-<div class="comment-box">
-  <p style="font-weight:bold; font-size:20px;">
-    <% if comment.user.id != 2 %>
-      名前：<span class="comment-name"><%= link_to comment.user.nickname, user_path(comment.user) %></span>
-    <% else %>
-      名前：<span class="comment-name"><%= comment.user.name %></span>
-    <% end %>
-    投稿日：<%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-    <% if user_signed_in? %>
-      <% if comment.user.id == current_user.id  || current_user.admin? %>
-        <%= link_to "削除", diary_comment_path(diary_id: comment.diary_id, id: comment.id), class: "btn btn-danger", :method => :delete, data: { confirm: 'コメントを削除しますか？' }, remote: true %>
+  <div class="comment-box">
+    <p style="font-weight:bold; font-size:20px;">
+      <% if comment.user.id != 2 %>
+        <!--user_id２は非会員に使用-->
+        名前：<span class="comment-name"><%= link_to comment.user.nickname, user_path(comment.user) %></span>
+      <% else %>
+        <!--非会員のコメントの場合、名前にはリンクを埋め込まない-->
+        名前：<span class="comment-name"><%= comment.user.name %></span>
       <% end %>
-    <% end %><br>
-    タイトル：<%= comment.title %>
-  </p>
-  <div style="font-size:18px;"><%= markdown(comment.body).html_safe %></div>
-</div>
+      投稿日：<%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+      <% if user_signed_in? %>
+        <% if comment.user.id == current_user.id  || current_user.admin? %>
+          <%= link_to "削除", diary_comment_path(diary_id: comment.diary_id, id: comment.id), class: "btn btn-danger", :method => :delete, data: { confirm: 'コメントを削除しますか？' }, remote: true %>
+        <% end %>
+      <% end %><br>
+      タイトル：<%= comment.title %>
+    </p>
+    <div style="font-size:18px;"><%= markdown(comment.body).html_safe %></div>
+  </div>
 <% end %>

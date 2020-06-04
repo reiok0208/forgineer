@@ -4,31 +4,33 @@
       <h2 style="margin-left: 10px;">ユーザー詳細</h2><br>
       <%= attachment_image_tag @user, :profile_image, :fill, 150, 150, format: 'png', fallback: "no-image.png", size:'150x150', class: "circle", style: "margin:0;" %><br>
       <% if @user.id != current_user.id %>
-      <% if current_user.following?(@user) %>
-      <%= link_to 'フォロー外す', user_unfollow_path(@user), method: :POST, class: "btn btn-success col-xs-10" %>
-      <% else %>
-      <%= link_to 'フォローする', user_follow_path(@user), method: :POST, class: "btn btn-success col-xs-10" %>
-      <% end %>
+        <% if current_user.following?(@user) %>
+          <%= link_to 'フォロー外す', user_unfollow_path(@user), method: :POST, class: "btn btn-success col-xs-10" %>
+        <% else %>
+          <%= link_to 'フォローする', user_follow_path(@user), method: :POST, class: "btn btn-success col-xs-10" %>
+        <% end %>
       <% end %>
 
     </div>
 
     <table class="table table-bordered" style="width:70%; margin-top: 60px; background-color:white; float: left;">
       <% if @user == current_user %>
-      <tr>
-        <th>お名前</th>
-        <td><%= @user.name %></td>
-      </tr>
+        <!--本名は他のユーザーには非表示-->
+        <tr>
+          <th>お名前</th>
+          <td><%= @user.name %></td>
+        </tr>
       <% end %>
       <tr>
         <th style="min-width: 150px;">ニックネーム</th>
         <td style="width: 100%;"><%= @user.nickname %></td>
       </tr>
       <% if @user == current_user %>
-      <tr>
-        <th>メールアドレス</th>
-        <td><%= @user.email %></td>
-      </tr>
+        <!--メールアドレスは他のユーザーには非表示-->
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @user.email %></td>
+        </tr>
       <% end %>
       <tr>
         <th>自己紹介</th>

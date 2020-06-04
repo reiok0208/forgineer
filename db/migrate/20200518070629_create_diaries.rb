@@ -11,5 +11,6 @@ class CreateDiaries < ActiveRecord::Migration[5.2]
     end
 
     add_index :diaries, [:title]
+    add_index :diaries, [:body]
   end
 end

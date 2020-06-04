@@ -6,15 +6,15 @@
       <%= render 'layouts/error_messages', model: @inquiry %>
       <h2>お問い合わせフォーム</h2>
       <%= form_for @inquiry, url: home_info_path do |f| %>
-      <div class="form-group">
-        <%= f.label :name, "お名前" %>
-        <%= f.text_field :name, class: "form-control", style:"width:300px;",placeholder: "入力必須、10文字以内" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :message, "お問い合わせ内容" %>
-        <%= f.text_area :message, size: "10x10", class: "form-control", style:"resize: none;",placeholder: "入力必須" %>
-      </div>
-      <%= f.submit "送信", class: "form-control", style:"width:300px; float:right;" %>
+        <div class="form-group">
+          <%= f.label :name, "お名前" %>
+          <%= f.text_field :name, class: "form-control", style:"width:300px;",placeholder: "入力必須、10文字以内" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :message, "お問い合わせ内容" %>
+          <%= f.text_area :message, size: "10x10", class: "form-control", style:"resize: none;",placeholder: "入力必須" %>
+        </div>
+        <%= f.submit "送信", class: "form-control", style:"width:300px; float:right;" %>
       <% end %>
     </div>
 
@@ -70,11 +70,11 @@
 
         <div class="skill-box_sub">
           <i class="devicon-ruby-plain-wordmark colored"></i>
-            <h4 style="font-weight:bold;">Ruby</h4>
-            <p>★★★☆☆<br>
-              基本文法、オブジェクトとメソッド、変数と定数、データ型、条件分岐、繰り返し処理、FizzBuzzプログラムの作成しました。<br>
-              しかし、RubyよりRailsの扱い方を理解してると感じているので今後深く勉強したいと思っている言語です。
-            </p>
+          <h4 style="font-weight:bold;">Ruby</h4>
+          <p>★★★☆☆<br>
+            基本文法、オブジェクトとメソッド、変数と定数、データ型、条件分岐、繰り返し処理、FizzBuzzプログラムの作成しました。<br>
+            しかし、RubyよりRailsの扱い方を理解してると感じているので今後深く勉強したいと思っている言語です。
+          </p>
         </div>
 
         <div class="skill-box_sub">
