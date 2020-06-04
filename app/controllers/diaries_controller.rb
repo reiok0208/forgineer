@@ -34,6 +34,10 @@ class DiariesController < ApplicationController
   def create
     if current_user.id == params[:user_id].to_i
       @diary = Diary.new(diary_params)
+      unless current_user.admin? #管理者以外はbodyをサニタイズしたものになる。script対策
+        body_sanitize = Sanitize.clean(@diary.body, Sanitize::Config::BASIC)
+        @diary.assign_attributes(body: body_sanitize)
+      end
       if @diary.save
         flash[:notice] = '日記を投稿しました'
         redirect_to @diary
@@ -71,7 +75,11 @@ class DiariesController < ApplicationController
   def update
     if current_user.id == params[:user_id].to_i
       @diary = Diary.find(params[:id])
-      if @diary.update(diary_params)
+      unless current_user.admin? #管理者以外はbodyをサニタイズしたものになる。script対策
+        body_sanitize = Sanitize.clean(@diary.body, Sanitize::Config::BASIC)
+        @diary.assign_attributes(body: body_sanitize)
+      end
+      if @diary.save(diary_params)
         flash[:notice] = '日記を更新しました'
         redirect_to @diary
       else
