@@ -1,4 +1,5 @@
 class DiariesController < ApplicationController
+  include DiariesHelper
   before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
   impressionist :actions=>[:show]
 
@@ -17,7 +18,8 @@ class DiariesController < ApplicationController
     @most_viewed = Diary.order('impressions_count DESC').take(10)
     if params["user_id"].nil?
       #indexアクションにtag_idがパラメーターで送られたときにそのtag_idに紐付いた日記を@diariesに渡す。
-      @diaries = params[:tag_id].present? ? Tag.search(params[:tag_id]).page(params[:page]).per(PER) : Diary.search(params[:search]).page(params[:page]).per(PER)
+      diaries = params[:tag_id].present? ? Tag.search(params[:tag_id]) : Diary.search(params[:search])
+      option(diaries) #インスタンス変数を渡すヘルパー
     else
       #indexアクションにuser_idがパラメーターで送られたときにそのuser_idに紐付いた日記を@diariesに渡す。
       @diaries = Diary.where(user_id: params["user_id"]).page(params[:page]).per(PER)

@@ -10,8 +10,12 @@
       <!--表示文字数を１００にし、それ以降は切り捨てる-->
       <p><%= diary.body.truncate(100) %></p>
     </div>
-    <div class="diary-box__status">
-      <span style="white-space: nowrap;">投稿者：<%= link_to diary.user.nickname, user_path(diary.user) %>　</span>
+    <div class="diary-box__status" style="font-size:13px;">
+      <span style="white-space: nowrap;">
+        投稿日：<%= diary.created_at.strftime('%Y/%m/%d') %>　
+        更新日：<%= diary.updated_at.strftime('%Y/%m/%d') %>　
+        投稿者：<%= link_to diary.user.nickname, user_path(diary.user) %>　
+      </span>
       <%= render "layouts/favorite", diary: diary %>
       <i class="far fa-eye" style="margin: 0 0 2px 20px; color:#CCC;"><%= diary.impressions.size %></i>
       <i class="far fa-comments" style="margin: 0 0 2px 20px; color:#CCC;"><%= diary.comments.count %></i>
