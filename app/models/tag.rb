@@ -6,9 +6,9 @@ class Tag < ApplicationRecord
 
   def self.search(search)
     if search
-      self.find(search).diaries.order(id: "DESC")
+      Diary.joins(diary_tags: :tag).merge(Tag.where(id: search))
     else
-      all.order(id: "DESC")
+      all
     end
   end
 
