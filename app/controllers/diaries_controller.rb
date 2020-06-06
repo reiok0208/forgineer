@@ -22,7 +22,8 @@ class DiariesController < ApplicationController
       option(diaries) #インスタンス変数を渡すヘルパー
     else
       #indexアクションにuser_idがパラメーターで送られたときにそのuser_idに紐付いた日記を@diariesに渡す。
-      @diaries = Diary.where(user_id: params["user_id"]).page(params[:page]).per(PER)
+      diaries = Diary.where(user_id: params["user_id"])
+      option(diaries)
     end
   end
 

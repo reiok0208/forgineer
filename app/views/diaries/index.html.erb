@@ -4,30 +4,38 @@
       <input class="search" type="hidden" name="search" value="<%= params[:search] %>">
       <h2><%= "フォーム検索：#{params[:search]}" %></h2>
     <% elsif params[:user_id].present? %><!--ユーザー詳細からの遷移-->
+      <input class="nickname" type="hidden" name="nickname" value="<%= params[:nickname] %>">
+      <input class="user_id" type="hidden" name="user_id" value="<%= params[:user_id] %>">
       <h2><%= "#{params[:nickname]}さんの投稿日記" %></h2>
     <% elsif params[:tag_id].present? %><!--人気タグからの遷移-->
       <input class="name" type="hidden" name="name" value="<%= params[:name] %>">
-      <input class="tag" type="hidden" name="tag" value="<%= params[:tag_id] %>">
+      <input class="tag_id" type="hidden" name="tag_id" value="<%= params[:tag_id] %>">
       <h2><%= "タグ検索：#{params[:name]}" %></h2>
     <% else %>
-      <h2>新着日記</h2>
+      <h2>日記一覧</h2>
     <% end %>
-    <div class="field">
-          <% if params[:option].present? %>
-            <%= select_tag :sort, options_for_select("#{params[:option]}": "","日記の新しい順": "日記の新しい順","日記の古い順": "日記の古い順","日記の更新日順": "日記の更新日順", "お気に入りが多い順": "お気に入りが多い順","コメントが多い順": "コメントが多い順","PVが多い順": "PVが多い順"), onChange: "func(this.value)", style:"font-size:20px; margin:10px;" %>
-          <% else %>
-            <%= select_tag :sort, options_for_select("日記の新しい順": "日記の新しい順","日記の古い順": "日記の古い順","日記の更新日順": "日記の更新日順","お気に入りが多い順": "お気に入りが多い順","コメントが多い順": "コメントが多い順","PVが多い順": "PVが多い順"), onChange: "func(this.value)", style:"font-size:20px; margin:10px;" %>
-          <% end %>
-        </div>
-    <div class="diary-box">
-      <% @diaries.each do |diary| %>
-        <div class="diary_<%= diary.id %>">
-          <%= render "layouts/diary_index", diary: diary %>
-        </div>
-      <% end %>
-      <div style="text-align: center;">
-        <%= paginate @diaries %>
+    <% if user_signed_in? %>
+      <div class="field">
+        <% if params[:option].present? %>
+          <%= select_tag :sort, options_for_select("#{params[:option]}": "","日記の新しい順": "日記の新しい順","日記の古い順": "日記の古い順","日記の更新日順": "日記の更新日順", "お気に入りが多い順": "お気に入りが多い順","コメントが多い順": "コメントが多い順","PVが多い順": "PVが多い順"), onChange: "func(this.value)", style:"font-size:20px; margin:10px;" %>
+        <% else %>
+          <%= select_tag :sort, options_for_select("日記の新しい順": "日記の新しい順","日記の古い順": "日記の古い順","日記の更新日順": "日記の更新日順","お気に入りが多い順": "お気に入りが多い順","コメントが多い順": "コメントが多い順","PVが多い順": "PVが多い順"), onChange: "func(this.value)", style:"font-size:20px; margin:10px;" %>
+        <% end %>
       </div>
+    <% end %>
+    <div class="diary-box">
+      <% if @diaries.present? %>
+        <% @diaries.each do |diary| %>
+          <div class="diary_<%= diary.id %>">
+            <%= render "layouts/diary_index", diary: diary %>
+          </div>
+        <% end %>
+        <div style="text-align: center;">
+          <%= paginate @diaries %>
+        </div>
+      <% else %>
+        <h4>日記がありません</h4>
+      <% end %>
     </div>
   </div>
 
@@ -42,11 +50,15 @@
     function func(value) {
       var search = $(".search").val();
       var name = $(".name").val();
-      var tag = $(".tag").val();
+      var tag_id = $(".tag_id").val();
+      var nickname = $(".nickname").val();
+      var user_id = $(".user_id").val();
       if (typeof search !== 'undefined') {
         window.location.replace('/diaries?search=' + search + '&option=' + value);
-      }else if (typeof tag !== 'undefined'){
-        window.location.replace('/diaries?name=' + name + '&tag_id=' + tag + '&option=' + value);
+      }else if (typeof tag_id !== 'undefined'){
+        window.location.replace('/diaries?name=' + name + '&tag_id=' + tag_id + '&option=' + value);
+      }else if (typeof user_id !== 'undefined'){
+        window.location.replace('/diaries?nickname=' + nickname + '&user_id=' + user_id + '&option=' + value);
       }else{
         window.location.replace('/diaries?option=' + value );
       }
