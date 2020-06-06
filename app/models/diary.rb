@@ -15,7 +15,7 @@ class Diary < ApplicationRecord
 
   def self.search(search)
     if search
-      where(['title LIKE ? OR body LIKE ?', "%#{search}%", "%#{search}%"])
+      where(['diaries.title LIKE ? OR diaries.body LIKE ?', "%#{search}%", "%#{search}%"])
     else
       all
     end

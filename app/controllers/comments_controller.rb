@@ -10,6 +10,10 @@ class CommentsController < ApplicationController
       @comment.user_id = 2
     end
     @comment.diary_id = @diary.id
+    unless current_user.admin? #管理者以外はbodyをサニタイズしたものになる。script対策
+      body_sanitize = Sanitize.clean(@comment.body, Sanitize::Config::BASIC)
+      @comment.assign_attributes(body: body_sanitize)
+    end
     @comment.save
     @comments = Comment.where(diary_id: @comment.diary_id)
   end
