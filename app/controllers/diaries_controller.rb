@@ -30,7 +30,6 @@ class DiariesController < ApplicationController
   def show
     @diary = Diary.find(params[:id])
     @comments = Comment.where(diary_id: params[:id])
-    impressionist(@diary) #日記の閲覧数を加算（日記ランキングに使用）
     @comment = Comment.new
   end
 

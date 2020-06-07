@@ -88,3 +88,4 @@ gem 'impressionist', '~>1.6.1' #日記詳細閲覧数監視
 gem 'redcarpet' #マークダウン
 gem 'coderay' #シンタックスハイライト
 gem 'sanitize' #コントローラー内でサニタイズしたいため実装
+gem 'select2-rails' #タグが多くなった時のために実装

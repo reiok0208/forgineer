@@ -1,14 +1,27 @@
-<%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
-  <p style="float:left; margin:5px; font-size:20px;"><%= b.check_box + b.label { b.text } %></p>
-<% end %>
+<div class="field form-group" style= "margin-left:14px;">
+<%= f.collection_select :tag_ids, Tag.all, :id, :name, {}, multiple: true, class: "form-control"  %>
+</div>
 <%= f.hidden_field :user_id, :value => current_user.id %>
 
 <div class="field form-group">
+<strong style="font-size:20px;">タイトル</strong>
   <%= f.text_field :title, class: "form-control",placeholder: "タイトルを記入してください(入力必須、30文字以内)" %>
 </div>
 <div class="field form-group">
+<strong style="font-size:20px;">本文</strong>
   <%= f.text_area :body, class: "form-control",placeholder: "内容を記入してください(入力必須)", style: "resize: none; width:100%; min-height:600px;" %>
 </div>
 
 <strong style="font-size:20px;">サムネイル画像</strong>
 <%= f.attachment_field :diary_image %>
+
+<script>
+
+$('#diary_tag_ids').select2({
+  width: "100%",
+  placeholder: "タグを選択してください",
+  theme: "bootstrap",
+  closeOnSelect: false
+});
+
+</script>

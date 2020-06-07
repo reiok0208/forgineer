@@ -43,7 +43,8 @@
             <div class="favorite_<%= @diary.id %>" style="float:left;">
               <%= render "layouts/favorite", diary: @diary %>
             </div>
-            <i class="far fa-eye" style="margin: 0 0 2px 20px; color:#CCC;"><%= @diary.impressions.size %></i>
+            <i class="far fa-eye" style="margin-left:10px; color:#CCC; font-size:25px;"><%= @diary.impressions.size %></i>
+              <%= link_to '', "https://twitter.com/share?url=#{request.url}&text=Forgineer｜#{@diary.title}", class: 'fab fa-twitter-square', title: 'Twitter', target: '_blank', style: "font-size:30px; margin:0 10px;" %>
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
