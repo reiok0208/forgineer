@@ -10,7 +10,8 @@
             <i class="fas fa-tags fa-3x" style="float:left;"></i>
               <%= form_for tag, url: tag_path(tag.id), method: :patch do |f| %>
                 <%= f.text_field :name, class: "form-control", style: "width:310px; float:left;" %>
-                <%= f.submit "更新", class: "btn btn-primary btn-md", style: "margin:0 10px;" %>
+                <p style="font-size:20px;"><%= link_to "（#{tag.diaries.count}）", diaries_path(tag_id: tag.id, name: tag.name), style: "float:left;" %></p>
+                <%= f.submit "更新", class: "btn btn-primary btn-md" %>
               <% end %>
             <% elsif %>
               <p style="font-size:20px;"><%= link_to "#{tag.name}（#{tag.diaries.count}）", diaries_path(tag_id: tag.id, name: tag.name), class: "fas fa-tags" %></p>
