@@ -1,3 +1,5 @@
+<details>
+<summary style="font-size:25px;"><%= "#{comments.count}件のコメントを表示" %></summary>
 <% comments.each do |comment| %>
   <div class="comment-box">
     <p style="font-weight:bold; font-size:20px;">
@@ -19,3 +21,4 @@
     <div style="font-size:18px;"><%= markdown(comment.body) %></div>
   </div>
 <% end %>
+</details>
