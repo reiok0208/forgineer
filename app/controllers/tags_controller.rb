@@ -7,15 +7,15 @@ class TagsController < ApplicationController
   end
 
   def create
-    new_tag = params[:name]
-    tag_downcase = new_tag.downcase
-    tag_space_delete = tag_downcase.gsub(/ |　/){""}
-    tag = Tag.new(name: tag_space_delete)
-    if tag.save
-      flash[:notice] = "タグを追加しました"
-    elsif
-      flash[:notice] = "タグを追加できませんでした"
+    tags = Tag.select("name")
+    tags.each do |old|
+      if tag_dup_valid(params[:name]) == tag_dup_valid(old.name)
+        flash[:notice] = "タグが重複しています"
+        return redirect_back(fallback_location: root_path)
+      end
     end
+    tag = Tag.create(name: params[:name])
+    flash[:notice] = "タグを追加しました"
     redirect_back(fallback_location: root_path)
   end
 
