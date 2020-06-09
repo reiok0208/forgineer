@@ -77,17 +77,15 @@ class DiariesController < ApplicationController
   def update
     if current_user.id == params[:user_id].to_i
       @diary = Diary.find(params[:id])
-      unless current_user.admin?
+      unless current_user.admin? #管理者以外の場合
         @diary.assign_attributes(diary_params)
-        body_sanitize = Sanitize.clean(@diary.body, Sanitize::Config::BASIC)
-        @diary.assign_attributes(body: body_sanitize)
-        if @diary.save
+        if @diary.update_attributes(body: Sanitize.clean(@diary.body, Sanitize::Config::BASIC))
           flash[:notice] = '日記を更新しました'
           redirect_to @diary
         else
           render :edit
         end
-      else
+      else #管理者の場合
         if @diary.update(diary_params)
           flash[:notice] = '日記を更新しました'
           redirect_to @diary
