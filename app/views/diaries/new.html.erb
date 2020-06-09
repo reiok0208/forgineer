@@ -5,7 +5,7 @@
     <div style="padding-left:30px;">
       <strong style="font-size:20px;">新規タグ追加</strong>
       <%= form_tag(tags_path, method: :post) do %>
-        <%= text_field_tag :name,"",class: "form-control",placeholder: "タグは全てスペースなし、小文字で保存されます(20文字以内)",style: "width:50%; margin:5px; float:left;" %>
+        <%= text_field_tag :name,"",class: "form-control",placeholder: "タグは全てスペースなしで保存されます(20文字以内)",style: "width:50%; margin:5px; float:left;" %>
         <%= submit_tag "タグを追加", class: "btn btn-default",style: "margin:5px;" %>
       <% end %>
       <strong style="font-size:20px;">関連タグ選択</strong>

@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2020_05_26_064614) do
     t.integer "impressions_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["body"], name: "index_diaries_on_body"
     t.index ["title"], name: "index_diaries_on_title"
     t.index ["user_id"], name: "index_diaries_on_user_id"
   end
