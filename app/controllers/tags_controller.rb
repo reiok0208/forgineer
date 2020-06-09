@@ -9,12 +9,12 @@ class TagsController < ApplicationController
   def create
     tags = Tag.select("name")
     tags.each do |old|
-      if tag_dup_valid(params[:name]) == tag_dup_valid(old.name)
+      if tag_dup_valid(params[:name]) == tag_dup_valid(old.name) #新規タグと既存タグを比較
         flash[:notice] = "タグが重複しています"
-        return redirect_back(fallback_location: root_path)
+        return redirect_back(fallback_location: root_path) #重複していれば新規タグは破棄
       end
     end
-    tag = Tag.create(name: params[:name])
+    tag = Tag.create(name: params[:name]) #重複していなければ入力した新規タグをDBに保存
     flash[:notice] = "タグを追加しました"
     redirect_back(fallback_location: root_path)
   end
