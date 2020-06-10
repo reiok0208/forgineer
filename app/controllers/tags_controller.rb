@@ -14,9 +14,14 @@ class TagsController < ApplicationController
         return redirect_back(fallback_location: root_path) #重複していれば新規タグは破棄
       end
     end
-    tag = Tag.create(name: params[:name]) #重複していなければ入力した新規タグをDBに保存
-    flash[:notice] = "タグを追加しました"
-    redirect_back(fallback_location: root_path)
+    tag = Tag.new(name: params[:name]) #重複していなければ入力した新規タグをDBに保存
+    if tag.save
+      flash[:notice] = "タグを追加しました"
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:notice] = "タグを追加できませんでした。タグは1文字以上20文字以内です。"
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def destroy

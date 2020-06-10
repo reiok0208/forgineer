@@ -13,7 +13,7 @@
       </li>
       <% tags.each do |tag| %>
         <li class="diary-side-box__tag-box-li">
-          <%= link_to "#{tag.name}（#{tag.diaries.count}）", diaries_path(tag_id: tag.id, name: tag.name), class: "fas fa-tags" %>
+          <%= link_to "#{tag.name}(#{tag.diaries.count})", diaries_path(tag_id: tag.id, name: tag.name), class: "fas fa-tags" %>
         </li>
       <% end %>
     </ul>
