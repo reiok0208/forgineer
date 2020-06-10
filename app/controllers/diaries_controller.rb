@@ -37,9 +37,11 @@ class DiariesController < ApplicationController
     if current_user.id == params[:user_id].to_i
       @diary = Diary.new(diary_params)
       unless current_user.admin? #管理者以外はbodyをサニタイズしたものになる。script対策
+        @diary.body.gsub!(/<|>/, "<" => "&lt;", ">" => "&gt;")
         body_sanitize = Sanitize.clean(@diary.body, Sanitize::Config::BASIC)
         @diary.assign_attributes(body: body_sanitize)
       end
+
       if @diary.save
         flash[:notice] = '日記を投稿しました'
         redirect_to @diary
@@ -79,19 +81,17 @@ class DiariesController < ApplicationController
       @diary = Diary.find(params[:id])
       unless current_user.admin? #管理者以外の場合
         @diary.assign_attributes(diary_params)
-        if @diary.update_attributes(body: Sanitize.clean(@diary.body, Sanitize::Config::BASIC))
-          flash[:notice] = '日記を更新しました'
-          redirect_to @diary
-        else
-          render :edit
-        end
+        @diary.body.gsub!(/<|>/, "<" => "&lt;", ">" => "&gt;")
+        @diary.update_attributes(body: Sanitize.clean(@diary.body, Sanitize::Config::BASIC))
       else #管理者の場合
-        if @diary.update(diary_params)
-          flash[:notice] = '日記を更新しました'
-          redirect_to @diary
-        else
-          render :edit
-        end
+        @diary.update(diary_params)
+      end
+
+      if @diary.valid? #上記の分岐処理が有効かどうか
+        flash[:notice] = '日記を更新しました'
+        redirect_to @diary
+      else
+        render :edit
       end
     else
       redirect_to root_path
