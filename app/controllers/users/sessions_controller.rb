@@ -9,9 +9,15 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    @user = User.find_by(email: params[:user][:email])
+    if @user.id != 2 #非会員用user_id2はログインできない
+      super
+    else
+      flash[:notice] = 'このアカウントではログインできません'
+      redirect_to root_path
+    end
+  end
 
   # DELETE /resource/sign_out
   # def destroy
