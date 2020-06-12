@@ -48,8 +48,8 @@ RSpec.describe "Diaries", type: :request do
       it 'indexテンプレートで表示されること' do
         expect(response).to render_template :index
       end
-      it '文字列「新着日記」が正しく表示されていること' do
-        expect(response.body).to include("新着日記")
+      it '文字列「日記一覧」が正しく表示されていること' do
+        expect(response.body).to include("日記一覧")
       end
     end
 

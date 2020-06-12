@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Home", type: :request do
+  before do
+    @user = create(:user)
+  end
+
   describe '画面遷移テスト' do
     context "トップページが正しく表示される" do
       before do
@@ -34,7 +38,7 @@ RSpec.describe "Home", type: :request do
 
     context "infoページが正しく表示される" do
       before do
-        get home_info_path
+        get home_info_path(@user)
       end
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
