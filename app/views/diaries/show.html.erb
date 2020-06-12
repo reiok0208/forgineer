@@ -1,95 +1,109 @@
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2">
-    <h2>日記詳細</h2>
-    <div class="show-diary-box">
-      <div class="row">
-        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6">
-          <h3><%= @diary.title %></h3>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
-          <h3>投稿者名：<%= link_to @diary.user.nickname, user_path(@diary.user)%></h3>
-        </div>
-        <div class="col-xs-12 col-sm-1 col-md-2 col-lg-2">
-          <% if user_signed_in? %>
-            <% if @diary.user_id == current_user.id || current_user.admin? %>
-              <!--カレントユーザーであれば編集や削除が可能、管理者であればid関係なく削除のみ可能-->
-              <%= link_to "編集", edit_user_diary_path(@diary.user_id), class: "btn btn-default" %>
-              <%= link_to "削除", user_diary_path(@diary.user_id), class: "btn btn-danger", :method => :delete, data: { confirm: '日記を削除しますか？' } %>
+    <% if params[:diary_id].nil? %>
+      <h2>日記詳細</h2>
+      <div class="show-diary-box">
+        <div class="row">
+          <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6">
+            <h3><%= @diary.title %></h3>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <h3>投稿者名：<%= link_to @diary.user.nickname, user_path(@diary.user)%></h3>
+          </div>
+          <div class="col-xs-12 col-sm-1 col-md-2 col-lg-2">
+            <% if user_signed_in? %>
+              <% if @diary.user_id == current_user.id || current_user.admin? %>
+                <!--カレントユーザーであれば編集や削除が可能、管理者であればid関係なく削除のみ可能-->
+                <%= link_to "編集", edit_user_diary_path(@diary.user_id), class: "btn btn-default" %>
+                <%= link_to "削除", user_diary_path(@diary.user_id), class: "btn btn-danger", :method => :delete, data: { confirm: '日記を削除しますか？' } %>
+              <% end %>
             <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <%= attachment_image_tag @diary, :diary_image, :fill, 1000, 400, format: 'png', fallback: "no-image.png", size:'1000x400', class:"show-diary-box__image"  %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="show-diary-box__body">
+              <%= markdown(@diary.body) %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <div class="show-diary-box__date" style="font-size:20px;">
+              <p style="font-size:15px;">投稿日：<%= @diary.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
+              <p style="font-size:15px;">更新日：<%= @diary.updated_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
+              <div class="favorite_<%= @diary.id %>" style="float:left;">
+                <%= render "layouts/favorite", diary: @diary %>
+              </div>
+              <i class="far fa-eye" style="margin-left:10px; color:#CCC; font-size:25px;"><%= @diary.impressions.size %></i>
+                <%= link_to '', "https://twitter.com/share?url=#{request.url}&text=Forgineer｜#{@diary.title}", class: 'fab fa-twitter-square', title: 'Twitter', target: '_blank', style: "font-size:30px; margin:0 10px;" %>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
+            <% if user_signed_in? %>
+              <!--ログインしていればタグがリンクで表示されクリックするとタグ検索できる-->
+              <div class="show-diary-box__date">
+                <% @diary.diary_tags.each do |tag| %>
+                  <%= link_to tag.tag.name, diaries_path(tag_id: tag.tag.id, name: tag.tag.name), class: "btn btn-default fas fa-tag" %>
+                <% end %><br>
+              </div>
+            <% else %>
+              <div class="show-diary-box__date">
+                <% @diary.diary_tags.each do |tag| %>
+                  <i class="fas fa-tag"><%= tag.tag.name %></i>
+                <% end %><br>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!--以下コメント関連-->
+      <div class="row"><!--新規コメント-->
+        <div class="col-xs-12" style="margin:30px 0;">
+          <%= render 'layouts/error_messages', model: @comment %>
+          <h2>コメント</h2>
+          <%= form_with(model:[@diary,@comment], url: diary_comments_path(@diary), method: :post, remote: true) do |f| %>
+            <div class="field form-group">
+              <%= f.text_field :title, class: "form-control",placeholder: "タイトルを記入してください(入力必須、30文字以内)", style: "width:50%;" %>
+            </div>
+            <div class="field form-group">
+              <%= f.text_area :body, class: "form-control",placeholder: "内容を記入してください(入力必須)", style: "width:100%; min-height:200px;" %>
+            </div>
+            <%= f.submit "コメント投稿", class: "btn btn-default btn-lg", style: "float:right;" %>
           <% end %>
         </div>
       </div>
 
       <div class="row">
         <div class="col-xs-12">
-          <%= attachment_image_tag @diary, :diary_image, :fill, 1000, 400, format: 'png', fallback: "no-image.png", size:'1000x400', class:"show-diary-box__image"  %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="show-diary-box__body">
-            <%= markdown(@diary.body) %>
+          <div class="diary_comment">
+            <%= render "layouts/comment", comments: @comments %>
           </div>
         </div>
       </div>
-
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
-          <div class="show-diary-box__date" style="font-size:20px;">
-            <p style="font-size:15px;">投稿日：<%= @diary.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
-            <p style="font-size:15px;">更新日：<%= @diary.updated_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
-            <div class="favorite_<%= @diary.id %>" style="float:left;">
-              <%= render "layouts/favorite", diary: @diary %>
+    <% else %>
+      <div class="row"><!--コメント編集-->
+        <div class="col-xs-12" style="margin:30px 0;">
+          <%= render 'layouts/error_messages', model: @comment %>
+          <h2>コメント編集</h2>
+          <%= form_with(model:[@diary,@comment], url: diary_comment_path(@diary)) do |f| %>
+            <div class="field form-group">
+              <%= f.text_field :title, class: "form-control",placeholder: "タイトルを記入してください(入力必須、30文字以内)", style: "width:50%;" %>
             </div>
-            <i class="far fa-eye" style="margin-left:10px; color:#CCC; font-size:25px;"><%= @diary.impressions.size %></i>
-              <%= link_to '', "https://twitter.com/share?url=#{request.url}&text=Forgineer｜#{@diary.title}", class: 'fab fa-twitter-square', title: 'Twitter', target: '_blank', style: "font-size:30px; margin:0 10px;" %>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
-          <% if user_signed_in? %>
-            <!--ログインしていればタグがリンクで表示されクリックするとタグ検索できる-->
-            <div class="show-diary-box__date">
-              <% @diary.diary_tags.each do |tag| %>
-                <%= link_to tag.tag.name, diaries_path(tag_id: tag.tag.id, name: tag.tag.name), class: "btn btn-default fas fa-tag" %>
-              <% end %><br>
+            <div class="field form-group">
+              <%= f.text_area :body, class: "form-control",placeholder: "内容を記入してください(入力必須)", style: "width:100%; min-height:200px;" %>
             </div>
-          <% else %>
-            <div class="show-diary-box__date">
-              <% @diary.diary_tags.each do |tag| %>
-                <i class="fas fa-tag"><%= tag.tag.name %></i>
-              <% end %><br>
-            </div>
+            <%= f.submit "コメント編集", class: "btn btn-default btn-lg", style: "float:right;" %>
           <% end %>
         </div>
       </div>
-
-    </div>
-
-    <!--以下コメント関連-->
-    <div class="row">
-      <div class="col-xs-12" style="margin:30px 0;">
-        <%= render 'layouts/error_messages', model: @comment %>
-        <h2>コメント</h2>
-        <%= form_with(model:[@diary,@comment], url: diary_comments_path(@diary), method: :post, remote: true) do |f| %>
-          <div class="field form-group">
-            <%= f.text_field :title, class: "form-control",placeholder: "タイトルを記入してください(入力必須、30文字以内)", style: "width:50%;" %>
-          </div>
-          <div class="field form-group">
-            <%= f.text_area :body, class: "form-control",placeholder: "内容を記入してください(入力必須)", style: "resize: none; width:100%; min-height:200px;" %>
-          </div>
-          <%= f.submit "コメント投稿", class: "btn btn-default btn-lg", style: "float:right;" %>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="diary_comment">
-          <%= render "layouts/comment", comments: @comments %>
-        </div>
-      </div>
-    </div>
+    <% end %>
 
   </div>
 </div>

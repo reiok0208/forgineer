@@ -10,12 +10,32 @@ class CommentsController < ApplicationController
       @comment.user_id = 2
     end
     @comment.diary_id = @diary.id
-    unless current_user.admin? #管理者以外はbodyをサニタイズしたものになる。script対策
+    @user = User.find(@comment.user_id)
+    unless @user.admin? #管理者以外はbodyをサニタイズしたものになる。script対策
       body_sanitize = Sanitize.clean(@comment.body, Sanitize::Config::BASIC)
       @comment.assign_attributes(body: body_sanitize)
     end
     @comment.save
     @comments = Comment.where(diary_id: @comment.diary_id)
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    unless current_user.admin? #管理者以外の場合
+      @comment.assign_attributes(comment_params)
+      @comment.body.gsub!(/<|>/, "<" => "&lt;", ">" => "&gt;")
+      @comment.update_attributes(body: Sanitize.clean(@comment.body, Sanitize::Config::BASIC))
+    else
+      @comment.update(comment_params)
+    end
+
+    if @comment.valid? #上記の分岐処理が有効かどうか
+      flash[:notice] = 'コメントを更新しました'
+      redirect_to diary_path(params[:diary_id])
+    else
+      flash[:notice] = 'コメントを更新できませんでした。タイトルは1文字以上30文字以内です。'
+      redirect_to diary_path(params[:diary_id])
+    end
   end
 
   def destroy
