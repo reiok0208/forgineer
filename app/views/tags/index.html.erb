@@ -7,7 +7,7 @@
         <tr>
           <th style="width:1000px;">
             <% if current_user.admin? %>
-            <i class="fas fa-tags fa-3x" style="float:left;"></i>
+              <i class="fas fa-tags fa-3x" style="float:left;"></i>
               <%= form_for tag, url: tag_path(tag.id), method: :patch do |f| %>
                 <%= f.text_field :name, class: "form-control", style: "width:310px; float:left;" %>
                 <p style="font-size:20px;"><%= link_to "（#{tag.diaries.count}）", diaries_path(tag_id: tag.id, name: tag.name), style: "float:left;" %></p>

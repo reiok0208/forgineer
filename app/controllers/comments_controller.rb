@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
       @comment.assign_attributes(body: body_sanitize)
     end
     @comment.save
-    @comments = Comment.where(diary_id: @comment.diary_id)
+    @comments = Comment.where(diary_id: @comment.diary_id) #最後に日記に紐付いたコメントを全取得し非同期に対応
   end
 
   def update
