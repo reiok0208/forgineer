@@ -28,9 +28,15 @@ class DiariesController < ApplicationController
   end
 
   def show
-    @diary = Diary.find(params[:id])
-    @comments = Comment.where(diary_id: params[:id])
-    @comment = Comment.new
+    if params[:diary_id].nil? #日記詳細の通常表示の場合
+      @diary = Diary.find(params[:id])
+      @comments = Comment.where(diary_id: params[:id])
+      @comment = Comment.new
+    else #コメント編集の場合
+      @diary = Diary.find(params[:diary_id])
+      @comments = Comment.where(diary_id: params[:diary_id])
+      @comment = Comment.find(params[:id])
+    end
   end
 
   def create

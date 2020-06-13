@@ -1,7 +1,8 @@
-<details>
+<details open>
 <summary style="font-size:25px;"><%= "#{comments.count}件のコメントを表示" %></summary>
-<% comments.each do |comment| %>
-  <div class="comment-box">
+
+<div class="comment-box">
+  <% comments.each do |comment| %>
     <p style="font-weight:bold; font-size:20px;">
       <% if comment.user.id != 2 %>
         <!--user_id２は非会員に使用-->
@@ -13,12 +14,14 @@
       投稿日：<%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
       <% if user_signed_in? %>
         <% if comment.user.id == current_user.id  || current_user.admin? %>
+          <%= link_to "編集", diary_path(diary_id: comment.diary_id, id: comment.id), class: "btn btn-default" %>
           <%= link_to "削除", diary_comment_path(diary_id: comment.diary_id, id: comment.id), class: "btn btn-danger", :method => :delete, data: { confirm: 'コメントを削除しますか？' }, remote: true %>
         <% end %>
       <% end %><br>
       タイトル：<%= comment.title %>
     </p>
-    <div style="font-size:18px;"><%= markdown(comment.body) %></div>
-  </div>
-<% end %>
+    <div style="font-size:18px; border-bottom: 1px solid #bebebe; margin-bottom:10px;"><%= markdown(comment.body) %></div>
+  <% end %>
+</div>
+
 </details>
