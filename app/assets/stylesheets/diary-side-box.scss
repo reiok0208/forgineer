@@ -40,10 +40,10 @@
   }
   &__rank-box-li--true{
     @extend %tag-link;
-    margin:10px 0 10px 2px;
+    margin:10px 0 10px 0;
   }
   &__rank-box-li--false{
     @extend %tag-link;
-    margin:10px 0 10px 13px;
+    margin:10px 0 10px 11px;
   }
 }

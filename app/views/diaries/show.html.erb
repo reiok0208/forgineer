@@ -11,10 +11,11 @@
             <h3>投稿者名：<%= link_to @diary.user.nickname, user_path(@diary.user)%></h3>
           </div>
           <div class="col-xs-12 col-sm-1 col-md-2 col-lg-2">
-            <% if user_signed_in? %>
-              <% if @diary.user_id == current_user.id || current_user.admin? %>
-                <!--カレントユーザーであれば編集や削除が可能、管理者であればid関係なく削除のみ可能-->
+            <% if user_signed_in? %> <!--カレントユーザーであれば編集や削除が可能、管理者であればid関係なく削除のみ可能-->
+              <% if @diary.user_id == current_user.id %>
                 <%= link_to "編集", edit_user_diary_path(@diary.user_id), class: "btn btn-default" %>
+              <% end %>
+              <% if @diary.user_id == current_user.id || current_user.admin? %>
                 <%= link_to "削除", user_diary_path(@diary.user_id), class: "btn btn-danger", :method => :delete, data: { confirm: '日記を削除しますか？' } %>
               <% end %>
             <% end %>
