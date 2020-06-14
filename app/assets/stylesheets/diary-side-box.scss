@@ -37,10 +37,14 @@
   &__rank-box-li{
     @extend %tag-link;
     margin:10px 0 10px 20px;
+    text-indent: -18px;
+    padding-left: 7px;
   }
   &__rank-box-li--true{
     @extend %tag-link;
     margin:10px 0 10px 0;
+    text-indent: -33px;
+    padding-left: 26px;
   }
   &__rank-box-li--false{
     @extend %tag-link;

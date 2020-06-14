@@ -12,7 +12,11 @@
               <div class="comment-box__text">
                 <mark style="font-size:25px; font-weight:bold; background-color:whitesmoke;"><%= comment.title %></mark>
                 <p><%= markdown(comment.body).html_safe %></p>
-                <h4><%= link_to comment.diary.title, diary_path(comment.diary),style:"float:right;" %></h4>
+                <h5><%= link_to comment.diary.title, diary_path(comment.diary),style:"float:right;" %></h5><br>
+                <h5 style="float:right;">
+                  コメント投稿日：<%= comment.created_at.strftime('%Y/%m/%d') %>　
+                  コメント更新日：<%= comment.updated_at.strftime('%Y/%m/%d') %>
+                </h5>
               </div>
             </div>
           </div>
