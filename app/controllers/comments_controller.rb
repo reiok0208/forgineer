@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
     @comment.diary_id = @diary.id
     @user = User.find(@comment.user_id)
     unless @user.admin? #管理者以外はbodyをサニタイズしたものになる。script対策
+      @comment.body.gsub!(/<|>/, "<" => "&lt;", ">" => "&gt;")
       body_sanitize = Sanitize.clean(@comment.body, Sanitize::Config::BASIC)
       @comment.assign_attributes(body: body_sanitize)
     end
