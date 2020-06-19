@@ -13,8 +13,10 @@
       <% end %>
       投稿日：<%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
       <% if user_signed_in? %>
-        <% if comment.user.id == current_user.id  || current_user.admin? %>
+        <% if comment.user.id == current_user.id %>
           <%= link_to "編集", diary_path(diary_id: comment.diary_id, id: comment.id), class: "btn btn-default" %>
+        <% end %>
+        <% if comment.user.id == current_user.id  || current_user.admin? %>
           <%= link_to "削除", diary_comment_path(diary_id: comment.diary_id, id: comment.id), class: "btn btn-danger", :method => :delete, data: { confirm: 'コメントを削除しますか？' }, remote: true %>
         <% end %>
       <% end %><br>
