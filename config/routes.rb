@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :diaries, only:[:index, :show] do
     resource :favorites, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy, :update]
+    resources :comments, only: [:edit, :create, :destroy, :update]
   end
 
   resources :tags, only: [:create, :index, :destroy, :update]

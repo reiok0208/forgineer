@@ -4,19 +4,19 @@
 <div class="comment-box">
   <% comments.each do |comment| %>
     <p style="font-weight:bold; font-size:20px;">
-      <% if comment.user.id != 2 %>
+      <% if comment.user_id != nil %>
         <!--user_id２は非会員に使用-->
         名前：<span class="comment-name"><%= link_to comment.user.nickname, user_path(comment.user) %></span>
       <% else %>
         <!--非会員のコメントの場合、名前にはリンクを埋め込まない-->
-        名前：<span class="comment-name"><%= comment.user.name %></span>
+        名前：<span class="comment-name">非会員</span>
       <% end %>
       投稿日：<%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
       <% if user_signed_in? %>
-        <% if comment.user.id == current_user.id %>
-          <%= link_to "編集", diary_path(diary_id: comment.diary_id, id: comment.id), class: "btn btn-default" %>
+        <% if comment.user_id == current_user.id %>
+          <%= link_to "編集", edit_diary_comment_path(diary_id: comment.diary_id, id: comment.id), class: "btn btn-default" %>
         <% end %>
-        <% if comment.user.id == current_user.id  || current_user.admin? %>
+        <% if comment.user_id == current_user.id  || current_user.admin? %>
           <%= link_to "削除", diary_comment_path(diary_id: comment.diary_id, id: comment.id), class: "btn btn-danger", :method => :delete, data: { confirm: 'コメントを削除しますか？' }, remote: true %>
         <% end %>
       <% end %><br>

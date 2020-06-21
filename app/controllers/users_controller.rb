@@ -2,11 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    if params[:id].to_i != 2 #非会員のユーザー詳細は入れない
-      @user = User.find(params[:id])
-    else
-      redirect_to root_path
-    end
+    @user = User.find(params[:id])
   end
 
   def delete
