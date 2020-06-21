@@ -1,23 +1,5 @@
-<style>/*部分テンプレートdiary_indexをお気に入り履歴で使用するためCSS変更*/
-  .diary-box__sub {
-    height: 70px;
-    margin: 0;
-    padding: 0;
-  }
-
-  p {
-    display: none;
-  }
-
-  .diary-box__image img {
-    width: 100px;
-    height: 60px;
-  }
-
-  .diary-box__status {
-    height: 45px;
-  }
-</style>
+<!--部分テンプレートdiary_indexをお気に入り履歴で使用するためCSS変更-->
+<%= stylesheet_link_tag 'partial/user-favorite', media: 'all', 'data-turbolinks-track': 'reload' %>
 
 <div class="row">
   <div class="col-xs-10 col-xs-offset-1">

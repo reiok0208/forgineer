@@ -1,23 +1,32 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
   def create
     @diary = Diary.find(params[:diary_id])
     if user_signed_in?
       @comment = current_user.comments.new(comment_params)
     else
-      #非会員には非会員専用のuser_id2を付与
+      #非会員にはuser_idをnilで渡す
       @comment = Comment.new(comment_params)
-      @comment.user_id = 2
+      @comment.user_id = nil
     end
     @comment.diary_id = @diary.id
-    @user = User.find(@comment.user_id)
-    unless @user.admin? #管理者以外はbodyをサニタイズしたものになる。script対策
+    @user = User.find_by(id: @comment.user_id)
+    if @user.nil? || !@user.admin? #管理者以外はbodyをサニタイズしたものになる。script対策
       @comment.body.gsub!(/<|>/, "<" => "&lt;", ">" => "&gt;")
       body_sanitize = Sanitize.clean(@comment.body, Sanitize::Config::BASIC)
       @comment.assign_attributes(body: body_sanitize)
     end
     @comment.save
     @comments = Comment.where(diary_id: @comment.diary_id) #最後に日記に紐付いたコメントを全取得し非同期に対応
+  end
+
+  def edit
+    @diary = Diary.find(params[:diary_id])
+    @comment = Comment.find(params[:id])
+    if current_user.id != @comment.user_id
+      redirect_to root_path
+    end
   end
 
   def update
@@ -35,14 +44,14 @@ class CommentsController < ApplicationController
       redirect_to diary_path(params[:diary_id])
     else
       flash[:notice] = 'コメントを更新できませんでした。タイトルは1文字以上30文字以内です。'
-      redirect_to diary_path(params[:diary_id])
+      redirect_to edit_diary_comment_path(diary_id: params[:diary_id], id: @comment.id)
     end
   end
 
   def destroy
-    if user_signed_in?
-      @comment = Comment.find(params[:id])
-      diary = @comment.diary_id
+    @comment = Comment.find(params[:id])
+    diary = @comment.diary_id
+    if current_user.id == @comment.user_id || current_user.admin?
       @comment.destroy
       @comments = Comment.where(diary_id: diary)
     else

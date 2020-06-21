@@ -17,9 +17,9 @@
     <% if user_signed_in? %>
       <div class="field">
         <% if params[:option].present? %>
-          <%= select_tag :sort, options_for_select("#{params[:option]}": "","日記の新しい順": "日記の新しい順","日記の古い順": "日記の古い順","日記の更新日順": "日記の更新日順", "お気に入りが多い順": "お気に入りが多い順","コメントが多い順": "コメントが多い順","PVが多い順": "PVが多い順"), onChange: "func(this.value)", style:"font-size:20px; margin:10px;" %>
+          <%= select_tag :sort, options_for_select("#{params[:option]}": "","日記の新しい順": "日記の新しい順","日記の古い順": "日記の古い順","日記の更新日順": "日記の更新日順", "お気に入りが多い順": "お気に入りが多い順","コメントが多い順": "コメントが多い順","PVが多い順": "PVが多い順"), onChange: "select(this.value)", style:"font-size:20px; margin:10px;" %>
         <% else %>
-          <%= select_tag :sort, options_for_select("日記の新しい順": "日記の新しい順","日記の古い順": "日記の古い順","日記の更新日順": "日記の更新日順","お気に入りが多い順": "お気に入りが多い順","コメントが多い順": "コメントが多い順","PVが多い順": "PVが多い順"), onChange: "func(this.value)", style:"font-size:20px; margin:10px;" %>
+          <%= select_tag :sort, options_for_select("日記の新しい順": "日記の新しい順","日記の古い順": "日記の古い順","日記の更新日順": "日記の更新日順","お気に入りが多い順": "お気に入りが多い順","コメントが多い順": "コメントが多い順","PVが多い順": "PVが多い順"), onChange: "select(this.value)", style:"font-size:20px; margin:10px;" %>
         <% end %>
       </div>
     <% end %>
@@ -45,22 +45,3 @@
     <div class="col-xs-2 diary-side-box" style="margin-top: 33px; height:1000px;">日記投稿・編集、文字列検索やタグ検索機能、日記ランキング、フォロー機能、お気に入り機能、コメント履歴機能は会員限定機能です</div>
   <% end %>
 </div>
-
-<script>
-    function func(value) {
-      var search = $(".search").val();
-      var name = $(".name").val();
-      var tag_id = $(".tag_id").val();
-      var nickname = $(".nickname").val();
-      var user_id = $(".user_id").val();
-      if (typeof search !== 'undefined') {
-        window.location.replace('/diaries?search=' + search + '&option=' + value);
-      }else if (typeof tag_id !== 'undefined'){
-        window.location.replace('/diaries?name=' + name + '&tag_id=' + tag_id + '&option=' + value);
-      }else if (typeof user_id !== 'undefined'){
-        window.location.replace('/diaries?nickname=' + nickname + '&user_id=' + user_id + '&option=' + value);
-      }else{
-        window.location.replace('/diaries?option=' + value );
-      }
-    }
-</script>
