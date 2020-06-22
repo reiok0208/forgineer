@@ -22,26 +22,22 @@
   <div class="diary-side-box__rank-box">
     <h3 class="diary-side-box__rank-box-h3">日記ランキング</h3>
     <ul>
-      <% i = 1 %>
-      <% most_viewed.each do |pv| %>
+      <% most_viewed.each.with_index(1) do |pv, i| %>
         <% if i == 1 %><!--iが１であればclass="fas fa-crown"（王冠）をstyle="color:#DBB400;"(金色)で適応-->
           <li class="diary-side-box__rank-box-li">
             <i class="fas fa-crown" style="color:#DBB400; margin-left:6px;"></i>
             <%= link_to pv.title, diary_path(pv) %>
           </li>
-          <% i += 1 %><!--iに１を足して繰り返す-->
         <% elsif i == 2 %><!--iが２であればclass="fas fa-crown"（王冠）をstyle="color:#C9CACA;"(銀色)で適応-->
           <li class="diary-side-box__rank-box-li">
             <i class="fas fa-crown" style="color:#C9CACA; margin-left:6px;"></i>
             <%= link_to pv.title, diary_path(pv) %>
           </li>
-          <% i += 1 %><!--iに１を足して繰り返す-->
         <% elsif i == 3 %><!--iが３であればclass="fas fa-crown"（王冠）をstyle="color:#BA6E40;"(銅色)で適応-->
           <li class="diary-side-box__rank-box-li">
             <i class="fas fa-crown" style="color:#BA6E40; margin-left:6px;"></i>
             <%= link_to pv.title, diary_path(pv) %>
           </li>
-          <% i += 1 %><!--iに１を足して繰り返す-->
         <% elsif i == 10 %><!--１０だけ２ケタのためCSSのmarginズレをclass変更で対応-->
           <li class="diary-side-box__rank-box-li--true">
             <%= "#{i}. " %><%= link_to pv.title, diary_path(pv) %>
@@ -50,7 +46,6 @@
           <li class="diary-side-box__rank-box-li--false">
             <%= "#{i}. " %><%= link_to pv.title, diary_path(pv) %>
           </li>
-          <% i += 1 %><!--iに１を足して繰り返す-->
         <% end %>
       <% end %>
     </ul>
