@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Diaries", type: :request do
   before do
     @user = create(:user)
+    @user2 = create(:user)
     @diary = create(:diary, user: @user)
     sign_in @user
   end
@@ -20,6 +21,10 @@ RSpec.describe "Diaries", type: :request do
       end
       it '文字列「新規投稿」が正しく表示されていること' do
         expect(response.body).to include("新規投稿")
+      end
+      it '他のユーザーのidで新規投稿へ遷移した場合トップに戻る' do
+        get new_user_diary_path(@user2)
+        expect(response).to redirect_to root_path
       end
     end
 

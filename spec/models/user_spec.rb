@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   before do
     @user = create(:user)
+    @user2 = create(:user)
   end
   describe "バリデーションに関するテスト" do
     it "名前、ニックネーム、メール、パスワードがあれば有効な状態であること" do
@@ -107,6 +108,28 @@ RSpec.describe User, type: :model do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:follower_user).macro).to eq :has_many
       end
+    end
+  end
+
+  describe 'フォローに関するテスト' do
+    it 'フォローが正常に行われる' do
+      @user.follow(@user2.id)
+      expect(@user.following_user).to eq [@user2]
+    end
+
+    it 'フォローを解除できる' do
+      @user.follow(@user2.id)
+      @user.unfollow(@user2.id)
+      expect(@user.following_user).not_to eq [@user2]
+    end
+
+    it 'フォローしているか検証できる' do
+      @user.follow(@user2.id)
+      expect(@user.following?(@user2)).to eq true
+    end
+
+    it 'フォローしていないか検証できる' do
+      expect(@user.following?(@user2)).to eq false
     end
   end
 
