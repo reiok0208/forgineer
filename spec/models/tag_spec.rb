@@ -27,4 +27,19 @@ RSpec.describe Tag, type: :model do
       end
     end
   end
+
+  describe 'タグ検索に関するテスト' do
+    it '検索タグに一致した記事の表示' do
+      @diary = create(:diary)
+      @diary2 = Diary.create(title:"記事", body:"テスト")
+      @tag = Tag.create(name: "日記")
+      @diary_tag = DiaryTag.create(
+        diary_id: @diary.id,
+        tag_id: @tag.id,
+      )
+      search_tag = Tag.search(@tag)
+      expect(search_tag.ids).to eq [@diary.id]
+      expect(search_tag.ids).not_to eq [@diary2.id]
+    end
+  end
 end
