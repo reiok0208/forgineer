@@ -32,10 +32,6 @@ class DiariesController < ApplicationController
       @diary = Diary.find(params[:id])
       @comments = Comment.where(diary_id: params[:id])
       @comment = Comment.new
-    else #コメント編集の場合
-      @diary = Diary.find(params[:diary_id])
-      @comments = Comment.where(diary_id: params[:diary_id])
-      @comment = Comment.find(params[:id])
     end
   end
 
@@ -71,12 +67,9 @@ class DiariesController < ApplicationController
   def destroy
     if current_user.id == params[:user_id].to_i || current_user.admin? #管理者であれば全日記の削除権限がある
       diary = Diary.find(params[:id])
-      if diary.destroy
-        flash[:notice] = '日記を削除しました'
-        redirect_to diaries_path
-      else
-        render :show
-      end
+      diary.destroy
+      flash[:notice] = '日記を削除しました'
+      redirect_to diaries_path
     else
       redirect_to root_path
     end

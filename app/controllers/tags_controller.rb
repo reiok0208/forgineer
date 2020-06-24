@@ -26,12 +26,13 @@ class TagsController < ApplicationController
   end
 
   def destroy
-    tag = Tag.find(params[:id])
-    if tag.destroy
+    if current_user.admin?
+      tag = Tag.find(params[:id])
+      tag.destroy
       flash[:notice] = 'タグを削除しました'
       redirect_to tags_path
     else
-      render :index
+      redirect_to root_path
     end
   end
 
@@ -42,8 +43,11 @@ class TagsController < ApplicationController
         flash[:notice] = 'タグを更新しました'
         redirect_to tags_path
       else
+        @tags = Tag.all.order(id: 'DESC')
         render :index
       end
+    else
+      redirect_to root_path
     end
   end
 

@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Users", type: :request do
   before do
     @user = create(:user)
+    @user2 = create(:user)
     sign_in @user
   end
 
@@ -49,6 +50,10 @@ RSpec.describe "Users", type: :request do
       end
       it '文字列「退会」が正しく表示されていること' do
         expect(response.body).to include("退会")
+      end
+      it '他のユーザーのidで退会画面へ遷移した場合トップに戻る' do
+        get user_delete_path(@user2)
+        expect(response).to redirect_to root_path
       end
     end
 
