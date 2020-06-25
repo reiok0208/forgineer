@@ -2,13 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Tags", type: :request do
   before do
-    @user = User.create(
-      name: "テスト太郎",
-      nickname:  "テスト",
-      email:      "test@example.com",
-      password:   "testTarou1111",
-      admin: 1,
-    )
+    @user = create(:user, admin: 1)
   end
 
   describe '画面遷移テスト' do
@@ -59,14 +53,14 @@ RSpec.describe "Tags", type: :request do
       it "(管理者のみ)正常にタグを更新できる" do
         tag = create(:tag)
         expect {
-          patch "/tags/#{tag.id}", params: { tag: {name: "更新"} }
+          patch tag_path(tag), params: { tag: {name: "更新"} }
         }.to change(Tag, :count).by(0)
         expect(flash[:notice]).to include("タグを更新しました")
       end
       it "(管理者のみ)不足項目がある場合タグ更新できない" do
         tag = create(:tag)
         expect {
-          patch "/tags/#{tag.id}", params: { tag: {name: ""} }
+          patch tag_path(tag), params: { tag: {name: ""} }
         }.to change(Tag, :count).by(0)
         expect(response).to render_template :index
       end
@@ -74,7 +68,7 @@ RSpec.describe "Tags", type: :request do
       it "正常にタグを削除できる" do
         tag = create(:tag)
         expect {
-          delete "/tags/#{tag.id}"
+          delete tag_path(tag)
         }.to change(Tag, :count).by(-1)
         expect(flash[:notice]).to include("タグを削除しました")
       end
@@ -86,7 +80,7 @@ RSpec.describe "Tags", type: :request do
         sign_in user2
         tag = create(:tag)
         expect {
-          patch "/tags/#{tag.id}", params: { tag: {name: "更新"} }
+          patch tag_path(tag), params: { tag: {name: "更新"} }
         }.to change(Tag, :count).by(0)
         expect(response).to redirect_to root_path
       end
@@ -96,7 +90,7 @@ RSpec.describe "Tags", type: :request do
         sign_in user2
         tag = create(:tag)
         expect {
-          delete "/tags/#{tag.id}"
+          delete tag_path(tag)
         }.to change(Tag, :count).by(0)
         expect(response).to redirect_to root_path
       end
