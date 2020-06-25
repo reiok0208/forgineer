@@ -53,14 +53,6 @@ function Click(btn) {
   document.getElementById(noselect).style.display = "none";
 }
 
-//_post.html.erb gem select2
-
-
-//_profile.html.erb gem drawer
-$(function () {
-  $('.drawer').drawer();
-});
-
 //user#new user#edit
 function countLength( text, field ) {
   document.getElementById(field).innerHTML = 160 - text.length + "文字";
