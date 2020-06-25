@@ -51,4 +51,17 @@ RSpec.describe "Home", type: :request do
       end
     end
   end
+
+  describe 'お問い合わせテスト' do
+    it 'お問い合わせ(メール送信)することができる' do
+      expect {
+        post home_info_path, params: { inquiry: {name:"名前", message:"メッセージ"} }
+      }.to change(Inquiry, :count).by(1)
+    end
+    it 'お問い合わせ(メール送信)に失敗する(文字制限)' do
+      expect {
+        post home_info_path, params: { inquiry: {name:"", message:"メッセージ"} }
+      }.to change(Inquiry, :count).by(0)
+    end
+  end
 end
