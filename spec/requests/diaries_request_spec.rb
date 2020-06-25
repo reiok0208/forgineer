@@ -107,20 +107,20 @@ RSpec.describe "Diaries", type: :request do
 
       it "正常に日記を更新できる" do
         expect {
-          patch "/users/#{@user.id}/diaries/#{@diary.id}", params: { diary: {title:"更新", body:"更新", user_id: @user.id} }
+          patch user_diary_path(user_id: @user, id: @diary), params: { diary: {title:"更新", body:"更新", user_id: @user.id} }
         }.to change(@user.diaries, :count).by(0)
         expect(flash[:notice]).to include("日記を更新しました")
       end
       it "不足項目がある場合更新できない" do
         expect {
-          patch "/users/#{@user.id}/diaries/#{@diary.id}", params: { diary: {title:"", body:"更新", user_id: @user.id} }
+          patch user_diary_path(user_id: @user, id: @diary), params: { diary: {title:"", body:"更新", user_id: @user.id} }
         }.to change(@user.diaries, :count).by(0)
         expect(response).to render_template :edit
       end
 
       it "正常に日記を削除できる" do
         expect {
-          delete "/users/#{@user.id}/diaries/#{@diary.id}"
+          delete user_diary_path(user_id: @user, id: @diary)
         }.to change(@user.diaries, :count).by(-1)
         expect(flash[:notice]).to include("日記を削除しました")
       end
@@ -136,14 +136,14 @@ RSpec.describe "Diaries", type: :request do
 
       it "更新しようとするとトップ画面にリダイレクトする" do
         expect {
-          patch "/users/#{@user2.id}/diaries/#{@diary.id}", params: { diary: {title:"更新", body:"更新", user_id: @user.id} }
+          patch user_diary_path(user_id: @user2, id: @diary), params: { diary: {title:"更新", body:"更新", user_id: @user.id} }
         }.to change(@user.diaries, :count).by(0)
         expect(response).to redirect_to root_path
       end
 
       it "削除しようとするとトップ画面にリダイレクトする" do
         expect {
-          delete "/users/#{@user2.id}/diaries/#{@diary.id}"
+          delete user_diary_path(user_id: @user2, id: @diary)
         }.to change(@user.diaries, :count).by(0)
         expect(response).to redirect_to root_path
       end
