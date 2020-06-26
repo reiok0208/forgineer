@@ -5,7 +5,7 @@ module TagsHelper
   end
 
   def tag_dup_valid(value)
-    value.gsub!(/ /){""} #全ての半角スペースを消す
-    value.downcase! #重複検証のため全て小文字に変換
+    tag_space_delete = value.gsub(/ /){""} #全ての半角スペースを消す
+    tag_downcase = tag_space_delete.downcase #重複検証のため全て小文字に変換
   end
 end
