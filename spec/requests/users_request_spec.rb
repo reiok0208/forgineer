@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
+RSpec.describe "ユーザーコントローラー", type: :request do
   before do
     @user = create(:user)
     @user2 = create(:user)

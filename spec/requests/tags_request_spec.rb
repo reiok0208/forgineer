@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Tags", type: :request do
+RSpec.describe "タグコントローラー", type: :request do
   before do
     @user = create(:user, admin: 1)
   end

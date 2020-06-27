@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Relationship, type: :model do
+RSpec.describe "関係モデル", type: :model do
   describe 'アソシエーションに関するテスト' do
     context 'Followerモデルとの関係' do
       it 'N:1となっている' do

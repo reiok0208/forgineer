@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Home", type: :request do
+RSpec.describe "ホームコントローラー", type: :request do
   before do
     @user = create(:user)
   end

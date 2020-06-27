@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Diaries", type: :request do
+RSpec.describe "日記コントローラー", type: :request do
   before do
     @user = create(:user)
     @user2 = create(:user)
