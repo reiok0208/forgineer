@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe DiaryTag, type: :model do
+RSpec.describe "日記タグモデル", type: :model do
   describe 'アソシエーションに関するテスト' do
     context 'Tagモデルとの関係' do
       it 'N:1となっている' do

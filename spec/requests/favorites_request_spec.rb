@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Favorites", type: :request do
+RSpec.describe "お気に入りコントローラー", type: :request do
   before do
     @user = create(:user)
     @diary = create(:diary, user: @user)

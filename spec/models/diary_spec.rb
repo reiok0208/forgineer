@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Diary, type: :model do
+RSpec.describe "日記モデル", type: :model do
   before do
     @user = create(:user)
   end

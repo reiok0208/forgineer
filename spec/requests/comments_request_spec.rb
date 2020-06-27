@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Comments", type: :request do
+RSpec.describe "コメントコントローラー", type: :request do
   before do
     @user = create(:user)
     @admin = create(:user, admin: 1)
