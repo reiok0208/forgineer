@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Comment, type: :model do
+RSpec.describe "コメントモデル", type: :model do
   describe "バリデーションに関するテスト" do
     it "タイトルがなければ無効な状態であること" do
       comment = Comment.new(title: nil)

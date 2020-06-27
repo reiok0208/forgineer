@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe "UserAuthentications", type: :request do
+RSpec.describe "Deviseコントローラー", type: :request do
   let(:user_params) { attributes_for(:user) }
   let(:invalid_user_params) { attributes_for(:user, name: "") }
 
-  describe 'Deviseテスト' do
+  describe '遷移テスト' do
     context 'パラメータが妥当な場合' do
       it '新規ユーザー登録が成功し、ユーザー詳細に遷移する' do
         expect {

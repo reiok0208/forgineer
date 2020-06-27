@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe "ユーザーモデル", type: :model do
   before do
     @user = create(:user)
     @user2 = create(:user)

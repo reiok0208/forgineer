@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Tag, type: :model do
+RSpec.describe "タグモデル", type: :model do
   describe "バリデーションに関するテスト" do
     it "名前がなければ無効な状態であること" do
       tag = Tag.new(name: nil)

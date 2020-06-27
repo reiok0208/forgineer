@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Favorite, type: :model do
+RSpec.describe "お気に入りモデル", type: :model do
   describe 'アソシエーションに関するテスト' do
     context 'Userモデルとの関係' do
       it 'N:1となっている' do

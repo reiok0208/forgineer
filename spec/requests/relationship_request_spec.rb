@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Relationship", type: :request do
+RSpec.describe "関係コントローラー", type: :request do
   before do
     @user = create(:user)
     @other_user = create(:user)

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Inquiry, type: :model do
+RSpec.describe "お問い合わせモデル", type: :model do
   describe "バリデーションに関するテスト" do
     it "名前がなければ無効な状態であること" do
       inquiry = Inquiry.new(name: nil)
