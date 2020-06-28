@@ -85,28 +85,22 @@
           1,
           1,
           1,
-          0,
+          1,
+          null,
+          1,
           null,
           0,
           null,
           0,
           null,
-          0,
-          null,
-          0,
-          null,
-          0,
-          null,
-          0,
-          null,
-          0,
+          1,
           null,
           null,
           null,
           null,
           1,
-          78,
-          78,
+          79,
+          79,
           null,
           null,
           null,
@@ -116,8 +110,8 @@
           null,
           null,
           null,
-          78,
-          78,
+          79,
+          79,
           null,
           null
         ]
@@ -169,6 +163,37 @@
           null
         ]
       },
+      "/home/vagrant/work/forgineer/app/models/diary.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          14,
+          4,
+          null,
+          10,
+          null,
+          null,
+          null,
+          1,
+          20,
+          null,
+          null
+        ]
+      },
       "/home/vagrant/work/forgineer/app/controllers/home_controller.rb": {
         "lines": [
           1,
@@ -215,34 +240,14 @@
           null
         ]
       },
-      "/home/vagrant/work/forgineer/app/models/diary.rb": {
+      "/home/vagrant/work/forgineer/app/models/comment.rb": {
         "lines": [
           1,
           1,
           1,
-          1,
           null,
           1,
           1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          null,
-          1,
-          14,
-          4,
-          null,
-          10,
-          null,
-          null,
-          null,
-          1,
-          18,
-          null,
           null
         ]
       },
@@ -317,10 +322,10 @@
           null,
           null,
           1,
-          18,
-          18,
-          18,
-          18,
+          19,
+          19,
+          19,
+          19,
           null,
           null,
           null,
@@ -410,6 +415,14 @@
           null
         ]
       },
+      "/home/vagrant/work/forgineer/app/models/favorite.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
       "/home/vagrant/work/forgineer/app/models/diary_tag.rb": {
         "lines": [
           1,
@@ -490,25 +503,6 @@
           3,
           null,
           null,
-          null
-        ]
-      },
-      "/home/vagrant/work/forgineer/app/models/comment.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null
-        ]
-      },
-      "/home/vagrant/work/forgineer/app/models/favorite.rb": {
-        "lines": [
-          1,
-          1,
-          1,
           null
         ]
       },
@@ -793,6 +787,6 @@
         }
       }
     },
-    "timestamp": 1593315156
+    "timestamp": 1593332071
   }
 }

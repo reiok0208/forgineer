@@ -7,7 +7,7 @@ feature 'タグ統合テスト', type: :feature do
     create(:tag)
   end
 
-  scenario 'タグ編集削除テスト' do
+  scenario 'タグ編集・タグ削除テスト', :js => true do
     # ログイン前は全てのタグリンク(index_side全般)は表示されない
     visit diaries_path
     expect(page).to have_no_content('全てのタグ')
@@ -36,7 +36,11 @@ feature 'タグ統合テスト', type: :feature do
     expect(page).to have_field 'tag[name]', with: '更新'
 
     #タグを正常に削除できるか確認
-    expect(page).to have_selector 'a[data-confirm="タグを削除しますか？"]'
     find(".fa-trash-alt").click
+    expect {
+      expect(page.driver.browser.switch_to.alert.text).to eq "タグを削除しますか？"
+      page.driver.browser.switch_to.alert.accept
+      expect(page).to have_content 'タグを削除しました'       
+    }.to change{ Tag.count }.by(-1)
   end
 end
