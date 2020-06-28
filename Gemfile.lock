@@ -380,7 +380,7 @@ DEPENDENCIES
   bootsnap
   bootstrap-sass (~> 3.4.1)
   byebug
-  capybara
+  capybara (>= 2.15)
   coderay
   coffee-rails (~> 4.2)
   devise
