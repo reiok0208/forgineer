@@ -27,12 +27,6 @@ module ApplicationHelper
       case language.to_s
       when 'rb'
           lang = 'ruby'
-      when 'yml'
-          lang = 'yaml'
-      when 'css'
-          lang = 'css'
-      when 'html'
-          lang = 'html'
       when ''
           lang = 'md'
       else

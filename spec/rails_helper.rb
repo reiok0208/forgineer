@@ -67,4 +67,13 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request #sign_inヘルパー
   config.include Devise::Test::IntegrationHelpers, type: :feature
   config.include FactoryBot::Syntax::Methods #FactoryBotをinclude
+
+  Capybara.register_driver :firefox_headless do |app|
+    options = ::Selenium::WebDriver::Firefox::Options.new
+    options.args << '--headless'
+  
+    Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
+  end
+  
+  Capybara.javascript_driver = :firefox_headless
 end
