@@ -65,4 +65,39 @@ feature '日記統合テスト', type: :feature do
       expect(page).to have_content '日記を削除しました'       
     }.to change{ Diary.count }.by(-1)
   end
+
+  scenario '日記一覧並び替えテスト', :js => true do
+    #ログイン前は並び替えセレクト要素が表示されない
+    visit diaries_path
+    expect(page).to have_no_content('日記の新しい順')
+
+    #ログインすると並び替えセレクト要素が表示される
+    sign_in @user
+    visit diaries_path
+    expect(current_path).to eq diaries_path
+    expect(page).to have_content('日記の新しい順')
+
+    #日記の並び替えが正常に行われるか確認
+    select '日記の古い順', from: 'sort'
+    expect(page).to have_content('日記の古い順')
+    select '日記の新しい順', from: 'sort'
+    expect(page).to have_content('日記の新しい順')
+    select '日記の更新日順', from: 'sort'
+    expect(page).to have_content('日記の更新日順')
+    select 'お気に入りが多い順', from: 'sort'
+    expect(page).to have_content('お気に入りが多い順')
+    select 'コメントが多い順', from: 'sort'
+    expect(page).to have_content('コメントが多い順')
+    select 'PVが多い順', from: 'sort'
+    expect(page).to have_content('PVが多い順')
+
+    #タグIDが含まれた並び替えが正常に行われるか確認
+    visit diaries_path(tag_id: 1)
+    select 'お気に入りが多い順', from: 'sort'
+    expect(page).to have_content('タグ検索')
+    expect(page).to have_content('お気に入りが多い順')
+    select 'コメントが多い順', from: 'sort'
+    expect(page).to have_content('タグ検索')
+    expect(page).to have_content('コメントが多い順')
+  end
 end
