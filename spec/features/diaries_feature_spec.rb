@@ -7,7 +7,7 @@ feature '日記統合テスト', type: :feature do
     @diary = create(:diary, user: @user)
   end
 
-  scenario 'ログイン・新規投稿・タグ新規追加' do
+  scenario '新規投稿・タグ新規追加' do
     # ログイン前は投稿するボタンが表示されない
     visit root_path
     expect(page).to have_no_content('新規投稿')
