@@ -38,10 +38,9 @@ class DiariesController < ApplicationController
   def create
     if current_user.id == params[:user_id].to_i
       @diary = Diary.new(diary_params)
-      unless current_user.admin? #管理者以外はbodyをサニタイズしたものになる。script対策
-        @diary.body.gsub!(/<|>/, "<" => "&lt;", ">" => "&gt;")
-        body_sanitize = Sanitize.clean(@diary.body, Sanitize::Config::BASIC)
-        @diary.assign_attributes(body: body_sanitize)
+      unless current_user.admin? #管理者以外はbodyをエスケープしたものになる。script対策
+        body_escape = ERB::Util.html_escape(@diary.body)
+        @diary.assign_attributes(body: body_escape)
       end
 
       if @diary.save
@@ -80,8 +79,8 @@ class DiariesController < ApplicationController
       @diary = Diary.find(params[:id])
       unless current_user.admin? #管理者以外の場合
         @diary.assign_attributes(diary_params)
-        @diary.body.gsub!(/<|>/, "<" => "&lt;", ">" => "&gt;")
-        @diary.update_attributes(body: Sanitize.clean(@diary.body, Sanitize::Config::BASIC))
+        body_escape = ERB::Util.html_escape(@diary.body)
+        @diary.update_attributes(body: body_escape)
       else #管理者の場合
         @diary.update(diary_params)
       end
