@@ -1,7 +1,6 @@
 class DiariesController < ApplicationController
   include DiariesHelper
   before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
-  impressionist :actions=>[:show]
 
   def new
     if current_user.id == params[:user_id].to_i #カレント以外は遷移できない
@@ -32,6 +31,7 @@ class DiariesController < ApplicationController
       @diary = Diary.find(params[:id])
       @comments = Comment.where(diary_id: params[:id])
       @comment = Comment.new
+      impressionist(@diary, nil, unique: [:impressionable_id, :ip_address])
     end
   end
 
@@ -39,8 +39,7 @@ class DiariesController < ApplicationController
     if current_user.id == params[:user_id].to_i
       @diary = Diary.new(diary_params)
       unless current_user.admin? #管理者以外はbodyをエスケープしたものになる。script対策
-        body_escape = ERB::Util.html_escape(@diary.body)
-        @diary.assign_attributes(body: body_escape)
+        @diary.assign_attributes(body: ERB::Util.html_escape(@diary.body))
       end
 
       if @diary.save
@@ -79,8 +78,7 @@ class DiariesController < ApplicationController
       @diary = Diary.find(params[:id])
       unless current_user.admin? #管理者以外の場合
         @diary.assign_attributes(diary_params)
-        body_escape = ERB::Util.html_escape(@diary.body)
-        @diary.update_attributes(body: body_escape)
+        @diary.update_attributes(body: ERB::Util.html_escape(@diary.body))
       else #管理者の場合
         @diary.update(diary_params)
       end

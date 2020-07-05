@@ -13,9 +13,7 @@ class CommentsController < ApplicationController
     @comment.diary_id = @diary.id
     @user = User.find_by(id: @comment.user_id)
     if @user.nil? || !@user.admin? #管理者以外はbodyをサニタイズしたものになる。script対策
-      @comment.body.gsub!(/<|>/, "<" => "&lt;", ">" => "&gt;")
-      body_sanitize = Sanitize.clean(@comment.body, Sanitize::Config::BASIC)
-      @comment.assign_attributes(body: body_sanitize)
+      @comment.assign_attributes(body: ERB::Util.html_escape(@comment.body))
     end
     @comment.save
     @comments = Comment.where(diary_id: @comment.diary_id) #最後に日記に紐付いたコメントを全取得し非同期に対応
@@ -33,8 +31,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     unless current_user.admin? #管理者以外の場合
       @comment.assign_attributes(comment_params)
-      @comment.body.gsub!(/<|>/, "<" => "&lt;", ">" => "&gt;")
-      @comment.update_attributes(body: Sanitize.clean(@comment.body, Sanitize::Config::BASIC))
+      @comment.update_attributes(body: ERB::Util.html_escape(@comment.body))
     else
       @comment.update(comment_params)
     end
