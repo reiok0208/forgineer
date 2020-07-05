@@ -1,0 +1,15 @@
+
+<% if params[:search].present? %><!--検索フォームからの遷移-->
+  <input class="search" type="hidden" name="search" value="<%= params[:search] %>">
+  <h2><%= "フォーム検索：#{params[:search]}" %></h2>
+<% elsif params[:user_id].present? %><!--ユーザー詳細からの遷移-->
+  <input class="nickname" type="hidden" name="nickname" value="<%= params[:nickname] %>">
+  <input class="user_id" type="hidden" name="user_id" value="<%= params[:user_id] %>">
+  <h2><%= "#{params[:nickname]}さんの投稿日記" %></h2>
+<% elsif params[:tag_id].present? %><!--人気タグからの遷移-->
+  <input class="name" type="hidden" name="name" value="<%= params[:name] %>">
+  <input class="tag_id" type="hidden" name="tag_id" value="<%= params[:tag_id] %>">
+  <h2><%= "タグ検索：#{params[:name]}" %></h2>
+<% else %><!--日記一覧からの遷移-->
+  <h2>日記一覧</h2>
+<% end %>
