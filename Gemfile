@@ -43,10 +43,10 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
-  gem 'simplecov' #テストのカバレッジ可視化
+  gem 'simplecov' # テストのカバレッジ可視化
   gem 'selenium-webdriver'
 end
-  gem 'listen', '~> 3.1.5'
+gem 'listen', '~> 3.1.5'
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
@@ -54,6 +54,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rubocop-airbnb'
 end
 
 group :test do
@@ -61,8 +62,6 @@ group :test do
   gem 'capybara', '>= 2.15'
 
   # Easy installation and use of chromedriver to run system tests with Chrome
-
-  
 end
 
 group :production do
@@ -84,7 +83,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'font-awesome-sass'
 gem 'dotenv-rails'
-gem 'impressionist', '~>1.6.1' #日記詳細閲覧数監視
-gem 'redcarpet' #マークダウン
-gem 'coderay' #シンタックスハイライト
-gem 'select2-rails' #タグが多くなった時のために実装
+gem 'impressionist', '~>1.6.1' # 日記詳細閲覧数監視
+gem 'redcarpet' # マークダウン
+gem 'coderay' # シンタックスハイライト
+gem 'select2-rails' # タグが多くなった時のために実装

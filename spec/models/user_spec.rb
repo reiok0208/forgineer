@@ -5,6 +5,7 @@ RSpec.describe "ユーザーモデル", type: :model do
     @user = create(:user)
     @user2 = create(:user)
   end
+
   describe "バリデーションに関するテスト" do
     it "名前、ニックネーム、メール、パスワードがあれば有効な状態であること" do
       expect(@user).to be_valid
@@ -54,9 +55,9 @@ RSpec.describe "ユーザーモデル", type: :model do
     it "重複したメールアドレスなら無効な状態であること" do
       user = User.new(
         name: "テスト太郎",
-        nickname:  "テスト",
-        email:      @user.email,
-        password:   "testTarou1111",
+        nickname: "テスト",
+        email: @user.email,
+        password: "testTarou1111",
       )
       user.valid?
       expect(user.errors[:email]).to include("はすでに存在します")
@@ -69,41 +70,49 @@ RSpec.describe "ユーザーモデル", type: :model do
         expect(User.reflect_on_association(:diaries).macro).to eq :has_many
       end
     end
+
     context 'Commentモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:comments).macro).to eq :has_many
       end
     end
+
     context 'Favoriteモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:favorites).macro).to eq :has_many
       end
     end
+
     context 'CommentDiaryモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:comment_diaries).macro).to eq :has_many
       end
     end
+
     context 'FavoriteDiaryモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:favorite_diaries).macro).to eq :has_many
       end
     end
+
     context 'Followerモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:follower).macro).to eq :has_many
       end
     end
+
     context 'Followedモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:followed).macro).to eq :has_many
       end
     end
+
     context 'FollowingUserモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:following_user).macro).to eq :has_many
       end
     end
+
     context 'FollowerUserモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:follower_user).macro).to eq :has_many
@@ -132,5 +141,4 @@ RSpec.describe "ユーザーモデル", type: :model do
       expect(@user.following?(@user2)).to eq false
     end
   end
-
 end

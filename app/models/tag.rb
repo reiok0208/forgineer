@@ -7,5 +7,4 @@ class Tag < ApplicationRecord
   def self.search(search)
     Diary.joins(diary_tags: :tag).merge(Tag.where(id: search))
   end
-
 end

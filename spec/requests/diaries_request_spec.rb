@@ -13,6 +13,7 @@ RSpec.describe "日記コントローラー", type: :request do
       before do
         get new_user_diary_path(@user)
       end
+
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
@@ -30,8 +31,9 @@ RSpec.describe "日記コントローラー", type: :request do
 
     context "日記編集ページが正しく表示される" do
       before do
-        get edit_user_diary_path(@diary,@user)
+        get edit_user_diary_path(@diary, @user)
       end
+
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
@@ -51,6 +53,7 @@ RSpec.describe "日記コントローラー", type: :request do
       before do
         get diaries_path
       end
+
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
@@ -78,6 +81,7 @@ RSpec.describe "日記コントローラー", type: :request do
       before do
         get diary_path(@diary)
       end
+
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
@@ -93,62 +97,60 @@ RSpec.describe "日記コントローラー", type: :request do
   describe '日記投稿・日記編集・日記削除テスト' do
     context "カレントユーザーの場合" do
       it "正常に日記を投稿できる" do
-        expect {
-          post user_diaries_path(@user), params: { diary: {title:"日記", body:"日記", user_id: @user.id} }
-        }.to change(@user.diaries, :count).by(1)
+        expect do
+          post user_diaries_path(@user), params: { diary: { title: "日記", body: "日記", user_id: @user.id } }
+        end.to change(@user.diaries, :count).by(1)
         expect(flash[:notice]).to include("日記を投稿しました")
       end
       it "不足項目がある場合新規投稿できない" do
-        expect {
-          post user_diaries_path(@user), params: { diary: {title:"", body:"日記", user_id: @user.id} }
-        }.to change(@user.diaries, :count).by(0)
+        expect do
+          post user_diaries_path(@user), params: { diary: { title: "", body: "日記", user_id: @user.id } }
+        end.to change(@user.diaries, :count).by(0)
         expect(response).to render_template :new
       end
 
       it "正常に日記を更新できる" do
-        expect {
-          patch user_diary_path(user_id: @user, id: @diary), params: { diary: {title:"更新", body:"更新", user_id: @user.id} }
-        }.to change(@user.diaries, :count).by(0)
+        expect do
+          patch user_diary_path(user_id: @user, id: @diary), params: { diary: { title: "更新", body: "更新", user_id: @user.id } }
+        end.to change(@user.diaries, :count).by(0)
         expect(flash[:notice]).to include("日記を更新しました")
       end
       it "不足項目がある場合更新できない" do
-        expect {
-          patch user_diary_path(user_id: @user, id: @diary), params: { diary: {title:"", body:"更新", user_id: @user.id} }
-        }.to change(@user.diaries, :count).by(0)
+        expect do
+          patch user_diary_path(user_id: @user, id: @diary), params: { diary: { title: "", body: "更新", user_id: @user.id } }
+        end.to change(@user.diaries, :count).by(0)
         expect(response).to render_template :edit
       end
 
       it "正常に日記を削除できる" do
-        expect {
+        expect do
           delete user_diary_path(user_id: @user, id: @diary)
-        }.to change(@user.diaries, :count).by(-1)
+        end.to change(@user.diaries, :count).by(-1)
         expect(flash[:notice]).to include("日記を削除しました")
       end
-
     end
+
     context "他ユーザーidの場合" do
       it "投稿しようとするとトップ画面にリダイレクトする" do
-        expect {
-          post user_diaries_path(@user2), params: { diary: {title:"日記", body:"日記", user_id: @user.id} }
-        }.to change(@user.diaries, :count).by(0)
+        expect do
+          post user_diaries_path(@user2), params: { diary: { title: "日記", body: "日記", user_id: @user.id } }
+        end.to change(@user.diaries, :count).by(0)
         expect(response).to redirect_to root_path
       end
 
       it "更新しようとするとトップ画面にリダイレクトする" do
-        expect {
-          patch user_diary_path(user_id: @user2, id: @diary), params: { diary: {title:"更新", body:"更新", user_id: @user.id} }
-        }.to change(@user.diaries, :count).by(0)
+        expect do
+          patch user_diary_path(user_id: @user2, id: @diary), params: { diary: { title: "更新", body: "更新", user_id: @user.id } }
+        end.to change(@user.diaries, :count).by(0)
         expect(response).to redirect_to root_path
       end
 
       it "削除しようとするとトップ画面にリダイレクトする" do
-        expect {
+        expect do
           delete user_diary_path(user_id: @user2, id: @diary)
-        }.to change(@user.diaries, :count).by(0)
+        end.to change(@user.diaries, :count).by(0)
         expect(response).to redirect_to root_path
       end
     end
-    
   end
-
 end

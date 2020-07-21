@@ -6,17 +6,17 @@ class CommentsController < ApplicationController
     if user_signed_in?
       @comment = current_user.comments.new(comment_params)
     else
-      #非会員にはuser_idをnilで渡す
+      # 非会員にはuser_idをnilで渡す
       @comment = Comment.new(comment_params)
       @comment.user_id = nil
     end
     @comment.diary_id = @diary.id
     @user = User.find_by(id: @comment.user_id)
-    if @user.nil? || !@user.admin? #管理者以外はbodyをサニタイズしたものになる。script対策
+    if @user.nil? || !@user.admin? # 管理者以外はbodyをサニタイズしたものになる。script対策
       @comment.assign_attributes(body: ERB::Util.html_escape(@comment.body))
     end
     @comment.save
-    @comments = Comment.where(diary_id: @comment.diary_id) #最後に日記に紐付いたコメントを全取得し非同期に対応
+    @comments = Comment.where(diary_id: @comment.diary_id) # 最後に日記に紐付いたコメントを全取得し非同期に対応
   end
 
   def edit
@@ -29,14 +29,14 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
-    unless current_user.admin? #管理者以外の場合
+    if current_user.admin?
+      @comment.update(comment_params)
+    else # 管理者以外の場合
       @comment.assign_attributes(comment_params)
       @comment.update_attributes(body: ERB::Util.html_escape(@comment.body))
-    else
-      @comment.update(comment_params)
     end
 
-    if @comment.valid? #上記の分岐処理が有効かどうか
+    if @comment.valid? # 上記の分岐処理が有効かどうか
       flash[:notice] = 'コメントを更新しました'
       redirect_to diary_path(params[:diary_id])
     else
@@ -61,5 +61,4 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:title, :body)
   end
-
 end

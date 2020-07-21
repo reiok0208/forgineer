@@ -12,6 +12,7 @@ RSpec.describe "ユーザーコントローラー", type: :request do
       before do
         get user_path(@user)
       end
+
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
@@ -27,6 +28,7 @@ RSpec.describe "ユーザーコントローラー", type: :request do
       before do
         get edit_user_registration_path(@user)
       end
+
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
@@ -42,6 +44,7 @@ RSpec.describe "ユーザーコントローラー", type: :request do
       before do
         get user_delete_path(@user)
       end
+
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
@@ -61,6 +64,7 @@ RSpec.describe "ユーザーコントローラー", type: :request do
       before do
         get user_favorites_path(@user)
       end
+
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
@@ -76,6 +80,7 @@ RSpec.describe "ユーザーコントローラー", type: :request do
       before do
         get user_comments_path(@user)
       end
+
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
@@ -91,6 +96,7 @@ RSpec.describe "ユーザーコントローラー", type: :request do
       before do
         get user_follows_path(@user)
       end
+
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
@@ -106,6 +112,7 @@ RSpec.describe "ユーザーコントローラー", type: :request do
       before do
         get user_followers_path(@user)
       end
+
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
@@ -117,5 +124,4 @@ RSpec.describe "ユーザーコントローラー", type: :request do
       end
     end
   end
-
 end

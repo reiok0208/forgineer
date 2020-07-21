@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   # デバイスのエラーメッセージ出力メソッド
   def devise_error_messages
     return "" if resource.errors.empty?
@@ -19,24 +18,24 @@ module ApplicationHelper
     html.html_safe
   end
 
-  #シンタックスハイライトのgem「coderay」
+  # シンタックスハイライトのgem「coderay」
   require "redcarpet"
   require "coderay"
   class HTMLwithCoderay < Redcarpet::Render::HTML
     def block_code(code, language)
       case language.to_s
       when 'rb'
-          lang = 'ruby'
+        lang = 'ruby'
       when ''
-          lang = 'md'
+        lang = 'md'
       else
-          lang = language
+        lang = language
       end
       CodeRay.scan(code, lang).div
     end
   end
 
-  #マークダウンのgem「redcarpet」
+  # マークダウンのgem「redcarpet」
   def markdown(text)
     html_render = HTMLwithCoderay.new(hard_wrap: true)
     options = {
@@ -47,7 +46,7 @@ module ApplicationHelper
       hard_wrap: true,
       xhtml: true,
       lax_html_blocks: true,
-      strikethrough: true
+      strikethrough: true,
     }
     markdown = Redcarpet::Markdown.new(html_render, options)
     markdown.render(text).html_safe
