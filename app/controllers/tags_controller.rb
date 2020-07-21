@@ -10,12 +10,12 @@ class TagsController < ApplicationController
     tags = Tag.select("name")
     new_name = replace(params[:name])
     tags.each do |old|
-      if tag_dup_valid(new_name) == tag_dup_valid(old.name) #新規タグと既存タグを比較
+      if tag_dup_valid(new_name) == tag_dup_valid(old.name) # 新規タグと既存タグを比較
         flash[:notice] = "タグが重複しています"
-        return redirect_back(fallback_location: root_path) #重複していれば新規タグは破棄
+        return redirect_back(fallback_location: root_path) # 重複していれば新規タグは破棄
       end
     end
-    tag = Tag.new(name: new_name) #重複していなければ入力した新規タグをDBに保存
+    tag = Tag.new(name: new_name) # 重複していなければ入力した新規タグをDBに保存
     if tag.save
       flash[:notice] = "タグを追加しました"
       redirect_back(fallback_location: root_path)
@@ -56,5 +56,4 @@ class TagsController < ApplicationController
   def tag_params
     params.require(:tag).permit(:name)
   end
-
 end
