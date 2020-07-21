@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers:{
+  devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
   }
 
-  resources :users, only:[:show] do
+  resources :users, only: [:show] do
     post 'follow/:id' => 'relationships#follow', as: 'follow'
     post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
     get 'delete'
@@ -13,10 +13,10 @@ Rails.application.routes.draw do
     get 'comments'
     get 'follows'
     get 'followers'
-    resources :diaries, only:[:new, :create, :destroy, :edit, :update]
+    resources :diaries, only: [:new, :create, :destroy, :edit, :update]
   end
 
-  resources :diaries, only:[:index, :show] do
+  resources :diaries, only: [:index, :show] do
     resource :favorites, only: [:create, :destroy]
     resources :comments, only: [:edit, :create, :destroy, :update]
   end

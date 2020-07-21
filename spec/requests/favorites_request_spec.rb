@@ -9,17 +9,17 @@ RSpec.describe "お気に入りコントローラー", type: :request do
 
   describe 'お気に入りテスト' do
     it 'お気に入りをすることができる' do
-      expect {
+      expect do
         post diary_favorites_path(@diary), xhr: true
-      }.to change(Favorite, :count).by(1)
+      end.to change(Favorite, :count).by(1)
     end
     it 'お気に入りを外すことができる' do
-      expect {
+      expect do
         post diary_favorites_path(@diary), xhr: true
-      }.to change(Favorite, :count).by(1)
-      expect {
+      end.to change(Favorite, :count).by(1)
+      expect do
         delete diary_favorites_path(@diary), xhr: true
-      }.to change(Favorite, :count).by(-1)
+      end.to change(Favorite, :count).by(-1)
     end
   end
 end

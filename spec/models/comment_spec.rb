@@ -25,6 +25,7 @@ RSpec.describe "コメントモデル", type: :model do
         expect(Comment.reflect_on_association(:user).macro).to eq :belongs_to
       end
     end
+
     context 'Diaryモデルとの関係' do
       it 'N:1となっている' do
         expect(Comment.reflect_on_association(:diary).macro).to eq :belongs_to

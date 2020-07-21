@@ -21,6 +21,7 @@ RSpec.describe "タグモデル", type: :model do
         expect(Tag.reflect_on_association(:diary_tags).macro).to eq :has_many
       end
     end
+
     context 'Diaryモデルとの関係' do
       it '1:Nとなっている' do
         expect(Tag.reflect_on_association(:diaries).macro).to eq :has_many
@@ -31,7 +32,7 @@ RSpec.describe "タグモデル", type: :model do
   describe 'タグ検索に関するテスト' do
     it '検索タグに一致した記事の表示' do
       @diary = create(:diary)
-      @diary2 = Diary.create(title:"記事", body:"テスト")
+      @diary2 = Diary.create(title: "記事", body: "テスト")
       @tag = Tag.create(name: "日記")
       @diary_tag = DiaryTag.create(
         diary_id: @diary.id,

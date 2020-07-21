@@ -4,7 +4,7 @@ class InquiryMailer < ApplicationMailer
     @inquiry = inquiry
     mail(
       from: 'system@example.com',
-      to:   name,
+      to: name,
       subject: 'Forgineerユーザーから問い合わせ'
     )
   end

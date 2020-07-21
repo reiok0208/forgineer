@@ -14,10 +14,12 @@ RSpec.describe "コメントコントローラー", type: :request do
     before do
       sign_in @user
     end
+
     context "コメント編集ページが正しく表示される" do
       before do
         get edit_diary_comment_path(diary_id: @diary, id: @user_comment)
       end
+
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
@@ -43,41 +45,43 @@ RSpec.describe "コメントコントローラー", type: :request do
     before do
       get diary_path(@diary)
     end
+
     context "管理者の場合" do
       before do
         sign_in @admin
       end
+
       it '正常にコメントを追加できる' do
-        expect {
-          post diary_comments_path(@diary), xhr: true, params: { comment: {title: "コメント", body: "コメント"} }
-        }.to change(Comment, :count).by(1)
+        expect do
+          post diary_comments_path(@diary), xhr: true, params: { comment: { title: "コメント", body: "コメント" } }
+        end.to change(Comment, :count).by(1)
       end
       it 'タイトルが30文字を超えた場合コメントを追加できない' do
-        expect {
-          post diary_comments_path(@diary), xhr: true, params: { comment: {title: "コメント" * 10, body: "コメント"} }
-        }.to change(Comment, :count).by(0)
+        expect do
+          post diary_comments_path(@diary), xhr: true, params: { comment: { title: "コメント" * 10, body: "コメント" } }
+        end.to change(Comment, :count).by(0)
       end
       it '正常にコメントを更新できる' do
-        expect {
-          patch diary_comment_path(@admin_comment), params: { comment: {title: "更新", body: "更新"} }
-        }.to change(Comment, :count).by(0)
+        expect do
+          patch diary_comment_path(@admin_comment), params: { comment: { title: "更新", body: "更新" } }
+        end.to change(Comment, :count).by(0)
         expect(flash[:notice]).to include("コメントを更新しました")
       end
       it 'タイトルが30文字を超えた場合コメントを追加できない' do
-        expect {
-          patch diary_comment_path(@admin_comment), params: { comment: {title: "コメント" * 10, body: "コメント"} }
-        }.to change(Comment, :count).by(0)
+        expect do
+          patch diary_comment_path(@admin_comment), params: { comment: { title: "コメント" * 10, body: "コメント" } }
+        end.to change(Comment, :count).by(0)
         expect(flash[:notice]).to include("コメントを更新できませんでした。タイトルは1文字以上30文字以内です。")
       end
       it '正常に自分のコメントを削除できる' do
-        expect {
+        expect do
           delete diary_comment_path(diary_id: @diary, id: @admin_comment), xhr: true
-        }.to change(Comment, :count).by(-1)
+        end.to change(Comment, :count).by(-1)
       end
       it '正常に他人のコメントを削除できる' do
-        expect {
+        expect do
           delete diary_comment_path(diary_id: @diary, id: @user_comment), xhr: true
-        }.to change(Comment, :count).by(-1)
+        end.to change(Comment, :count).by(-1)
       end
     end
 
@@ -85,44 +89,45 @@ RSpec.describe "コメントコントローラー", type: :request do
       before do
         sign_in @user
       end
+
       it '正常にコメントを追加できる' do
-        expect {
-          post diary_comments_path(@diary), xhr: true, params: { comment: {title: "コメント", body: "コメント"} }
-        }.to change(Comment, :count).by(1)
+        expect do
+          post diary_comments_path(@diary), xhr: true, params: { comment: { title: "コメント", body: "コメント" } }
+        end.to change(Comment, :count).by(1)
       end
       it '正常にコメントを更新できる' do
-        expect {
-          patch diary_comment_path(@user_comment), params: { comment: {title: "更新", body: "更新"} }
-        }.to change(Comment, :count).by(0)
+        expect do
+          patch diary_comment_path(@user_comment), params: { comment: { title: "更新", body: "更新" } }
+        end.to change(Comment, :count).by(0)
         expect(flash[:notice]).to include("コメントを更新しました")
       end
       it '正常に自分のコメントを削除できる' do
-        expect {
+        expect do
           delete diary_comment_path(diary_id: @diary, id: @user_comment), xhr: true
-        }.to change(Comment, :count).by(-1)
+        end.to change(Comment, :count).by(-1)
       end
       it '他人のコメントを削除できない' do
-        expect {
+        expect do
           delete diary_comment_path(diary_id: @diary, id: @admin_comment), xhr: true
-        }.to change(Comment, :count).by(0)
+        end.to change(Comment, :count).by(0)
       end
     end
 
     context "非会員の場合" do
       it '正常にコメントを追加できる' do
-        expect {
-          post diary_comments_path(@diary), xhr: true, params: { comment: {title: "コメント", body: "コメント"} }
-        }.to change(Comment, :count).by(1)
+        expect do
+          post diary_comments_path(@diary), xhr: true, params: { comment: { title: "コメント", body: "コメント" } }
+        end.to change(Comment, :count).by(1)
       end
       it 'コメントを更新できない' do
-        expect {
-          patch diary_comment_path(@notuser_comment), params: { comment: {title: "更新", body: "更新"} }
-        }.to change(Comment, :count).by(0)
+        expect do
+          patch diary_comment_path(@notuser_comment), params: { comment: { title: "更新", body: "更新" } }
+        end.to change(Comment, :count).by(0)
       end
       it 'コメントを削除できない' do
-        expect {
+        expect do
           delete diary_comment_path(diary_id: @diary, id: @notuser_comment)
-        }.to change(Comment, :count).by(0)
+        end.to change(Comment, :count).by(0)
       end
     end
   end

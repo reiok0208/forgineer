@@ -34,12 +34,12 @@ RSpec.describe "日記モデル", type: :model do
     end
 
     it "検索文字列に一致する日記を返すこと" do
-      expect(Diary.search("日記")).to include(@diary,@diary2)
-      expect(Diary.search("日記")).to_not include(@diary3)
+      expect(Diary.search("日記")).to include(@diary, @diary2)
+      expect(Diary.search("日記")).not_to include(@diary3)
     end
 
     it "検索文字列が未入力の場合は全日記を返すこと" do
-      expect(Diary.search("")).to_not include()
+      expect(Diary.search("")).not_to include
     end
   end
 
@@ -49,21 +49,25 @@ RSpec.describe "日記モデル", type: :model do
         expect(Diary.reflect_on_association(:user).macro).to eq :belongs_to
       end
     end
+
     context 'DiaryTagモデルとの関係' do
       it '1:Nとなっている' do
         expect(Diary.reflect_on_association(:diary_tags).macro).to eq :has_many
       end
     end
+
     context 'Tagモデルとの関係' do
       it '1:Nとなっている' do
         expect(Diary.reflect_on_association(:tags).macro).to eq :has_many
       end
     end
+
     context 'Favoriteモデルとの関係' do
       it '1:Nとなっている' do
         expect(Diary.reflect_on_association(:favorites).macro).to eq :has_many
       end
     end
+
     context 'Commentモデルとの関係' do
       it '1:Nとなっている' do
         expect(Diary.reflect_on_association(:comments).macro).to eq :has_many

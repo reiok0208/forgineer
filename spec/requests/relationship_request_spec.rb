@@ -11,17 +11,18 @@ RSpec.describe "関係コントローラー", type: :request do
     before do
       get user_path(@other_user)
     end
+
     it 'フォローをすることができる' do
-      expect {
+      expect do
         post user_follow_path(@other_user)
-      }.to change(Relationship, :count).by(1)
+      end.to change(Relationship, :count).by(1)
       expect(flash[:notice]).to include("フォローしました")
     end
     it 'フォローを外すことができる' do
       @user.follow(@other_user.id)
-      expect {
+      expect do
         post user_unfollow_path(@other_user)
-      }.to change(Relationship, :count).by(-1)
+      end.to change(Relationship, :count).by(-1)
       expect(flash[:notice]).to include("アンフォローしました")
     end
   end
