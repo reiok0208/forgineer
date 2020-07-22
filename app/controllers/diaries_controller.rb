@@ -18,11 +18,11 @@ class DiariesController < ApplicationController
     if params["user_id"].nil?
       # indexアクションにtag_idがパラメーターで送られたときにそのtag_idに紐付いた日記を@diariesに渡す。
       diaries = params[:tag_id].present? ? Tag.search(params[:tag_id]) : Diary.search(params[:search])
-      option(diaries) # インスタンス変数を渡すヘルパー
+      @diaries = option(diaries) # インスタンス変数を渡すヘルパー
     else
       # indexアクションにuser_idがパラメーターで送られたときにそのuser_idに紐付いた日記を@diariesに渡す。
       diaries = Diary.where(user_id: params["user_id"])
-      option(diaries)
+      @diaries = option(diaries)
     end
   end
 

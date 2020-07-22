@@ -7,7 +7,7 @@ module ApplicationHelper
     html += <<-EOF
       <div class="error_field alert alert-danger" role="alert" style="width:500px; margin:20px 0; padding:10px;">
     EOF
-    messages = resource.errors.full_messages.each do |msg|
+    resource.errors.full_messages.each do |msg|
       html += <<-EOF
         <p class="error_msg">#{msg}</p>
       EOF
