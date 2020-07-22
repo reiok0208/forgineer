@@ -67,7 +67,7 @@ RSpec.describe "コメントコントローラー", type: :request do
         end.to change(Comment, :count).by(0)
         expect(flash[:notice]).to include("コメントを更新しました")
       end
-      it 'タイトルが30文字を超えた場合コメントを追加できない' do
+      it 'タイトルが30文字を超えた場合コメントを更新できない' do
         expect do
           patch diary_comment_path(@admin_comment), params: { comment: { title: "コメント" * 10, body: "コメント" } }
         end.to change(Comment, :count).by(0)

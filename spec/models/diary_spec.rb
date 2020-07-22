@@ -27,7 +27,7 @@ RSpec.describe "日記モデル", type: :model do
     before do
       @diary = create(:diary)
       @diary2 = create(:diary)
-      diary3 = Diary.create(
+      @diary3 = Diary.create(
         title: "テスト",
         body: "テスト内容",
       )
